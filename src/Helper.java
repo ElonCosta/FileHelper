@@ -1,5 +1,6 @@
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,13 +19,10 @@ public class Helper {
     }
 
     public void checker(File file){
-        isInLatest(file);
-    }
-
-    private void isInLatest(File file){
-        File inLatest = new File(latest.toString() + file.getName());
-        if (!inLatest.exists()){
-            if ()
+        try{
+            Files.copy(file.toPath(),latest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        }catch (Exception e){
+            System.err.println(e);
         }
     }
 
