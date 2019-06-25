@@ -1,0 +1,53 @@
+{
+  "Global": {
+    "rootFolderName": "Source",
+    "versionFolderName": "Latest",
+    "archiveFolderName": "Archive",
+    "extensionToAvoid": [],
+    "dataPaths": []
+  },
+  "Files": [
+    {
+      "File": {
+        "name": "Flash2015",
+        "path": "/home/desenv/workspace_Flash2015/Flash2015/build",
+        "dataPath": "Source/Latest/Flash2015/data.json",
+        "extensionsToAvoid": [
+          {
+            "Extension": "jar"
+          },
+          {
+            "Extension": "war"
+          },
+          {
+            "Extension": "ear"
+          }
+        ]
+      }
+    },
+    {
+      "File": {
+        "name": "FlashPrint",
+        "path": "/home/desenv/Versoes/FlashPrint/CFlashPrint.jar",
+        "dataPath": "Source/Latest/FlashPrint/data.json",
+        "extensionsToAvoid": []
+      }
+    },
+    {
+      "File": {
+        "name": "FlashOnline",
+        "path": "/home/desenv/git/flashonline/FlashOnline.war",
+        "dataPath": "Source/Latest/FlashOnline/data.json",
+        "extensionsToAvoid": []
+      }
+    },
+    {
+      "File": {
+        "name": "FlashPegasus",
+        "path": "/home/desenv/VersãoPegasus/FlashPegasus.war",
+        "dataPath": "Source/Latest/FlashPegasus/data.json",
+        "extensionsToAvoid": []
+      }
+    }
+  ]
+}

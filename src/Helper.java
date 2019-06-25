@@ -9,48 +9,67 @@ import org.apache.commons.io.*;
 
 public class Helper {
 
-    File source = new File("Source");
-    File archive = new File("Source/Archive/" + (new SimpleDateFormat("yyyy/MM/dd").format(new Date())));
-    File latest = new File("Source/Latest");
-
-
+    File source;
+    File archive;
+    File latest;
+    String[] toAvoid;
     Helper(){
-        createFolders();
     }
 
-    public void checker(File file){
-        File inLatest = new File(latest.toString() + "/" + file.getName());
+    public void checker(ArchiveData data){
+        File file = data.getFile();
+        toAvoid = data.getToAvoid();
+        File inLatest = new File(latest.toString() + "/" + data.getName() + "/" + file.getName());
         if (inLatest.getName().equals(file.getName())){
             if(!checker(inLatest,file)){
-                createFile(file);
+                createFile(data);
             }
         }
     }
 
-    private void createFile(File file){
-        File inLatest = new File(latest.toString() + "/" + file.getName());
+    private void createFile(ArchiveData data){
+        File file = data.getFile();
+        File inLatest = new File(latest.toString() + "/" + data.getName() + "/" + file.getName());
         if (!inLatest.exists()){
-            inLatest.mkdir();
-            try{
-                FileUtils.copyDirectory(file,inLatest);
-            }catch (Exception e){
-                System.err.println(e);
+            if (file.isDirectory()){
+                inLatest.mkdir();
+                try{
+                    FileUtils.copyDirectory(file,inLatest);
+                }catch (Exception e){
+                    System.err.println(e);
+                }
+            }else{
+                inLatest = new File(latest.toString() + "/" + data.getName());
+                inLatest.mkdir();
+                try{
+                    FileUtils.copyFileToDirectory(file, inLatest);
+                }catch (Exception e){
+                    System.err.println(e);
+                }
             }
         }else{
             try{
                 File arch = new File(archive.toString() + (new SimpleDateFormat("/hh_mm")).format(new Date()) + "/" + inLatest.getName());
-                System.out.println("Archiving \"" + arch.getName() + "\" on" + archive.toString() + (new SimpleDateFormat("\"hh_mm")).format(new Date()));
+                System.out.println("Archiving \"" + arch.getName() + "\" on" + archive.toString() + (new SimpleDateFormat("/hh_mm")).format(new Date()));
                 arch.mkdirs();
                 FileUtils.copyDirectory(inLatest,arch);
                 FileUtils.deleteDirectory(inLatest);
             }catch (Exception e){
                 System.err.println(e);
             }
-            createFile(file);
+            createFile(data);
         }
     }
 
     private boolean checker(File file1, File file2){
+        if (!file1.exists() || !file2.exists()){
+            return false;
+        }
+        for (String ext: toAvoid){
+            if (file1.getName().endsWith(ext)|| file2.getName().endsWith(ext)){
+                return true;
+            }
+        }
         if (file1.isDirectory() && file2.isDirectory()){
             File[] file1Arr = file1.listFiles();
             File[] file2Arr = file2.listFiles();
@@ -66,10 +85,9 @@ public class Helper {
             }else {
                 return false;
             }
+
+
         }else if (file1.isFile() && file2.isFile()){
-            if (!file1.getName().equals(file2.getName())){
-                return false;
-            }
             try{
                 BufferedReader br1 = new BufferedReader(new FileReader(file1));
                 BufferedReader br2 = new BufferedReader(new FileReader(file2));
@@ -92,7 +110,7 @@ public class Helper {
         return true;
     }
 
-    private void createFolders(){
+    public void createFolders(){
         if (this.source.mkdir()){
             System.out.println("Creating " + source.toString());
         }
@@ -102,5 +120,17 @@ public class Helper {
         if (latest.mkdir()){
             System.out.println("Creating " + latest.toString());
         }
+    }
+
+    public void setArchive(String archive) {
+        this.archive = new File(source.toString()+"/"+archive);
+    }
+
+    public void setLatest(String latest) {
+        this.latest = new File(source.toString()+"/"+latest);
+    }
+
+    public void setSource(String source) {
+        this.source = new File(source);
     }
 }
