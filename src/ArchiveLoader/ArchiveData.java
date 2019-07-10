@@ -6,6 +6,7 @@ import org.json.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.jar.JarEntry;
@@ -56,10 +57,13 @@ public class ArchiveData  {
             }
             lastMod = lastModSDF.format(new Date());
             routineTime = archive.getInt("routineTime");
+            if (routineTime < 0){
+                routineTime = 0;
+            }
             checker();
             generateData();
     }
-    public void generateData() throws Exception{
+    public void generateData() throws IOException{
         dataFile = new File(map.get("root").toString() + "/" + name + "_Data.json");
         JSONWriter w = new JSONStringer();
         w.object();
@@ -92,7 +96,7 @@ public class ArchiveData  {
         data = new JSONObject(w.toString());
         Files.write(Paths.get(dataFile.toURI()),data.toString().getBytes());
     }
-    public void checker() throws Exception{
+    public void checker() throws IOException, ParseException{
         System.out.println(name+":");
         for (int i = 0; i < files.size(); i++) {
             if((!destFiles.get(i).exists())||(FileUtils.isFileNewer(files.get(i),destFiles.get(i)))){
@@ -103,7 +107,15 @@ public class ArchiveData  {
             }
         }
     }
-    private void createFile(File file, File inLatest) throws Exception{
+    public void specialChecker() throws IOException, ParseException{
+        for (int i = 0; i < files.size(); i++) {
+            if((!destFiles.get(i).exists())||(FileUtils.isFileNewer(files.get(i),destFiles.get(i)))){
+                createFile(files.get(i), destFiles.get(i));
+                generateData();
+            }
+        }
+    }
+    private void createFile(File file, File inLatest) throws IOException, ParseException {
         if (!inLatest.exists()){
             if (file.isDirectory()){
                 inLatest.mkdir();

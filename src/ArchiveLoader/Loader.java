@@ -127,6 +127,18 @@ public class Loader {
                 next = getNextRoutine(routineTime, actual);
                 System.out.println("Next routine execution at: " + (new SimpleDateFormat("HH:mm").format(next)));
             }
+            for (ArchiveData data: specialCaseArchives){
+                if (data.getRoutineTime() == 0){
+                    data.specialChecker();
+                }else{
+                    Date spclNext = getNextRoutine(data.getRoutineTime(), actual);
+                    if (!actual.before(spclNext)){
+                        data.checker();
+                        next = getNextRoutine(routineTime, actual);
+                        System.out.println("Next routine execution at: " + (new SimpleDateFormat("HH:mm").format(spclNext)));
+                    }
+                }
+            }
             actual = new Date();
         }
     }
