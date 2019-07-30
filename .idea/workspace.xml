@@ -7,17 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26f6786f-0baf-4f39-97c0-248b104f2385" name="Default Changelist" comment="First Commit">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/FileHelper_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AAA/BBB/CCC/EEE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AAA/BBB/DDD/FFF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Latest/AAA/BBB/CCC/EEE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Latest/AAA/BBB/DDD/FFF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration.json" beforeDir="false" afterPath="$PROJECT_DIR$/configuration.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FileHelper/Helper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FileHelper/Launcher.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ArchiveLoader/ArchiveData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ArchiveLoader/ArchiveData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ArchiveLoader/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ArchiveLoader/Loader.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -35,7 +25,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ArchiveLoader/ArchiveData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
+            <state relative-caret-position="660">
               <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -50,14 +40,24 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ArchiveLoader/Loader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="137" column="121" selection-start-line="137" selection-start-column="121" selection-end-line="137" selection-end-column="121" />
+            <state relative-caret-position="204">
+              <caret line="136" column="31" selection-start-line="136" selection-start-column="31" selection-end-line="136" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#getFoldersMap#0;class#Loader#0" />
                 <element signature="method#Loader#0;class#Loader#0" />
+                <element signature="method#load#0;class#Loader#0" />
                 <element signature="method#generateConfigFile#0;class#Loader#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/FlashPegasus_Data.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="46" selection-start-column="46" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -134,16 +134,16 @@
         <option value="$PROJECT_DIR$/Source/Latest/Flash2015/data.json" />
         <option value="$PROJECT_DIR$/src/Main/Launcher.java" />
         <option value="$PROJECT_DIR$/configuration.json" />
-        <option value="$PROJECT_DIR$/src/ArchiveLoader/Loader.java" />
         <option value="$PROJECT_DIR$/src/ArchiveLoader/ArchiveData.java" />
+        <option value="$PROJECT_DIR$/Source/FlashPegasus_Data.json" />
+        <option value="$PROJECT_DIR$/src/ArchiveLoader/Loader.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="200" />
-    <option name="y" value="129" />
-    <option name="width" value="1200" />
-    <option name="height" value="612" />
+    <option name="y" value="766" />
+    <option name="width" value="1600" />
+    <option name="height" value="902" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -151,8 +151,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -227,6 +225,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -307,6 +307,8 @@
       <workItem from="1562598643377" duration="5008000" />
       <workItem from="1562760870030" duration="12475000" />
       <workItem from="1562777211734" duration="4395000" />
+      <workItem from="1562844581637" duration="1928000" />
+      <workItem from="1562847703025" duration="79000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1561397026003</created>
@@ -340,7 +342,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85258000" />
+    <option name="totallyTimeSpent" value="87265000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -352,10 +354,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1600" height="818" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="793" width="1600" height="818" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2818533" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28957528" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -375,7 +376,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5006435" side_tool="true" weight="0.3280116" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3280116" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="12" visible="true" weight="0.32946298" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.32850942" />
       <window_info anchor="bottom" id="IvyIDEA" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -543,6 +544,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ArchiveLoader/ArchiveData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#ArchiveData#0;class#ArchiveData#0" />
+            <element signature="method#updateGlbCfg#0;class#ArchiveData#0" />
+            <element signature="method#getRoutineTime#0;class#ArchiveData#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/FlashPegasus_Data.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="46" selection-start-column="46" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configuration.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="870" selection-start-column="870" selection-end-column="870" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Flash2015_Data.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="26" selection-start-column="26" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/Launcher.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -556,48 +591,15 @@
     <entry file="file://$PROJECT_DIR$/out/artifacts/FileHelper_jar/configuration.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/FlashPegasus_Data.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="51" selection-start-column="51" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Flash2015_Data.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="26" selection-start-column="26" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ArchiveLoader/ArchiveData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#ArchiveData#0;class#ArchiveData#0" />
-            <element signature="method#updateGlbCfg#0;class#ArchiveData#0" />
-            <element signature="method#getRoutineTime#0;class#ArchiveData#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configuration.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="870" selection-start-column="870" selection-end-column="870" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ArchiveLoader/Loader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="137" column="121" selection-start-line="137" selection-start-column="121" selection-end-line="137" selection-end-column="121" />
+        <state relative-caret-position="204">
+          <caret line="136" column="31" selection-start-line="136" selection-start-column="31" selection-end-line="136" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#getFoldersMap#0;class#Loader#0" />
             <element signature="method#Loader#0;class#Loader#0" />
+            <element signature="method#load#0;class#Loader#0" />
             <element signature="method#generateConfigFile#0;class#Loader#0" />
           </folding>
         </state>
