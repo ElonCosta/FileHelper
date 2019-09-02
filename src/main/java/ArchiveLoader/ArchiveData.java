@@ -1,6 +1,7 @@
 package ArchiveLoader;
 
-import org.apache.commons.io.FileUtils;
+import Utils.FilePath;
+import org.apache.commons.io.*;
 import org.json.*;
 
 import java.io.*;
@@ -9,26 +10,20 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 import static ArchiveLoader.Loader.FoldersMap;
 import static ArchiveLoader.Loader.glbCfg;
-import static ArchiveLoader.Loader.configPath;
+import static Main.Launcher.LOG;
 
 @SuppressWarnings("Duplicates")
 public class ArchiveData  {
 
-    private List<File> files = new ArrayList<>();
-    private List<File> destFiles = new ArrayList<>();
+    private List<FilePath> paths = new ArrayList<>();
     private File dataFile;
     private JSONObject data;
     private String lastMod;
     private String name;
     private Map<String, File> map = FoldersMap;
-    private Integer routineTime;
     private SimpleDateFormat lastModSDF = new SimpleDateFormat("yyyy/MM/dd HH:mm");
     private SimpleDateFormat archSDF = new SimpleDateFormat("/yyyy/MM/dd/HH_mm/");
 
@@ -38,25 +33,11 @@ public class ArchiveData  {
         JSONArray archArr = archive.getJSONArray("Paths");
         for (int i = 0; i < archArr.length(); i++){
             JSONObject obj = archArr.getJSONObject(i);
-            File file = new File(obj.getString("path"));
-            files.add(file);
+            String orig = obj.getString("path");
             String dest = obj.getString("destination");
-            if (dest.equals(map.get("version").getName())){
-                destFiles.add(new File(map.get("version").toString() + "/" + name + "/" + file.getName()));
-            }else{
-                File destFile = new File(dest);
-                if (destFile.getName().equals(file.getName())){
-                    destFiles.add(destFile);
-                }else{
-                    destFiles.add(new File(dest+"/"+file.getName()));
-                }
-            }
+            paths.add(new FilePath(orig,dest, name));
         }
         lastMod = lastModSDF.format(new Date());
-        routineTime = archive.getInt("routineTime");
-        if (routineTime < 0){
-            routineTime = 0;
-        }
         checker();
         generateData();
     }
@@ -68,15 +49,14 @@ public class ArchiveData  {
         w.object();
         w.key("name").value(name);
         w.key("Paths").array();
-        for (File f: files){
+        for (FilePath p : paths){
             w.object();
-            w.key("path").value(f.toString());
-            w.key("destination").value(destFiles.get(files.indexOf(f)).toString());
+            w.key("path").value(p.getFile().toString());
+            w.key("destination").value(p.getDestFile().toString());
             w.endObject();
         }
         w.endArray();
         w.key("lastMod").value(lastMod);
-        w.key("routineTime").value(routineTime);
         w.endObject();
         w.endObject();
 
@@ -91,24 +71,18 @@ public class ArchiveData  {
             glbCfg.getJSONArray("dataPaths").put(o);
         }
         data = new JSONObject(w.toString());
-        Files.write(Paths.get(dataFile.toURI()),data.toString().getBytes());
+        Files.write(Paths.get(dataFile.toURI()),data.toString(4).getBytes());
     }
     public void checker() throws IOException, ParseException{
-        System.out.println(name+":");
-        for (int i = 0; i < files.size(); i++) {
-            if((!destFiles.get(i).exists())||(FileUtils.isFileNewer(files.get(i),destFiles.get(i)))){
-                createFile(files.get(i), destFiles.get(i));
+        LOG.println(name+":");
+        for (int i = 0; i < paths.size(); i++) {
+            File file = paths.get(i).getFile();
+            File destFile = paths.get(i).getDestFile();
+            if((!destFile.exists())||(FileUtils.isFileNewer(file,destFile))){
+                createFile(file, destFile);
                 generateData();
             }else {
-                System.out.println("    \"" + files.get(i).getName() + "\" is up to date");
-            }
-        }
-    }
-    public void specialChecker() throws IOException, ParseException{
-        for (int i = 0; i < files.size(); i++) {
-            if((!destFiles.get(i).exists())||(FileUtils.isFileNewer(files.get(i),destFiles.get(i)))){
-                createFile(files.get(i), destFiles.get(i));
-                generateData();
+                LOG.println("    \"" + destFile.getName() + "\" is up to date");
             }
         }
     }
@@ -116,24 +90,24 @@ public class ArchiveData  {
         if (!inLatest.exists()){
             if (file.isDirectory()){
                 inLatest.mkdir();
-                System.out.println("    Archiving latest version of \"" + name + "/" + file.getName() + "\" on: \"" + inLatest.toString() + "\"");
+                LOG.println("    Archiving latest version of \"" + file.getParentFile().getName() + "\\" + file.getName() + "\" on: \"" + inLatest.toString() + "\"");
                 FileUtils.copyDirectory(file,inLatest,true);
             }else{
                 inLatest = new File(inLatest.getParent());
                 inLatest.mkdir();
-                System.out.println("    Archiving latest version of \"" + name + "/" + file.getName() + "\" on: \"" + inLatest.toString() + "\"");
+                LOG.println("    Archiving latest version of \"" + file.getParentFile().getName() + "\\" + file.getName() + "\" on: \"" + inLatest.toString() + "\"");
                 FileUtils.copyFileToDirectory(file, inLatest,true);
             }
         }else{
             if (inLatest.isDirectory()) {
                 File arch = new File(map.get("archive").toString() + (archSDF.format(lastModSDF.parse(lastMod))) + "/" + name + "/" + inLatest.getName());
-                System.out.println("    Archiving \"" + name + "/" + file.getName() + "\" on " + arch.getParentFile().getParent());
+                LOG.println("    Archiving \"" + inLatest.getParentFile().getName() + "\\" + inLatest.getName() + "\" on " + arch.getParentFile().getParent());
                 arch.mkdirs();
                 FileUtils.copyDirectory(inLatest, arch, true);
                 FileUtils.deleteDirectory(inLatest);
             }else{
                 File arch = new File(map.get("archive").toString() + (archSDF.format(lastModSDF.parse(lastMod))) + "/" + name + "/" + inLatest.getName());
-                System.out.println("    Archiving \"" + name + "/" + file.getName() + "\" on " + arch.getParentFile().getParent());
+                LOG.println("    Archiving \"" + inLatest.getParentFile().getName() + "\\" + inLatest.getName() + "\" on " + arch.getParentFile().getParent());
                 arch.mkdirs();
                 FileUtils.copyFileToDirectory(inLatest, arch, true);
                 inLatest.delete();
@@ -150,11 +124,5 @@ public class ArchiveData  {
             }
         }
         return true;
-    }
-
-    public Integer getRoutineTime() {
-
-        return routineTime;
-
     }
 }
