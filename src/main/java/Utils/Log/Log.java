@@ -52,8 +52,21 @@ public class Log {
         return this.LOG.getBytes();
     }
 
-    public void readCommand(){
-
+    public void readCommand() throws IOException{
+        BufferedReader br = new BufferedReader(new FileReader(log));
+        List<String> tmp = new ArrayList<>();
+        while (br.ready()){
+            tmp.add(br.readLine());
+        }
+        if (tmp.size() != 0){
+            if (tmp.get(tmp.size() - 1).startsWith(">>")){
+                for (Command cmd: commands){
+                    if (tmp.get(tmp.size()-1).endsWith(cmd.getCmd())){
+                        cmd.run();
+                    }
+                }
+            }
+        }
     }
 
     public boolean readLog(String x) throws IOException{

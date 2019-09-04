@@ -12,28 +12,7 @@ public class Launcher {
     public static Log LOG;
 
     public static void main(String[] args){
-        String s = "clear -i[20]";
-        String[] ss = s.split("(?=-+[a-z]+\\[)",-1);
-        for (String sss:
-             ss) {
-            System.out.println(sss.matches("(-+[a-z]+\\[)+([\\w])+(\\])"));
-        }
-
-        Command cmd = new Command("Clear", "-i[I]") {
-            @Override
-            public void run() {
-
-            }
-
-
-        };
-
-        for (Command.Args a: cmd.args){
-            a.setValue(30);
-            a.setValue("a");
-            a.setValue('C');
-            System.out.println(a.getHandle() + "|" + a.getValue());
-        }
+        Launch();
     }
 
     public static void Launch(){

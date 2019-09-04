@@ -35,6 +35,9 @@ public class Loader {
     private Date lastDateUpdate;
     public static JSONObject glbCfg;
 
+    private Date actual;
+    private Date next;
+
     public Loader() throws IOException{
         if (!configPath.exists()){
             generateConfigFile();
@@ -105,14 +108,10 @@ public class Loader {
         Files.write(Paths.get(configPath.toURI()),object.toString(4).getBytes());
     }
     private void routine() throws IOException, ParseException {
-        Date actual = new Date();
-        Date next = getNextRoutine(routineTime, actual);
+        actual = new Date();
+        next = getNextRoutine(routineTime, actual);
         while (true){
-            close();
-            if (forceCheck()){
-                next = getNextRoutine(routineTime, actual);
-                LOG.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
-            }
+            LOG.readCommand();
             if (!actual.before(next)){
                 for (ArchiveData data: archives){
                     data.checker();
@@ -166,28 +165,32 @@ public class Loader {
                 }
             }
         });
+        LOG.newCommand(new Command("forceCheck") {
+            @Override
+            public void run() {
+                try{
+                    forceCheck();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void close() throws IOException, ParseException{
-        if (LOG.readLog("close")){
             LOG.println("Checking files before closing");
             for (ArchiveData data: archives){
                 data.checker();
             }
             LOG.println("Closing FileHelper");
             System.exit(0);
-        }
     }
 
-    private boolean forceCheck() throws IOException, ParseException{
-        if (LOG.readLog("forceCheck")){
-            for (ArchiveData data: archives){
-                data.checker();
-            }
-            glbCfg.put("forceCheck", false);
-            Files.write(Paths.get(configPath.toURI()),config.toString(4).getBytes());
-            return true;
+    private void forceCheck() throws IOException, ParseException {
+        for (ArchiveData data : archives) {
+            data.checker();
         }
-        return false;
+        next = getNextRoutine(routineTime, actual);
+        LOG.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
     }
 }

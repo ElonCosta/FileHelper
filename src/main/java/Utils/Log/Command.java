@@ -5,7 +5,15 @@ import java.util.List;
 
 public abstract class Command {
 
-    String cmd;
+    public String getCmd() {
+        return cmd;
+    }
+
+    public void setCmd(String cmd) {
+        this.cmd = cmd;
+    }
+
+    private String cmd;
     public List<Args> args;
 
     public Command(String cmd){
