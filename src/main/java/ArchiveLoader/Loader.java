@@ -1,5 +1,6 @@
 package ArchiveLoader;
 
+import Utils.Log.Command;
 import org.apache.commons.io.FileUtils;
 import org.json.*;
 
@@ -155,6 +156,16 @@ public class Loader {
             glbCfg = config.getJSONObject("Global");
         }catch (JSONException e){
         }
+        LOG.newCommand(new Command("close") {
+            @Override
+            public void run() {
+                try{
+                    close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void close() throws IOException, ParseException{
