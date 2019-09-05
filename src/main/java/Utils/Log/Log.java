@@ -23,14 +23,20 @@ public class Log {
             @Override
             public void run() {
                 try{
-                    if (getArgs().size() > 0){
-                        System.out.println("Yes");
-                        clear(Integer.valueOf(getArgs().get(0).getValue().toString()));
-                    }else {
-                        clear();
-                    }
+                    clear(Integer.valueOf(getArgs().get(0).getValue().toString()));
                 }catch (Exception e){
                     e.printStackTrace();
+                }
+            }
+        });
+        newCommand(new Command("clear") {
+            @Override
+            public void run() {
+                try{
+                    clear();
+                    println(">");
+                }catch (Exception e){
+                    System.out.println(e);
                 }
             }
         });
@@ -73,15 +79,18 @@ public class Log {
         while (br.ready()){
             tmp.add(br.readLine());
         }
-        if (tmp.size() != 0){
+        if (tmp.size() > 0){
             if (tmp.get(tmp.size() - 1).startsWith(">>")){
                 String tmps = tmp.get(tmp.size() - 1).substring(2);
                 for (Command cmd: commands){
                     if (tmps.matches(cmd.getRegexCmd())){
+                        System.out.println(tmps);
                         if (cmd.hasArgs){
+                            System.out.println(tmps);
                             cmd.getArgs(tmps);
                             cmd.run();
                         }else{
+                            System.out.println(tmps);
                             cmd.run();
                         }
                     }
@@ -90,29 +99,10 @@ public class Log {
         }
     }
 
-    public boolean readLog(String x) throws IOException{
-        BufferedReader br = new BufferedReader(new FileReader(log));
-        List<String> tmp = new ArrayList<>();
-        while (br.ready()){
-            tmp.add(br.readLine());
-        }
-        if (tmp.size() != 0){
-            if (tmp.get(tmp.size() - 1).startsWith(">") && tmp.get(tmp.size() - 1).equals(">"+x)){
-                this.println(">",false);
-                return true;
-            }else {
-                return false;
-            }
-        }else{
-            return false;
-        }
-    }
-
     private void clear() throws IOException{
-        FileWriter fw = new FileWriter(log);
+        FileWriter fw = new FileWriter(log,false);
         fw.write("");
         fw.close();
-        println("Clearing all lines\n>");
     }
 
     public void clear(Integer i) throws IOException{
@@ -124,9 +114,9 @@ public class Log {
         while (br.ready()){
             tmp.add(br.readLine());
         }
-        if (tmp.size() != 0 && i < tmp.size()){
+        if (tmp.size() > 0 && i < tmp.size()){
             for (int y = 0; y < i; y++){
-                tmp.remove(y);
+                tmp.remove(0);
             }
             String tmps = "";
             for (String s: tmp){
@@ -136,6 +126,8 @@ public class Log {
             fw.write(tmps);
             fw.close();
             this.println("Clearing " + i + " lines");
+        }else{
+            println("Not enough lines ("+i+") to clear");
         }
     }
 

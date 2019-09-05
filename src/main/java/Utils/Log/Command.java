@@ -7,7 +7,8 @@ public abstract class Command {
 
     private String cmd;
     private List<Args> args;
-    public boolean hasArgs;
+    public boolean hasArgs = false;
+    public boolean noArgs = false;
 
     private String regexCmd;
 
@@ -46,13 +47,12 @@ public abstract class Command {
             }
             this.regexCmd += " " + handle + "(\\[+[\\w]+\\])";
         }
-        System.out.println(regexCmd);
+        System.out.println(regexCmd + "|" + hasArgs);
     }
 
     public abstract void run();
 
     public void getArgs(String cmd){
-        System.out.println("yes");
         String[] split = cmd.split("(?=-+[a-z](\\[+[\\w]+\\]))");
         if (split.length > 1 && (split.length-1) == args.size()){
             for (int i = 1; i <= args.size(); i++){
@@ -61,6 +61,9 @@ public abstract class Command {
                 System.out.println(s);
                 System.out.println(args.get(i-1).getValue());
             }
+        }
+        if (split.length == 1){
+            noArgs = true;
         }
     }
 
