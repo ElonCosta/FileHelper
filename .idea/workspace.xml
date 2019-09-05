@@ -8,8 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="26f6786f-0baf-4f39-97c0-248b104f2385" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Log/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Log/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Log/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Log/Log.java" afterDir="false" />
     </list>
@@ -146,7 +144,8 @@
       <workItem from="1567109707482" duration="1322000" />
       <workItem from="1567163892929" duration="3107000" />
       <workItem from="1567173155178" duration="624000" />
-      <workItem from="1567434856974" duration="23143000" />
+      <workItem from="1567434856974" duration="30007000" />
+      <workItem from="1567702657378" duration="3941000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1561397026003</created>
@@ -190,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567618588239</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="First Commit">
+      <created>1567620267917</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1567620267917</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
