@@ -5,6 +5,7 @@ import java.util.List;
 
 public abstract class Command {
 
+    public static String[] vars = new String[]{"i","s","c","f","d","l","b"};
     private String cmd;
     private List<Args> args;
     public boolean hasArgs = false;
@@ -14,7 +15,7 @@ public abstract class Command {
 
     public Command(String cmd, Object... args){
         this.cmd = cmd;
-        this.args = new ArrayList();
+        this.args = new ArrayList<>();
         this.regexCmd = cmd;
         if (args.length > 0){
             hasArgs = true;
@@ -45,21 +46,24 @@ public abstract class Command {
                 Args<Long> a = new Args<>(handle, 0L);
                 this.args.add(a);
             }
-            this.regexCmd += " " + handle + "(\\[+[\\w]+\\])";
+            if (o.toString().replaceAll("(-+[a-z]+\\[)|(\\])","").equals("B")){
+                Args<Boolean> a = new Args<>(handle, false);
+                this.args.add(a);
+            }
+            this.regexCmd += " (-+[a-z]+\\[+[\\w]+\\])";
         }
-        System.out.println(regexCmd + "|" + hasArgs);
     }
 
     public abstract void run();
 
-    public void getArgs(String cmd){
+    public void setArgs(String cmd){
+        cmd = cmd.replaceAll("\\s","");
         String[] split = cmd.split("(?=-+[a-z](\\[+[\\w]+\\]))");
-        if (split.length > 1 && (split.length-1) == args.size()){
-            for (int i = 1; i <= args.size(); i++){
-                String s = split[i].replaceAll("(-+[a-z](\\[)|(\\]))","");
-                args.get(i-1).setValue(s);
-                System.out.println(s);
-                System.out.println(args.get(i-1).getValue());
+        for (Args args : args){
+            for (String s : split){
+                if (s.replaceAll("(\\[+[\\w]+\\])","").equals(args.getHandle())){
+                    args.setValue(s.replaceAll("(-+[a-z]+\\[)|(\\])",""));
+                }
             }
         }
         if (split.length == 1){
@@ -71,17 +75,27 @@ public abstract class Command {
         return cmd;
     }
 
-    public String getRegexCmd() {
+    String getRegexCmd() {
         return regexCmd;
     }
 
-    public List<Args> getArgs() {
+    protected List<Args> getArgs() {
         return args;
     }
 
-    public class Args<T>{
+    protected Args getArg(String param){
+        for (Args a : args){
+            if (a.getHandle().equals(param)){
+                return a;
+            }
+        }
 
-        public String getHandle() {
+        return null;
+    }
+
+    public static class Args<T>{
+
+        String getHandle() {
             return handle;
         }
 
@@ -89,16 +103,43 @@ public abstract class Command {
             return value;
         }
 
+        public String getAsString(){
+            return value.toString();
+        }
+
+        public Integer getAsInteger(){
+            return Integer.parseInt(value.toString());
+        }
+
+        public Boolean getAsBoolean(){
+            return Boolean.parseBoolean(value.toString());
+        }
+
+        public Double getAsDouble(){
+            return Double.parseDouble(value.toString());
+        }
+
+        public Float getAsFloat(){
+            return Float.parseFloat(value.toString());
+        }
+
+        public Long getAsLong(){
+            return Long.parseLong(value.toString());
+        }
+
+        public Character getAsCharacter(){
+            return value.toString().charAt(0);
+        }
+
         private String handle;
 
-        public void setValue(Object value) {
-            T ob = (T) value;
-            this.value = ob;
+        void setValue(Object value) {
+            this.value = (T) value;
         }
 
         private T value;
 
-        protected Args(String handle, T value){
+        Args(String handle, T value){
             this.handle = handle;
             this.value = value;
         }

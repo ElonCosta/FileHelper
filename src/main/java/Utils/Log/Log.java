@@ -3,74 +3,71 @@ package Utils.Log;
 import Utils.TextReader;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static ArchiveLoader.Loader.glbCfg;
+
 public class Log {
 
-    static File log = new File("./logFile.txt");
+    private static File log = new File("./logFile.txt");
     private TextReader logLines;
-    private String LOG = "";
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss ");
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss > ");
     private List<Command> commands = new ArrayList<>();
 
-    public Log() throws IOException{
-        clear();
-        newCommand(new Command("clear","-n[I]") {
-            @Override
-            public void run() {
-                try{
-                    clear(Integer.valueOf(getArgs().get(0).getValue().toString()));
-                }catch (Exception e){
-                    e.printStackTrace();
+    public Log(){
+        try{
+            clear();
+            newCommand(new Command("clear","-n[I]") {
+                @Override
+                public void run() {
+                    Integer lines = getArg("-n").getAsInteger();
+                    try{
+                        clear(lines);
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
                 }
-            }
-        });
-        newCommand(new Command("clear") {
-            @Override
-            public void run() {
-                try{
-                    clear();
-                    println(">");
-                }catch (Exception e){
-                    System.out.println(e);
+            });
+            newCommand(new Command("clear") {
+                @Override
+                public void run() {
+                    try{
+                        clear();
+                        println(">",false);
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
                 }
-            }
-        });
-    }
-
-    public void println(Object x){
-        println(x, true);
-    }
-
-    public void println(Object x, boolean y){
-        if (y){
-            String ln = sdf.format(new Date()) + (x) + "\n>";
-            try{
-                clearLine();
-                FileWriter fw = new FileWriter(log,true);
-                fw.write(ln);
-                fw.close();
-            }catch (IOException iE){
-                System.out.println(iE);
-            }
-        }else{
-            try{
-                clearLine();
-                FileWriter fw = new FileWriter(log,true);
-                fw.write(x.toString());
-                fw.close();
-            }catch (IOException iE){
-                System.out.println(iE);
-            }
+            });
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
 
-    public byte[] getBytes(){
-        return this.LOG.getBytes();
+    public void println(Object x){
+        println(x, glbCfg.getDisplayTime());
+    }
+
+    public void println(Object x, boolean y){
+        try{
+            if (y) {
+                String ln = sdf.format(new Date()) + (x) + "\n>";
+                clearLine();
+                FileWriter fw = new FileWriter(log, true);
+                fw.write(ln);
+                fw.close();
+            } else {
+                clearLine();
+                FileWriter fw = new FileWriter(log, true);
+                fw.write(x.toString() + "\n>");
+                fw.close();
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void readCommand() throws IOException{
@@ -80,21 +77,21 @@ public class Log {
             tmp.add(br.readLine());
         }
         if (tmp.size() > 0){
-            if (tmp.get(tmp.size() - 1).startsWith(">>")){
+            if (tmp.get(tmp.size() - 1) != null && tmp.get(tmp.size() - 1).startsWith(">>")){
                 String tmps = tmp.get(tmp.size() - 1).substring(2);
                 for (Command cmd: commands){
                     if (tmps.matches(cmd.getRegexCmd())){
-                        System.out.println(tmps);
                         if (cmd.hasArgs){
-                            System.out.println(tmps);
-                            cmd.getArgs(tmps);
+                            cmd.setArgs(tmps);
                             cmd.run();
+                            return;
                         }else{
-                            System.out.println(tmps);
                             cmd.run();
+                            return;
                         }
                     }
                 }
+                println("Command not found");
             }
         }
     }
@@ -105,7 +102,7 @@ public class Log {
         fw.close();
     }
 
-    public void clear(Integer i) throws IOException{
+    private void clear(Integer i) throws IOException{
         if (i == 0){
             clear();
         }
@@ -115,8 +112,8 @@ public class Log {
             tmp.add(br.readLine());
         }
         if (tmp.size() > 0 && i < tmp.size()){
-            for (int y = 0; y < i; y++){
-                tmp.remove(0);
+            if (i > 0) {
+                tmp.subList(0, i).clear();
             }
             String tmps = "";
             for (String s: tmp){
@@ -141,17 +138,22 @@ public class Log {
             if (tmp.get(tmp.size()-1).equals(">")){
                 tmp.remove(tmp.size()-1);
             }
-            String tmps = "";
+            StringBuilder tmps = new StringBuilder();
             for (String s: tmp){
-                tmps += s +"\n";
+                tmps.append(s).append("\n");
             }
             FileWriter fw = new FileWriter(log,false);
-            fw.write(tmps);
+            fw.write(tmps.toString());
             fw.close();
         }
     }
 
     public void newCommand(Command cmd){
+        for (Command c:commands){
+            if (c.getRegexCmd().equals(cmd.getRegexCmd())){
+                return;
+            }
+        }
         commands.add(cmd);
     }
 }
