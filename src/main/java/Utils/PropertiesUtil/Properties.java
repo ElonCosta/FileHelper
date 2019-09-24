@@ -4,14 +4,16 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Properties {
 
-    Map<String, Object> objectMap;
-    Map<String, Object> arrayMap;
+    Map<String, PropertiesObject> objectMap;
+    Map<String, PropertiesObject> arrayMap;
 
-    char[] chars;
+    String[] objs;
     int pos = -1;
 
     Properties(File file){
@@ -21,24 +23,13 @@ public class Properties {
             while (br.ready()){
                 textFile += br.readLine().trim().replaceAll("\\s","");
             }
-            chars = textFile.toCharArray();
+            objs = textFile.split("(?<=};|];)",-1);
         }catch (IOException ex){
             ex.printStackTrace();
         }
-        String key = "";
-        while (hasNext()){
-            try{
-                System.out.print(nextChar());
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-        while (hasLast()){
-            try{
-                System.out.print(lastChar());
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+        for (String s : objs){
+            System.out.println(s);
+            findObjects(s);
         }
     }
 
@@ -54,35 +45,94 @@ public class Properties {
 
     }
 
-    private void findObjects(){
+    private boolean findObjects(String s){
+        boolean isObject = false;
+        char[] arr = s.toCharArray();
+
         String key = "";
-    }
-    private boolean hasNext(){
-        return pos < chars.length;
-    }
+        String value = "";
 
-    private boolean hasLast(){
-        return pos >= -1;
-    }
 
-    private char nextChar() throws Exception{
-        pos++;
-        if (pos == chars.length){
-            System.out.println(pos);
-            throw new Exception("Max character limit reached");
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0; i < arr.length; i++){
+            char c = arr[i];
+            if (c == ':' && arr[i+1] == '{' && !isObject){
+                System.out.println("a");
+                isObject = true;
+                key = sb.toString();
+                sb = new StringBuilder();
+                continue;
+            }else if(c == ':' && arr[i+1] == '[' && !isObject){
+                System.out.println("b");
+                return false;
+            }
+            if (c == '}' && arr[i+1] == ';'){
+                System.out.println("e");
+                sb.append(c);
+                value = sb.toString();
+                objectMap.put(key,new PropertiesObject(key,value));
+                return true;
+            }
+            if (!isObject){
+                System.out.println("c");
+                sb.append(c);
+            }
+            if (isObject){
+                System.out.println("d" + c);
+                sb.append(c);
+            }
         }
-        return chars[pos];
+
+
+        return false;
+
     }
 
-    private char thisChar(){
-        return chars[pos];
-    }
 
-    private char lastChar() throws Exception{
-        pos--;
-        if (pos < -1){
-            throw new Exception("Min character limit reached");
-        }
-        return chars[pos];
-    }
+    /*
+    * Character checker
+     */
+
+//    private boolean hasNext(){
+//        return pos < chars.size();
+//    }
+//
+//    private boolean hasLast(){
+//        return pos >= -1;
+//    }
+//
+//    private char nextChar() throws Exception{
+//        pos++;
+//        if (pos == chars.size()){
+//            throw new Exception("Max character limit reached");
+//        }
+//        return chars.get(pos);
+//    }
+//
+//    private char peekNextChar() throws Exception{
+//        if (pos +1 == chars.size()){
+//            throw new Exception("Max character limit reached");
+//        }
+//        return chars.get(pos + 1);
+//    }
+//
+//    private char thisChar(){
+//        return chars.get(pos);
+//    }
+//
+//    private char lastChar() throws Exception{
+//        pos--;
+//        if (pos < -1){
+//            throw new Exception("Min character limit reached");
+//        }
+//        return chars.get(pos);
+//    }
+//
+//    private char peekLastChar() throws Exception{
+//        if (pos - 1 < -1){
+//            throw new Exception("Min character limit reached");
+//        }
+//        return chars.get(pos - 1);
+//    }
 }

@@ -2,8 +2,10 @@ package Utils.PropertiesUtil;
 
 public class PropertiesObject {
 
-    PropertiesObject(String key, char[] val){
+    String key;
 
+    PropertiesObject(String key, String val){
+        this.key = key;
     }
 
 }
