@@ -1,10 +1,12 @@
 package Utils;
 
-public abstract class ConfigInterface {
 
-    public abstract void load();
+public interface ConfigInterface {
 
-    public abstract void save();
 
-    public abstract void setValue(String param, Object value);
+    void load();
+
+    void save();
+
+    Object getAsObject();
 }

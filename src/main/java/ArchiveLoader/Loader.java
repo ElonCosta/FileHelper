@@ -1,126 +1,65 @@
 package ArchiveLoader;
 
-import Main.Launcher;
+import Utils.Constants.*;
 import Utils.Log.Command;
+
 import org.json.*;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import ArchiveLoader.GlobalCfg.DataPath;
-
 import javax.swing.Timer;
 
-import static ArchiveLoader.GlobalCfg.*;
-import static Main.Launcher.LOG;
+import static ArchiveLoader.Configurations.*;
+import static Main.Launcher.*;
+
+import static Utils.Constants.*;
 
 @SuppressWarnings("Duplicates")
 public class Loader {
 
-    public static GlobalCfg glbCfg = new GlobalCfg();
-    private List<ArchiveData> archives = new ArrayList<>();
+    public static Map<String, FilesArchive> archiveMap = new HashMap<>();
     private Timer routine;
 
     private Date next;
 
     private boolean isPaused;
 
-    public Loader() throws IOException{
-        if (!configPath.exists()){
-            glbCfg.generateConfigFile();
-            System.exit(0);
-        }
-
-        LOG.newCommand(new Command("close") {
-            @Override
-            public void run() {
-                try{
-                    close();
-                }catch (IOException | ParseException e){
-                    e.printStackTrace();
-                }
-            }
-        });
-        LOG.newCommand(new Command("forceCheck") {
-            @Override
-            public void run() {
-                try{
-                    forceCheck();
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-        });
-        LOG.newCommand(new Command("pause","-v[B]") {
-            @Override
-            public void run() {
-                Boolean value = getArg("-v").getAsBoolean();
-                setPaused(value);
-            }
-        });
-        LOG.newCommand(new Command("disablePath","-f[S]","-p[I]","-v[B]") {
-            @Override
-            public void run() {
-                String file = getArg("-f").getAsString();
-                Integer pos = getArg("-p").getAsInteger();
-                Boolean val = getArg("-v").getAsBoolean();
-                for (ArchiveData arch:
-                     archives) {
-                    if (file.equals(arch.getName())){
-                        arch.getPaths().get(pos-1).disable(val);
-                        arch.saveData();
-                        if (val){
-                            LOG.println("path disabled");
-                        }else {
-                            LOG.println("path enabled");
-                        }
-                    }
-                }
-
-            }
-        });
+    public Loader(){
+        loadCommands();
     }
 
-    public void load() throws IOException, ParseException{
+    public void load(){
         createFolders();
         LOG.println("Initial Check:");
         checkForFiles();
-        Files.write(Paths.get(configPath.toURI()),glbCfg.getConfig().toString(4).getBytes());
-        LOG.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(getNextRoutine(glbCfg.getRoutineTime()))) + "\"");
+        mainUI.createTabs(archiveMap);
+        config.save();
+        LOG.println(!archiveMap.isEmpty() ? "Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(getNextRoutine(config.getGlobal().getRoutineTime()))) + "\"" : "" );
         routine();
     }
     private void createFolders(){
-        if (FoldersMap.get("root").mkdir())     LOG.println("Creating " + glbCfg.getRootFolderName());
-        if (FoldersMap.get("archive").mkdirs()) LOG.println("Creating " + glbCfg.getArchiveFolderName());
-        if (FoldersMap.get("version").mkdirs()) LOG.println("Creating " + glbCfg.getVersionFolderName());
+        if (config.getGlobal().getRootFolder().mkdir())     LOG.println("Creating " + config.getGlobal().getRootFolderName());
+        if (config.getGlobal().getArchiveFolder().mkdirs()) LOG.println("Creating " + config.getGlobal().getArchiveFolderName());
+        if (config.getGlobal().getVersionFolder().mkdirs()) LOG.println("Creating " + config.getGlobal().getVersionFolderName());
     }
 
-    private void routine() throws IOException {
-        routine = new Timer(getTime(), new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-                    for (ArchiveData data: archives){
-                        data.checker();
-                    }
-                    next = getNextRoutine(glbCfg.getRoutineTime());
-                    LOG.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
-                }catch (IOException | ParseException ex){
-                    ex.printStackTrace();
+    private void routine(){
+        routine = new Timer(getTime(), e -> {
+            try{
+                for (FilesArchive data: archiveMap.values()){
+                    data.checker();
                 }
+                next = getNextRoutine(config.getGlobal().getRoutineTime());
+                LOG.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
+            }catch (IOException | ParseException ex){
+                ex.printStackTrace();
             }
         });
         routine.setRepeats(true);
         routine.start();
-        while (true){
-            LOG.readCommand();
-        }
     }
 
     private Date getNextRoutine(int Time){
@@ -130,32 +69,25 @@ public class Loader {
         return calendar.getTime();
     }
 
-    private void checkForFiles() throws IOException, ParseException{
-        if (glbCfg.getDataPaths().size() > 0){
-            for (DataPath d: glbCfg.getDataPaths()){
-                ArchiveData data = new ArchiveData(d);
-                archives.add(data);
-            }
-        }
-        outer:
-        for (int i = 0; i < glbCfg.getFilesArray().length(); i++){
-            JSONObject File = glbCfg.getFilesArray().getJSONObject(i).getJSONObject("File");
-            for (ArchiveData d: archives){
-                if (File.getString("name").equals(d.getName())){
-                    continue outer;
+    private void checkForFiles(){
+        try{
+            if (config.getDataFiles().getDataFilesList().size() > 0){
+                for (JSONObject d: config.getDataFiles().getDataFilesList()){
+                    FilesArchive data = new FilesArchive(getString(d,KEY.PATH));
+                    archiveMap.put(getString(d, KEY.NAME),data);
                 }
             }
-            ArchiveData data = new ArchiveData(File);
-            archives.add(data);
-        }
-
-        for (ArchiveData a:archives){
-            System.out.println(a.getName());
+        }catch (FileNotFoundException f){
+            f.printStackTrace();
         }
     }
 
     private Integer getTime(){
-        return glbCfg.getRoutineTime() * 60000;
+        return config.getGlobal().getRoutineTime() * 60000;
+    }
+
+    public void updateLatestPaths(){
+
     }
 
      /*
@@ -163,7 +95,7 @@ public class Loader {
      */
     private void close() throws IOException, ParseException{
             LOG.println("Checking files before closing");
-            for (ArchiveData data: archives){
+            for (FilesArchive data: archiveMap.values()){
                 data.checker();
             }
             LOG.println("Closing FileHelper");
@@ -171,10 +103,10 @@ public class Loader {
     }
 
     private void forceCheck() throws IOException, ParseException {
-        for (ArchiveData data : archives) {
+        for (FilesArchive data: archiveMap.values()){
             data.checker();
         }
-        next = getNextRoutine(glbCfg.getRoutineTime());
+        next = getNextRoutine(config.getGlobal().getRoutineTime());
         LOG.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
     }
 
@@ -197,7 +129,52 @@ public class Loader {
 
     }
 
-    private void updateFile(String fileName){
-
+    private void loadCommands(){
+        LOG.newCommand(
+                new Command("close") {
+                    @Override
+                    public void run() {
+                        try{
+                            close();
+                        }catch (IOException | ParseException e){
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Command("forceCheck") {
+                    @Override
+                    public void run() {
+                        try{
+                            forceCheck();
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Command("pause","-v") {
+                    @Override
+                    public void run() {
+                        Boolean value = getArg("-v").getAsBoolean();
+                        setPaused(value);
+                    }
+                },
+                new Command("disablePath","-f","-p","-v") {
+                    @Override
+                    public void run() {
+                        String file = getArg("-f").getAsString();
+                        Integer pos = getArg("-p").getAsInteger() - 1;
+                        Boolean val = getArg("-v").getAsBoolean();
+                        FilesArchive data = archiveMap.get(file);
+                        if(data != null){
+                            data.disablePath(pos,val);
+                        }
+                    }
+                },
+                new Command("pause"){
+                    @Override
+                    public void run() {
+                        setPaused(!isPaused);
+                    }
+                });
     }
 }

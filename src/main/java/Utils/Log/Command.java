@@ -1,73 +1,38 @@
 package Utils.Log;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Command {
 
-    public static String[] vars = new String[]{"i","s","c","f","d","l","b"};
     private String cmd;
-    private List<Args> args;
-    public boolean hasArgs = false;
-    public boolean noArgs = false;
+    private Map<String, Args> argsMap = new HashMap<>();
+    boolean hasArgs = false;
 
     private String regexCmd;
 
-    public Command(String cmd, Object... args){
+    protected Command(String cmd, String... args){
         this.cmd = cmd;
-        this.args = new ArrayList<>();
         this.regexCmd = cmd;
         if (args.length > 0){
             hasArgs = true;
         }
-        for (Object o: args){
-            String handle = o.toString().replaceAll("(\\[+[\\w]+\\])","");
-            if (o.toString().replaceAll("(-+[a-z]+\\[)|(\\])","").equals("I")){
-                Args<Integer> a = new Args<>(handle, 0);
-                this.args.add(a);
-            }
-            if (o.toString().replaceAll("(-+[a-z]+\\[)|(\\])","").equals("S")){
-                Args<String> a = new Args<>(handle, "");
-                this.args.add(a);
-            }
-            if (o.toString().replaceAll("(-+[a-z]+\\[)|(\\])","").equals("C")){
-                Args<Character> a = new Args<>(handle, ' ');
-                this.args.add(a);
-            }
-            if (o.toString().replaceAll("(-+[a-z]+\\[)|(\\])","").equals("F")){
-                Args<Float> a = new Args<>(handle, 0F);
-                this.args.add(a);
-            }
-            if (o.toString().replaceAll("(-+[a-z]+\\[)|(\\])","").equals("D")){
-                Args<Double> a = new Args<>(handle, 0D);
-                this.args.add(a);
-            }
-            if (o.toString().replaceAll("(-+[a-z]+\\[)|(\\])","").equals("L")){
-                Args<Long> a = new Args<>(handle, 0L);
-                this.args.add(a);
-            }
-            if (o.toString().replaceAll("(-+[a-z]+\\[)|(\\])","").equals("B")){
-                Args<Boolean> a = new Args<>(handle, false);
-                this.args.add(a);
-            }
+        for (String o: args){
+            argsMap.put(o,new Args());
             this.regexCmd += " (-+[a-z]+\\[+[\\w]+\\])";
         }
     }
 
     public abstract void run();
 
-    public void setArgs(String cmd){
+    void setArgs(String cmd){
         cmd = cmd.replaceAll("\\s","");
         String[] split = cmd.split("(?=-+[a-z](\\[+[\\w]+\\]))");
-        for (Args args : args){
-            for (String s : split){
-                if (s.replaceAll("(\\[+[\\w]+\\])","").equals(args.getHandle())){
-                    args.setValue(s.replaceAll("(-+[a-z]+\\[)|(\\])",""));
-                }
+        for (String s: split){
+            Args a = argsMap.get(s.replaceAll("(\\[+[\\w]+\\])",""));
+            if (a != null){
+                a.setValue(s.replaceAll("(-+[a-z]+\\[)|(\\])",""));
             }
-        }
-        if (split.length == 1){
-            noArgs = true;
         }
     }
 
@@ -79,70 +44,76 @@ public abstract class Command {
         return regexCmd;
     }
 
-    protected List<Args> getArgs() {
-        return args;
-    }
-
     protected Args getArg(String param){
-        for (Args a : args){
-            if (a.getHandle().equals(param)){
-                return a;
-            }
-        }
-
-        return null;
+        return argsMap.get(param);
     }
 
-    public static class Args<T>{
+    public static class Args{
 
-        String getHandle() {
-            return handle;
-        }
-
-        public T getValue() {
+        private Object getValue(String v) {
+            if(value == null){
+                return null;
+            }else{
+                if(v.equals("S")){
+                    return value.toString();
+                }
+                if(v.equals("I")){
+                    return Integer.parseInt(value.toString());
+                }
+                if(v.equals("B")){
+                    return Boolean.parseBoolean(value.toString());
+                }
+                if(v.equals("D")){
+                    return Double.parseDouble(value.toString());
+                }
+                if(v.equals("F")){
+                    return Float.parseFloat(value.toString());
+                }
+                if(v.equals("L")){
+                    return Long.parseLong(value.toString());
+                }
+                if(v.equals("C")){
+                    return value.toString().charAt(0);
+                }
+            }
             return value;
         }
 
         public String getAsString(){
-            return value.toString();
+            return (String) getValue("S");
         }
 
         public Integer getAsInteger(){
-            return Integer.parseInt(value.toString());
+            return (Integer) getValue("I");
         }
 
         public Boolean getAsBoolean(){
-            return Boolean.parseBoolean(value.toString());
+            return (Boolean) getValue("B");
         }
 
         public Double getAsDouble(){
-            return Double.parseDouble(value.toString());
+            return (Double) getValue("D");
         }
 
         public Float getAsFloat(){
-            return Float.parseFloat(value.toString());
+            return (Float) getValue("F");
         }
 
         public Long getAsLong(){
-            return Long.parseLong(value.toString());
+            return (Long) getValue("L");
         }
 
         public Character getAsCharacter(){
-            return value.toString().charAt(0);
+            return (Character) getValue("C");
         }
 
         private String handle;
 
         void setValue(Object value) {
-            this.value = (T) value;
-        }
-
-        private T value;
-
-        Args(String handle, T value){
-            this.handle = handle;
             this.value = value;
         }
+
+        private Object value;
 
     }
 }

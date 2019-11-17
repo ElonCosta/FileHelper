@@ -3,9 +3,10 @@
     <output-path>$PROJECT_DIR$/out/artifacts/FileHelper_jar</output-path>
     <root id="archive" name="FileHelper.jar">
       <element id="module-output" name="FileHelper" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations-java5/17.0.0/annotations-java5-17.0.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-io/commons-io/2.6/commons-io-2.6.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/json/json/20190722/json-20190722.jar" path-in-jar="/" />
+      <element id="library" level="project" name="juniversalchardet-1.0.3" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-io/commons-io/2.6/commons-io-2.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations-java5/17.0.0/annotations-java5-17.0.0.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
