@@ -57,8 +57,7 @@ public class FilesArchive implements ConfigInterface {
 
     private List<JSONObject> getPathsAsJSON(){
         List<JSONObject> tmp = new ArrayList<>();
-        for (Paths p:
-             pathsList) {
+        for (Paths p: pathsList) {
             p.save();
             tmp.add((JSONObject) p.getAsObject());
         }
@@ -121,8 +120,7 @@ public class FilesArchive implements ConfigInterface {
     private Boolean pathsAllDisabled(){
         int i = 0;
 
-        for (Paths p:
-             pathsList) {
+        for (Paths p: pathsList) {
             if (p.isDisabled()){
                 i++;
             }
@@ -233,7 +231,7 @@ public class FilesArchive implements ConfigInterface {
 
         private JSONObject JSONPaths;
 
-        public Boolean onLatest = false;
+        Boolean onLatest = false;
 
         Paths(JSONObject JSONPaths){
             this.JSONPaths = JSONPaths;

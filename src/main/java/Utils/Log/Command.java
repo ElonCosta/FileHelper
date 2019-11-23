@@ -82,61 +82,40 @@ public abstract class Command {
 
     public static class Args{
 
-        private Object getValue(String v) {
+        private Object getValue() {
             if(value == null){
                 return null;
             }else{
-                if(v.equals("S")){
-                    return value.toString();
-                }
-                if(v.equals("I")){
-                    return Integer.parseInt(value.toString());
-                }
-                if(v.equals("B")){
-                    return Boolean.parseBoolean(value.toString());
-                }
-                if(v.equals("D")){
-                    return Double.parseDouble(value.toString());
-                }
-                if(v.equals("F")){
-                    return Float.parseFloat(value.toString());
-                }
-                if(v.equals("L")){
-                    return Long.parseLong(value.toString());
-                }
-                if(v.equals("C")){
-                    return value.toString().charAt(0);
-                }
+                return value;
             }
-            return value;
         }
 
         public String getAsString(){
-            return (String) getValue("S");
+            return (String) getValue();
         }
 
         public Integer getAsInteger(){
-            return (Integer) getValue("I");
+            return (Integer) getValue();
         }
 
         public Boolean getAsBoolean(){
-            return (Boolean) getValue("B");
+            return (Boolean) getValue();
         }
 
         public Double getAsDouble(){
-            return (Double) getValue("D");
+            return (Double) getValue();
         }
 
         public Float getAsFloat(){
-            return (Float) getValue("F");
+            return (Float) getValue();
         }
 
         public Long getAsLong(){
-            return (Long) getValue("L");
+            return (Long) getValue();
         }
 
         public Character getAsCharacter(){
-            return (Character) getValue("C");
+            return (Character) getValue();
         }
 
         private String handle;

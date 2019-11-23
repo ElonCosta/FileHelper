@@ -53,7 +53,9 @@ public class Loader {
                     data.checker();
                 }
                 next = getNextRoutine(config.getGlobal().getRoutineTime());
-                LOG.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
+                if(!isPaused){
+                    LOG.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
+                }
             }catch (IOException | ParseException ex){
                 ex.printStackTrace();
             }
@@ -107,10 +109,13 @@ public class Loader {
             data.checker();
         }
         next = getNextRoutine(config.getGlobal().getRoutineTime());
-        LOG.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
+        if(!isPaused){
+            LOG.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
+        }
     }
 
     private void setPaused(boolean paused){
+        System.out.println(paused);
         if (isPaused && paused){
             LOG.println("Routine is already paused");
         }else if (!isPaused && !paused){
