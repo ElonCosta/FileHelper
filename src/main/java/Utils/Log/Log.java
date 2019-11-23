@@ -70,8 +70,8 @@ public class Log {
             cmd.flush();
             if(issuedCommands.isEmpty() || !cmdLine.equals(issuedCommands.get(issuedCommands.size()-1))){
                 issuedCommands.add(cmdLine);
-                issuedCommandsPos = issuedCommands.size();
             }
+            issuedCommandsPos = issuedCommands.size();
         }else {
             println("Command not found");
         }
