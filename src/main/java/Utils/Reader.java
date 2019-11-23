@@ -6,7 +6,7 @@ import java.util.Collections;
 @SuppressWarnings("Duplicates")
 public class Reader {
 
-    public static String[] split(String str){
+    public static String[] split(String str, char spltAt){
         int wordSize = 0;
         char[] chars = str.toCharArray();
         String[] words = new String[wordSize];
@@ -18,13 +18,15 @@ public class Reader {
                 wordSize++;
                 String[] tmp = words;
                 words = new String[wordSize];
-                for (int y = 0; y < tmp.length; y++) {
-                    words[y] = tmp[y];
-                }
+                System.arraycopy(tmp,0,words,0,wordSize-1);
                 words[wordSize-1] = word.toString().trim();
+                for (String s:
+                     words) {
+                    System.out.println(s);
+                }
                 word = new StringBuilder();
             }
-            if(c != '-'){
+            if(c != spltAt){
                 word.append(c);
             }else{
                 wordSize++;

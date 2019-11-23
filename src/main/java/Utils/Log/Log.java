@@ -58,7 +58,7 @@ public class Log {
 
     public void readCommand(){
         String cmdLine = mainUI.readCmd();
-        final String[] CMD = split(cmdLine);
+        final String[] CMD = split(cmdLine,'-');
         Command cmd = commands.get(CMD[0].trim());
         if (cmd != null){
             int cmdStat = cmd.setArgs(CMD);
@@ -117,18 +117,6 @@ public class Log {
         Command c = commands.get(cmd.getCmd());
         if (c != null) return;
         commands.put(cmd.getCmd(),cmd);
-    }
-
-    private String toRegex(String cmd){
-        String[] tmpStr = cmd.replaceAll("\\s","").split("(?=-+[a-z](\\[+[\\w]+\\]))");
-        StringBuilder tmp = new StringBuilder();
-        for (String s: tmpStr){
-            if (s.matches("(-+[a-z]+\\[+[\\w]+\\])")){
-                s = " (-+[a-z]+\\[+[\\w]+\\])";
-            }
-            tmp.append(s);
-        }
-        return tmp.toString();
     }
 
 }
