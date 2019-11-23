@@ -151,29 +151,27 @@ public class Loader {
                         }
                     }
                 },
-                new Command("pause","-v") {
+                new Command(true,"pause","v") {
                     @Override
                     public void run() {
-                        Boolean value = getArg("-v").getAsBoolean();
-                        setPaused(value);
+                        if (this.argsLoad){
+                            Boolean value = getArg("v").getAsBoolean();
+                            setPaused(value);
+                        }else {
+                            setPaused(!isPaused);
+                        }
                     }
                 },
-                new Command("disablePath","-f","-p","-v") {
+                new Command(false,"disablePath","f","p","v") {
                     @Override
                     public void run() {
-                        String file = getArg("-f").getAsString();
-                        Integer pos = getArg("-p").getAsInteger() - 1;
-                        Boolean val = getArg("-v").getAsBoolean();
+                        String file = getArg("f").getAsString();
+                        Integer pos = getArg("p").getAsInteger() - 1;
+                        Boolean val = getArg("v").getAsBoolean();
                         FilesArchive data = archiveMap.get(file);
                         if(data != null){
                             data.disablePath(pos,val);
                         }
-                    }
-                },
-                new Command("pause"){
-                    @Override
-                    public void run() {
-                        setPaused(!isPaused);
                     }
                 });
     }

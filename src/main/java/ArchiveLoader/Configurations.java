@@ -306,20 +306,28 @@ public class Configurations implements ConfigInterface {
          */
 
         private void loadCommands(){
-            LOG.newCommand(new Command("displayTime", "-v") {
+            LOG.newCommand(new Command(true,"displayTime", "v") {
                 @Override
                 public void run() {
-                    Boolean setTo = getArg("-v").getAsBoolean();
-                    setDisplayTime(setTo);
-                }}, new Command("archiveFiles", "-v") {
+                    if(this.argsLoad){
+                        Boolean setTo = getArg("v").getAsBoolean();
+                        setDisplayTime(setTo);
+                    }else {
+                        setDisplayTime(!displayTime);
+                    }
+                }}, new Command(true,"archiveFiles", "v") {
                 @Override
                 public void run() {
-                    Boolean setTo = getArg("-v").getAsBoolean();
-                    setArchiveFiles(setTo);
-                }}, new Command("setRoutineTime","-v") {
+                    if(this.argsLoad){
+                        Boolean setTo = getArg("v").getAsBoolean();
+                        setArchiveFiles(setTo);
+                    }else {
+                        setArchiveFiles(!archiveFiles);
+                    }
+                }}, new Command(false,"setRoutineTime","v") {
                 @Override
                 public void run() {
-                    Integer setTo = getArg("-v").getAsInteger();
+                    Integer setTo = getArg("v").getAsInteger();
                     setRoutineTime(setTo);
                 }}
             );

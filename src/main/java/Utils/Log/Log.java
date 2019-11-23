@@ -6,6 +6,7 @@ import java.util.*;
 
 import static ArchiveLoader.Configurations.*;
 import static Main.Launcher.*;
+import static Utils.Reader.split;
 
 public class Log {
 
@@ -30,6 +31,22 @@ public class Log {
         println(x, config.getGlobal().getDisplayTime());
     }
 
+    public void printErr(int Code){
+        String err = "ERROR CODE("+Code+"): ";
+        if (Code == 1){
+            err += ("Invalid parameter");
+        }else if (Code == 2){
+            err += ("No parameter value found");
+        }else if (Code == 3){
+            err += ("Command has no parameters");
+        }else if (Code == 4){
+            err += ("Missing parameters");
+        }else if (Code == 5){
+            err += ("Too many parameters for command");
+        }
+        println(err, false);
+    }
+
     private void println(Object x, boolean y){
         if (y) {
             String ln = sdf.format(new Date()) + (x) + "\n";
@@ -40,32 +57,34 @@ public class Log {
     }
 
     public void readCommand(){
-        String tmps = mainUI.readCmd();
-        Command cmd = commands.get(toRegex(tmps));
+        String cmdLine = mainUI.readCmd();
+        final String[] CMD = split(cmdLine);
+        Command cmd = commands.get(CMD[0].trim());
         if (cmd != null){
-            if(issuedCommands.isEmpty() || !tmps.equals(issuedCommands.get(issuedCommands.size()-1))){
-                issuedCommands.add(tmps);
-                issuedCommandsPos = issuedCommands.size() - 1;
-            }
-            if (cmd.hasArgs){
-                cmd.setArgs(tmps);
-                cmd.run();
-                return;
-            }else{
-                cmd.run();
+            int cmdStat = cmd.setArgs(CMD);
+            if(cmdStat != 0){
+                printErr(cmdStat);
                 return;
             }
+            cmd.run();
+            cmd.flush();
+            if(issuedCommands.isEmpty() || !cmdLine.equals(issuedCommands.get(issuedCommands.size()-1))){
+                issuedCommands.add(cmdLine);
+                issuedCommandsPos = issuedCommands.size();
+            }
+        }else {
+            println("Command not found");
         }
-        println("Command not found");
     }
 
     public String lastIssuedCommand(){
         if(!issuedCommands.isEmpty()){
-            String cmd = issuedCommands.get(issuedCommandsPos);
-            System.out.println(cmd);
             if(issuedCommandsPos > 0){
                 issuedCommandsPos--;
+            }else {
+                issuedCommandsPos = 0;
             }
+            String cmd = issuedCommands.get(issuedCommandsPos);
             return cmd;
         }else {
             return "";
@@ -76,12 +95,12 @@ public class Log {
         if(issuedCommandsPos < issuedCommands.size()){
             issuedCommandsPos++;
         }
-        if(issuedCommandsPos >= issuedCommands.size()){
-            issuedCommandsPos--;
+        if (issuedCommandsPos >= issuedCommands.size()){
+            issuedCommandsPos = issuedCommands.size();
             return "";
         }
-        System.out.println(issuedCommands.get(issuedCommandsPos));
-        return issuedCommands.get(issuedCommandsPos);
+        String cmd = issuedCommands.get(issuedCommandsPos);
+        return cmd;
     }
 
     private void clear(){
@@ -95,9 +114,9 @@ public class Log {
     }
 
     public void newCommand(Command cmd){
-            Command c = commands.get(cmd.getRegexCmd());
-            if (c != null) return;
-            commands.put(cmd.getRegexCmd(),cmd);
+        Command c = commands.get(cmd.getCmd());
+        if (c != null) return;
+        commands.put(cmd.getCmd(),cmd);
     }
 
     private String toRegex(String cmd){

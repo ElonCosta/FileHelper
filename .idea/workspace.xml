@@ -7,37 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26f6786f-0baf-4f39-97c0-248b104f2385" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/juniversalchardet_1_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/UI/AppUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/UI/ConfigsUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/UI/DataUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/UI/LogUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/UI/NewFileUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/AppUIController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/ConfigsUIController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/DataUIController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/LogUIController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/NewFileUIController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/FileHelper_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/FileHelper_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Utils/Reader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileHelper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FileHelper.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/properties.config" beforeDir="false" afterPath="$PROJECT_DIR$/properties.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/ArchiveData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/GlobalCfg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/ConfigInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/ConfigInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Log/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Log/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Log/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Log/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/PropertiesUtil/Properties.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/PropertiesUtil/PropertiesArray.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/PropertiesUtil/PropertiesObject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/TextReader.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main/Launcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main/Launcher.class" afterDir="false" />
     </list>
@@ -56,6 +32,93 @@
   <component name="FavoritesManager">
     <favorites_list name="FileHelper" />
   </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="143" column="28" selection-start-line="143" selection-start-column="28" selection-end-line="143" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Utils/Log/Log.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="986">
+              <caret line="66" column="23" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="23" />
+              <folding>
+                <element signature="e#664#665#0" expanded="true" />
+                <element signature="e#727#728#0" expanded="true" />
+                <element signature="e#2709#2710#0" expanded="true" />
+                <element signature="e#2742#2743#0" expanded="true" />
+                <element signature="method#newCommand#0;class#Log#0" />
+                <element signature="method#toRegex#0;class#Log#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Main/Launcher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="38" column="17" lean-forward="true" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#522#523#0" expanded="true" />
+                <element signature="e#546#547#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Utils/ConfigInterface.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-789">
+              <caret line="31" column="48" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="632">
+              <caret line="332" column="14" lean-forward="true" selection-start-line="332" selection-start-column="14" selection-end-line="332" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Utils/Log/Command.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-119">
+              <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+              <folding>
+                <element signature="e#1491#1492#0" expanded="true" />
+                <element signature="e#1517#1518#0" expanded="true" />
+                <element signature="e#1545#1546#0" expanded="true" />
+                <element signature="e#1576#1577#0" expanded="true" />
+                <element signature="method#getValue#0;class#Args#0;class#Command#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -64,8 +127,26 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>newCommand</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/Utils/Reader.java" />
+        <option value="$PROJECT_DIR$/logFile.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/Utils/Log/Log.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Utils/Log/Command.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Main/Launcher.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" />
+      </list>
+    </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -77,8 +158,72 @@
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
   <component name="ProjectId" id="1P9F2WaM77ryGvzlhwbbe7vMnia" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="FileHelper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FileHelper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FileHelper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FileHelper" type="462c0819:PsiDirectoryNode" />
+              <item name="Source" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FileHelper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FileHelper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FileHelper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FileHelper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FileHelper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FileHelper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FileHelper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FileHelper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ArchiveLoader" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FileHelper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FileHelper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -217,6 +362,7 @@
       <workItem from="1573650837093" duration="6727000" />
       <workItem from="1573748732207" duration="528000" />
       <workItem from="1573758147555" duration="628000" />
+      <workItem from="1573952985062" duration="11436000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1561397026003</created>
@@ -284,6 +430,9 @@
     <option name="localTasksCounter" value="10" />
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="11436000" />
+  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -292,6 +441,41 @@
       <are-packages-shown value="true" />
       <is-autoscroll-to-source value="true" />
     </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info id="Designer" />
+      <window_info id="Image Layers" />
+      <window_info id="Capture Tool" />
+      <window_info id="UI Designer" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Learn" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Messages" weight="0.32936078" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -306,6 +490,12 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -332,15 +522,158 @@
     <MESSAGE value="First Commit" />
     <option name="LAST_COMMIT_MESSAGE" value="First Commit" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java</url>
-          <line>259</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="editorHistoryManager">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_212/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1567">
+          <caret line="2328" column="20" selection-start-line="2328" selection-start-column="20" selection-end-line="2328" selection-end-column="20" />
+          <folding>
+            <element signature="e#94598#94599#0" expanded="true" />
+            <element signature="e#94636#94637#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configuration.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Utils/Reader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="35" column="58" selection-start-line="35" selection-start-column="58" selection-end-line="35" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#72#103#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Utils/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="81" column="18" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="18" />
+          <folding>
+            <element signature="e#1665#1666#0" expanded="true" />
+            <element signature="e#1715#1716#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logFile.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_212/src.zip!/java/awt/Container.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="328" column="21" selection-start-line="328" selection-start-column="21" selection-end-line="328" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Interface/UI_Controller/LogUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding>
+            <element signature="e#1038#1039#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Interface/UI_Controller/AppUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="74" column="71" lean-forward="true" selection-start-line="74" selection-start-column="71" selection-end-line="74" selection-end-column="71" />
+          <folding>
+            <element signature="e#2454#2455#0" expanded="true" />
+            <element signature="e#2539#2540#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Interface/UI/LogUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="35" column="21" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+          <folding>
+            <element signature="e#837#838#0" expanded="true" />
+            <element signature="e#867#868#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="143" column="28" selection-start-line="143" selection-start-column="28" selection-end-line="143" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Utils/ConfigInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-789">
+          <caret line="31" column="48" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main/Launcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="38" column="17" lean-forward="true" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#522#523#0" expanded="true" />
+            <element signature="e#546#547#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Utils/Log/Log.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="66" column="23" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="23" />
+          <folding>
+            <element signature="e#664#665#0" expanded="true" />
+            <element signature="e#727#728#0" expanded="true" />
+            <element signature="e#2709#2710#0" expanded="true" />
+            <element signature="e#2742#2743#0" expanded="true" />
+            <element signature="method#newCommand#0;class#Log#0" />
+            <element signature="method#toRegex#0;class#Log#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="632">
+          <caret line="332" column="14" lean-forward="true" selection-start-line="332" selection-start-column="14" selection-end-line="332" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Utils/Log/Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-119">
+          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+          <folding>
+            <element signature="e#1491#1492#0" expanded="true" />
+            <element signature="e#1517#1518#0" expanded="true" />
+            <element signature="e#1545#1546#0" expanded="true" />
+            <element signature="e#1576#1577#0" expanded="true" />
+            <element signature="method#getValue#0;class#Args#0;class#Command#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
