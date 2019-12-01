@@ -210,10 +210,10 @@ public class FilesArchive implements ConfigInterface {
         }else {
             if (disable){
                 paths.disablePath(true);
-                LOG.println("Disabling \"" + name + "\" #"+ (pos + 1)+" path");
+                LOG.println("Disabling \"" + name + "\" path #"+ (pos + 1));
             }else {
                 paths.disablePath(false);
-                LOG.println("Enabling \"" + name + "\" #"+ (pos + 1)+" path");
+                LOG.println("Enabling \"" + name + "\" path #"+ (pos + 1));
             }
         }
         save();

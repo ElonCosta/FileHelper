@@ -3,6 +3,8 @@ package Interface.UI_Controller;
 import Interface.UI.NewFileUI;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.io.File;
 
 public class NewFileUIController extends NewFileUI {
@@ -11,22 +13,24 @@ public class NewFileUIController extends NewFileUI {
         initEvents();
     }
 
+    private void initEvents(){
+        getPathsTabs().addChangeListener(new ChangeListener() {
+            boolean ignore = false;
 
-
-    public void initEvents() {
-        getFleBtn().addActionListener(e -> {
-            int i = getFileChooser().showOpenDialog(new JFrame());
-            if(i == JFileChooser.APPROVE_OPTION){
-                File f = getFileChooser().getSelectedFile();
-                getFleTxtField().setText(f.getAbsolutePath());
-            }
-        });
-
-        getDstBtn().addActionListener(e -> {
-            int i = getDestChooser().showOpenDialog(new JFrame());
-            if(i == JFileChooser.APPROVE_OPTION){
-                File f = getDestChooser().getSelectedFile();
-                getDstTxtField().setText(f.getAbsolutePath());
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if(!ignore){
+                    ignore = true;
+                    try{
+                        int selected = getPathsTabs().getSelectedIndex();
+                        String title = getPathsTabs().getTitleAt(selected);
+                        if (title.equals("+")){
+                            newPanel();
+                        }
+                    }finally {
+                        ignore = false;
+                    }
+                }
             }
         });
     }

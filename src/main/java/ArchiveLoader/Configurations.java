@@ -47,9 +47,7 @@ public class Configurations implements ConfigInterface {
         global.loadCommands();
     }
 
-    /*
-     * Getters
-     */
+    /* Getters */
 
     public Global getGlobal() {
         return global;
@@ -59,9 +57,7 @@ public class Configurations implements ConfigInterface {
         return dataFiles;
     }
 
-    /*
-     * Methods inherited from ConfigInterface
-     */
+    /* Methods inherited from ConfigInterface */
 
     @Override
     public void load(){
@@ -160,9 +156,7 @@ public class Configurations implements ConfigInterface {
             }
         }
 
-        /*
-        * Getters || Setters
-         */
+        /* Getters || Setters */
 
         String getVersionFolderName() {
             return versionFolderName;
@@ -265,9 +259,8 @@ public class Configurations implements ConfigInterface {
             }
             Configurations.this.save();
         }
-        /*
-        * Methods inherited from ConfigInterface
-        */
+
+        /* Methods inherited from ConfigInterface */
 
         @Override
         public void load() {
@@ -301,9 +294,7 @@ public class Configurations implements ConfigInterface {
             return JSONGlobal;
         }
 
-        /*
-        * Commands
-         */
+        /* Commands */
 
         private void loadCommands(){
             LOG.newCommand(new Command(true,"displayTime", "v") {
@@ -361,22 +352,17 @@ public class Configurations implements ConfigInterface {
             JSONObject dataFile = new JSONObject();
             put(dataFile, KEY.NAME, name);
             put(dataFile, KEY.PATH, global.rootFolderName +"\\"+name + "_Data.json");
-            System.out.println(dataFile.toString(4));
 
             dataFilesList.add(dataFile);
         }
 
-        /*
-         *   Getters
-         */
+        /* Getters */
 
         List<JSONObject> getDataFilesList(){
             return dataFilesList;
         }
 
-        /*
-         * Methods inherited from ConfigInterface
-         */
+        /* Methods inherited from ConfigInterface */
 
         @Override
         public void load() {
@@ -395,6 +381,5 @@ public class Configurations implements ConfigInterface {
             return JSONDataFiles;
         }
     }
-
 
 }

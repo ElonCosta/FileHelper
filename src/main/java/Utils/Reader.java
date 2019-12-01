@@ -20,10 +20,6 @@ public class Reader {
                 words = new String[wordSize];
                 System.arraycopy(tmp,0,words,0,wordSize-1);
                 words[wordSize-1] = word.toString().trim();
-                for (String s:
-                     words) {
-                    System.out.println(s);
-                }
                 word = new StringBuilder();
             }
             if(c != spltAt){

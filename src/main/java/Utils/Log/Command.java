@@ -3,13 +3,15 @@ package Utils.Log;
 import java.util.HashMap;
 import java.util.Map;
 
+import static Main.Launcher.*;
+
 public abstract class Command {
 
     private String cmd;
     private Map<String, Args> argsMap = new HashMap<>();
     private boolean nullable = false;
     private boolean hasArgs = false;
-    public boolean argsLoad = false;
+    protected boolean argsLoad = false;
 
     private String regexCmd;
 
@@ -21,21 +23,20 @@ public abstract class Command {
             hasArgs = true;
         }
         for (String o: args){
-            argsMap.put(o,new Args());
-            this.regexCmd += " (-+[a-z]+\\[+[\\w]+\\])";
+            if(argsMap.get(o) == null) argsMap.put(o,new Args());
+            else LOG.printErr(7);
         }
     }
 
-    protected Command(String cmd){
-        this.cmd = cmd;
-        hasArgs = false;
+    protected Command(String cmd, String... args){
+        this(true, cmd, args);
     }
 
     public abstract void run();
 
     void flush(){
         for (Args a: argsMap.values()) {
-            a.setValue(null);
+            a.flush();
         }
         argsLoad = false;
     }
@@ -55,10 +56,11 @@ public abstract class Command {
             if (s.length() == 1){
                 return 2;
             }
+            s = s.replaceFirst("\\s","");
             String arg = s.substring(0,1);
             Args a = argsMap.get(arg);
             if (a != null){
-                a.setValue(s.substring(2));
+                a.setValue(s.substring(1));
                 argsLoad = true;
             }else {
                 return 1;
@@ -82,49 +84,45 @@ public abstract class Command {
 
     public static class Args{
 
-        private Object getValue() {
-            if(value == null){
-                return null;
-            }else{
-                return value;
-            }
-        }
-
         public String getAsString(){
-            return (String) getValue();
+            return value;
         }
 
         public Integer getAsInteger(){
-            return (Integer) getValue();
+            return Integer.parseInt(value);
         }
 
         public Boolean getAsBoolean(){
-            return (Boolean) getValue();
+            return Boolean.parseBoolean(value);
         }
 
         public Double getAsDouble(){
-            return (Double) getValue();
+            return Double.parseDouble(value);
         }
 
         public Float getAsFloat(){
-            return (Float) getValue();
+            return Float.parseFloat(value);
         }
 
         public Long getAsLong(){
-            return (Long) getValue();
+            return Long.parseLong(value);
         }
 
         public Character getAsCharacter(){
-            return (Character) getValue();
+            return value.charAt(0);
+        }
+
+        private void flush(){
+            value = null;
         }
 
         private String handle;
 
-        void setValue(Object value) {
+        void setValue(String value) {
             this.value = value;
         }
 
-        private Object value;
+        private String value;
 
     }
 }

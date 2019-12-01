@@ -11,9 +11,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.jetbrains:annotations-java5:17.0.0" level="project" />
+    <orderEntry type="library" name="juniversalchardet-1.0.3" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains:annotations-java5:18.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20190722" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.6" level="project" />
-    <orderEntry type="library" name="juniversalchardet-1.0.3" level="project" />
   </component>
 </module>

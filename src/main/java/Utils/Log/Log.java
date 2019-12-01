@@ -31,18 +31,23 @@ public class Log {
         println(x, config.getGlobal().getDisplayTime());
     }
 
-    public void printErr(int Code){
-        String err = "ERROR CODE("+Code+"): ";
-        if (Code == 1){
-            err += ("Invalid parameter");
-        }else if (Code == 2){
-            err += ("No parameter value found");
-        }else if (Code == 3){
-            err += ("Command has no parameters");
-        }else if (Code == 4){
-            err += ("Missing parameters");
-        }else if (Code == 5){
-            err += ("Too many parameters for command");
+    public void printErr(int Code, String... vals){
+        String err = "ERROR CODE("+Code+"): \n";
+        switch (Code) {
+            case 1:
+                err += ("Invalid parameter");
+            case 2:
+                err += ("No parameter value found");
+            case 3:
+                err += ("Command has no parameters");
+            case 4:
+                err += ("Missing parameters");
+            case 5:
+                err += ("Too many parameters for command");
+            case 6:
+                err += ("Unknown archive \"" + vals[0] + "\"");
+            case 7:
+                err += ("Repeated parameter on command");
         }
         println(err, false);
     }

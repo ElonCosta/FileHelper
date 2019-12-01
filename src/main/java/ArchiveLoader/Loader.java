@@ -75,8 +75,10 @@ public class Loader {
         try{
             if (config.getDataFiles().getDataFilesList().size() > 0){
                 for (JSONObject d: config.getDataFiles().getDataFilesList()){
-                    FilesArchive data = new FilesArchive(getString(d,KEY.PATH));
-                    archiveMap.put(getString(d, KEY.NAME),data);
+                    if (archiveMap.get(getString(d,KEY.NAME)) == null){
+                        FilesArchive data = new FilesArchive(getString(d,KEY.PATH));
+                        archiveMap.put(getString(d, KEY.NAME),data);
+                    }
                 }
             }
         }catch (FileNotFoundException f){
@@ -88,7 +90,7 @@ public class Loader {
         return config.getGlobal().getRoutineTime() * 60000;
     }
 
-    public void updateLatestPaths(){
+    private void newArchive(){
 
     }
 
@@ -115,7 +117,6 @@ public class Loader {
     }
 
     private void setPaused(boolean paused){
-        System.out.println(paused);
         if (isPaused && paused){
             LOG.println("Routine is already paused");
         }else if (!isPaused && !paused){
@@ -176,6 +177,8 @@ public class Loader {
                         FilesArchive data = archiveMap.get(file);
                         if(data != null){
                             data.disablePath(pos,val);
+                        }else {
+                            LOG.printErr(6, file);
                         }
                     }
                 });

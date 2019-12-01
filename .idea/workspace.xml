@@ -8,10 +8,18 @@
   <component name="ChangeListManager">
     <list default="true" id="26f6786f-0baf-4f39-97c0-248b104f2385" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI/DataUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/UI/DataUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI/NewFileUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/UI/NewFileUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/NewFileUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/NewFileUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/ConfigInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/ConfigInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Log/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Log/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Log/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Log/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Reader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main/Launcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main/Launcher.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,9 +32,6 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="FileHelper" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -193,6 +198,7 @@
       <workItem from="1574078263218" duration="19000" />
       <workItem from="1574082327958" duration="3508000" />
       <workItem from="1574188028015" duration="1408000" />
+      <workItem from="1574853480208" duration="75000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1561397026003</created>
@@ -315,12 +321,18 @@
     <MESSAGE value="First Commit" />
     <option name="LAST_COMMIT_MESSAGE" value="First Commit" />
   </component>
+  <component name="WindowStateProjectService">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1575207421617">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1575207421617" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java</url>
-          <line>259</line>
+          <line>253</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

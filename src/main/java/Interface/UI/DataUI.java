@@ -17,7 +17,7 @@ import static Main.Launcher.*;
 
 public class DataUI extends JPanel {
 
-    JTabbedPane dataTabs;
+    private JTabbedPane dataTabs;
 
     public DataUI(){
         this.setLayout(null);
@@ -30,7 +30,7 @@ public class DataUI extends JPanel {
         return dataTabs;
     }
 
-    public class DataPanel extends JPanel{
+    public static class DataPanel extends JPanel{
 
         private FilesArchive data;
 
