@@ -7,21 +7,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26f6786f-0baf-4f39-97c0-248b104f2385" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/JFrame/AppUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/JPanel/AbstractUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileHelper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FileHelper.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI/DataUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/UI/DataUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI/NewFileUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/UI/NewFileUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/NewFileUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/NewFileUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/ConfigInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/ConfigInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI/AppUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI/ConfigsUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/JPanel/ConfigsUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI/DataUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/JPanel/DataUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI/LogUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/JPanel/LogUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI/NewFileUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/JPanel/NewFileUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/AppUIController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/ConfigsUIController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/DataUIController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/LogUIController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/NewFileUIController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Log/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Log/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Log/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Log/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Reader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main/Launcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main/Launcher.class" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,6 +65,11 @@
   </component>
   <component name="ProjectId" id="1P9F2WaM77ryGvzlhwbbe7vMnia" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -97,18 +111,6 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="Application.Launcher">
     <configuration name="Helper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Helper" />
@@ -129,6 +131,18 @@
         <item itemvalue="Application.Helper" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -199,6 +213,14 @@
       <workItem from="1574082327958" duration="3508000" />
       <workItem from="1574188028015" duration="1408000" />
       <workItem from="1574853480208" duration="75000" />
+      <workItem from="1575207308354" duration="1986000" />
+      <workItem from="1575283361217" duration="151000" />
+      <workItem from="1575308088092" duration="602000" />
+      <workItem from="1575373686222" duration="1932000" />
+      <workItem from="1575394888422" duration="30000" />
+      <workItem from="1575467821222" duration="4884000" />
+      <workItem from="1575979120116" duration="5565000" />
+      <workItem from="1576067523293" duration="19345000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1561397026003</created>
@@ -270,7 +292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573952808594</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="First Commit">
+      <created>1575207472307</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1575207472307</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView">
@@ -322,10 +351,72 @@
     <option name="LAST_COMMIT_MESSAGE" value="First Commit" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1575207421617">
+    <state x="488" y="93" key="#com.intellij.ide.util.MemberChooser" timestamp="1576070640092">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="488" y="93" key="#com.intellij.ide.util.MemberChooser/0.0.1366.768@0.0.1366.768" timestamp="1576070640092" />
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1575207468014">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1575207421617" />
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1575207468014" />
+    <state width="1323" height="170" key="GridCell.Tab.0.bottom" timestamp="1576093692494">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="160" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1575988821975" />
+    <state width="1323" height="170" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1576093692494" />
+    <state width="1323" height="170" key="GridCell.Tab.0.center" timestamp="1576093692494">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="160" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1575988821975" />
+    <state width="1323" height="170" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1576093692494" />
+    <state width="1323" height="170" key="GridCell.Tab.0.left" timestamp="1576093692494">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="160" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1575988821975" />
+    <state width="1323" height="170" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1576093692494" />
+    <state width="1323" height="170" key="GridCell.Tab.0.right" timestamp="1576093692494">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="160" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1575988821975" />
+    <state width="1323" height="170" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1576093692494" />
+    <state width="1323" height="237" key="GridCell.Tab.1.bottom" timestamp="1576085038969">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1575982267261" />
+    <state width="1323" height="237" key="GridCell.Tab.1.bottom/0.0.1366.768@0.0.1366.768" timestamp="1576085038969" />
+    <state width="1323" height="237" key="GridCell.Tab.1.center" timestamp="1576085038969">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1575982267261" />
+    <state width="1323" height="237" key="GridCell.Tab.1.center/0.0.1366.768@0.0.1366.768" timestamp="1576085038969" />
+    <state width="1323" height="237" key="GridCell.Tab.1.left" timestamp="1576085038969">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1575982267261" />
+    <state width="1323" height="237" key="GridCell.Tab.1.left/0.0.1366.768@0.0.1366.768" timestamp="1576085038969" />
+    <state width="1323" height="237" key="GridCell.Tab.1.right" timestamp="1576085038969">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1575982267261" />
+    <state width="1323" height="237" key="GridCell.Tab.1.right/0.0.1366.768@0.0.1366.768" timestamp="1576085038969" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1575207566131">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1575207566131" />
+    <state x="379" y="197" key="com.intellij.ide.util.TipDialog" timestamp="1576067525027">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1575394898897" />
+    <state x="379" y="197" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1576067525027" />
+    <state x="238" y="60" width="737" height="629" key="find.popup" timestamp="1576094009367">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="379" y="101" width="737" height="596" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1575374483634" />
+    <state x="238" y="60" width="737" height="629" key="find.popup/0.0.1366.768@0.0.1366.768" timestamp="1576094009367" />
+    <state x="339" y="172" key="run.anything.popup" timestamp="1576068722759">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="339" y="172" key="run.anything.popup/0.0.1366.768@0.0.1366.768" timestamp="1576068722759" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -337,5 +428,10 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="pathsTabs" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

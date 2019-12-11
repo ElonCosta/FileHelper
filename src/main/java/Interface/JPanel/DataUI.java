@@ -1,7 +1,8 @@
-package Interface.UI;
+package Interface.JPanel;
 
 import ArchiveLoader.FilesArchive;
 import Main.Launcher;
+import Utils.Constants;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,7 +16,7 @@ import java.util.Map;
 
 import static Main.Launcher.*;
 
-public class DataUI extends JPanel {
+public class DataUI extends AbstractUI {
 
     private JTabbedPane dataTabs;
 
@@ -24,10 +25,24 @@ public class DataUI extends JPanel {
         dataTabs = new JTabbedPane();
         dataTabs.setBounds(5,-2,515,258);
         this.add(dataTabs);
+
+        initEvents();
     }
 
-    public JTabbedPane getDataTabs() {
-        return dataTabs;
+    @Override
+    void initEvents() {
+
+    }
+
+    public void createTabs(Map<String, FilesArchive> m){
+        if(!m.isEmpty()){
+            dataTabs.removeAll();
+            for (FilesArchive f: m.values()){
+                dataTabs.add(f.getName(), new DataPanel(f));
+            }
+        }else{
+            mainUI.disableButton(Constants.UIVE.FILES_BUTTON_NAME);
+        }
     }
 
     public static class DataPanel extends JPanel{
@@ -95,7 +110,7 @@ public class DataUI extends JPanel {
             return pathsTabs;
         }
 
-        public class pathsPanel extends JPanel{
+        public class pathsPanel extends AbstractUI{
 
             private FilesArchive.Paths paths;
 
@@ -136,10 +151,11 @@ public class DataUI extends JPanel {
                 disabledChkBox.setBounds(80,115,25,25);
                 this.add(disabledChkBox);
 
-                setEvents();
+                initEvents();
             }
 
-            private void setEvents(){
+            @Override
+            void initEvents(){
                 fileTxtFld.addFocusListener(new FocusListener() {
                     @Override
                     public void focusGained(FocusEvent e) {

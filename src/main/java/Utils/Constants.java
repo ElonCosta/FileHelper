@@ -2,6 +2,8 @@ package Utils;
 
 import org.json.JSONObject;
 
+import java.awt.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,5 +86,19 @@ public class Constants {
 
     public static Integer getInteger(JSONObject jo, KEY key){
         return jo.getInt(key.getVar());
+    }
+
+    public static Component cloneSwingComponent(Component c) {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(c);
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            return (Component) ois.readObject();
+        } catch (IOException |ClassNotFoundException ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 }

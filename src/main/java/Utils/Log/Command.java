@@ -9,7 +9,7 @@ public abstract class Command {
 
     private String cmd;
     private Map<String, Args> argsMap = new HashMap<>();
-    private boolean nullable = false;
+    private boolean nullable;
     private boolean hasArgs = false;
     protected boolean argsLoad = false;
 
@@ -24,7 +24,7 @@ public abstract class Command {
         }
         for (String o: args){
             if(argsMap.get(o) == null) argsMap.put(o,new Args());
-            else LOG.printErr(7);
+            else LOG.printErr(7,o);
         }
     }
 
@@ -41,20 +41,24 @@ public abstract class Command {
         argsLoad = false;
     }
 
-    int setArgs(String[] args){
+    boolean setArgs(String[] args){
         if (args.length > 1 && !hasArgs){
-            return 3;
+            LOG.printErr(3);
+            return false;
         }
         if(args.length > argsMap.size() + 1){
-            return 5;
+            LOG.printErr(5);
+            return false;
         }
         if(!nullable && args.length < argsMap.size() + 1){
-            return 4;
+            LOG.printErr(4);
+            return false;
         }
         for (int i = 1; i < args.length; i++){
             String s = args[i];
             if (s.length() == 1){
-                return 2;
+                LOG.printErr(2, s);
+                return false;
             }
             s = s.replaceFirst("\\s","");
             String arg = s.substring(0,1);
@@ -63,11 +67,12 @@ public abstract class Command {
                 a.setValue(s.substring(1));
                 argsLoad = true;
             }else {
-                return 1;
+                LOG.printErr(1,arg);
+                return false;
             }
         }
 
-        return 0;
+        return true;
     }
 
     String getCmd() {

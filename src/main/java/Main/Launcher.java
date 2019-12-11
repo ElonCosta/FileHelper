@@ -2,23 +2,16 @@ package Main;
 
 import ArchiveLoader.Configurations;
 import ArchiveLoader.Loader;
-import Interface.UI_Controller.AppUIController;
+import Interface.JFrame.AppUI;
 import Utils.Log.Command;
 import Utils.Log.Log;
 
-import java.io.*;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-
-import static Utils.Reader.*;
-
-@SuppressWarnings("Duplicates")
 public class Launcher {
 
     public static Log LOG;
     public static Configurations config;
-    public static AppUIController mainUI;
+    public static AppUI mainUI;
+    public static Loader loader;
 
     public static void main(String[] args){
         Launch();
@@ -26,7 +19,7 @@ public class Launcher {
 
     private static void Launch(){
             config = new Configurations();
-            mainUI = new AppUIController();
+            mainUI = new AppUI();
             LOG = new Log();
             config.loadCommands();
             LOG.newCommand(new Command("restart") {
@@ -35,7 +28,7 @@ public class Launcher {
                     Restart();
                 }
             });
-            Loader loader = new Loader();
+            loader = new Loader();
             loader.load();
     }
 

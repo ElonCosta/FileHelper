@@ -17,6 +17,7 @@ import java.util.List;
 
 import static Main.Launcher.LOG;
 import static Main.Launcher.config;
+import static Utils.Constants.put;
 
 @SuppressWarnings("Duplicates")
 public class FilesArchive implements ConfigInterface {
@@ -100,6 +101,7 @@ public class FilesArchive implements ConfigInterface {
 
     private void createFile(File file, File destFile) throws IOException{
         try{
+            LOG.println(destFile.isDirectory() + " " + destFile.getAbsolutePath());
             if (destFile.delete() || !destFile.exists()){
                 if (file.isDirectory()){
                     if (destFile.mkdir()){
@@ -316,9 +318,9 @@ public class FilesArchive implements ConfigInterface {
             filePath = file.getAbsolutePath();
             destPath = onLatest ? config.getGlobal().getVersionFolder().getName() : dest.getAbsolutePath();
 
-            JSONPaths.put(KEY.PATH.getVar(),filePath);
-            JSONPaths.put(KEY.DEST.getVar(),destPath);
-            JSONPaths.put(KEY.DISABLED.getVar(),disabled);
+            put(JSONPaths, KEY.PATH, filePath);
+            put(JSONPaths, KEY.DEST, destPath);
+            put(JSONPaths, KEY.DISABLED, disabled);
         }
 
         public Object getAsObject() {

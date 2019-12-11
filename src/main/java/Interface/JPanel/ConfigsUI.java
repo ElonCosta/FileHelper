@@ -1,12 +1,15 @@
-package Interface.UI;
+package Interface.JPanel;
 
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.io.File;
 
 import static Main.Launcher.config;
 
-public class ConfigsUI extends JPanel {
+public class ConfigsUI extends AbstractUI {
 
     private JTextField fieldVersionFolder;
     private JTextField fieldArchiveFolder;
@@ -17,7 +20,7 @@ public class ConfigsUI extends JPanel {
     private JCheckBox checkBoxDisplayTime;
     private JCheckBox checkBoxArchiveFiles;
 
-    protected ConfigsUI(){
+    public ConfigsUI(){
         this.setLayout(null);
 
         JPanel pnl = new JPanel();
@@ -103,29 +106,63 @@ public class ConfigsUI extends JPanel {
         pnl.add(checkBoxArchiveFiles);
 
         this.add(pnl);
+        initEvents();
     }
 
-    public JTextField getFieldVersionFolder() {
-        return fieldVersionFolder;
+    public void updateInterface(){
+        spinnerRoutineTime.setValue(config.getGlobal().getRoutineTime());
+
+        checkBoxArchiveFiles.setSelected(config.getGlobal().getArchiveFiles());
+        checkBoxDisplayTime.setSelected(config.getGlobal().getDisplayTime());
     }
 
-    public JTextField getFieldArchiveFolder() {
-        return fieldArchiveFolder;
-    }
+    @Override
+    void initEvents() {
 
-    public JTextField getFieldRootFolder() {
-        return fieldRootFolder;
-    }
+        fieldRootFolder.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                fieldRootFolder.setText(config.getGlobal().getRootFolder().getAbsolutePath());
+            }
 
-    public JSpinner getSpinnerRoutineTime() {
-        return spinnerRoutineTime;
-    }
+            @Override
+            public void focusLost(FocusEvent e) {
+                config.getGlobal().setRootFolder(new File(fieldRootFolder.getText()));
+                fieldRootFolder.setText(config.getGlobal().getShorthandPath(config.getGlobal().getRootFolder()));
+            }
+        });
+        fieldArchiveFolder.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                fieldArchiveFolder.setText(config.getGlobal().getArchiveFolder().getAbsolutePath());
+            }
 
-    public JCheckBox getCheckBoxDisplayTime() {
-        return checkBoxDisplayTime;
-    }
+            @Override
+            public void focusLost(FocusEvent e) {
+                config.getGlobal().setArchiveFolder(new File(fieldArchiveFolder.getText()));
+                fieldArchiveFolder.setText(config.getGlobal().getShorthandPath(config.getGlobal().getArchiveFolder()));
+            }
+        });
+        fieldVersionFolder.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                fieldVersionFolder.setText(config.getGlobal().getVersionFolder().getAbsolutePath());
+            }
 
-    public JCheckBox getCheckBoxArchiveFiles() {
-        return checkBoxArchiveFiles;
+            @Override
+            public void focusLost(FocusEvent e) {
+                config.getGlobal().setVersionFolder(new File(fieldVersionFolder.getText()));
+                fieldVersionFolder.setText(config.getGlobal().getShorthandPath(config.getGlobal().getVersionFolder()));
+            }
+        });
+
+        spinnerRoutineTime.addChangeListener( e -> {
+            if(config.getGlobal().getRoutineTime() != spinnerRoutineTime.getValue()){
+                config.getGlobal().setRoutineTime((Integer) spinnerRoutineTime.getValue());
+            }
+        });
+
+        checkBoxArchiveFiles.addActionListener(e -> config.getGlobal().setArchiveFiles(checkBoxArchiveFiles.isSelected()));
+        checkBoxDisplayTime.addActionListener(e -> config.getGlobal().setDisplayTime(checkBoxDisplayTime.isSelected()));
     }
 }

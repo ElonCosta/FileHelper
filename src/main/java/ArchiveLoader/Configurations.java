@@ -297,7 +297,7 @@ public class Configurations implements ConfigInterface {
         /* Commands */
 
         private void loadCommands(){
-            LOG.newCommand(new Command(true,"displayTime", "v") {
+            LOG.newCommand(new Command("displayTime", "v") {
                 @Override
                 public void run() {
                     if(this.argsLoad){
@@ -306,7 +306,7 @@ public class Configurations implements ConfigInterface {
                     }else {
                         setDisplayTime(!displayTime);
                     }
-                }}, new Command(true,"archiveFiles", "v") {
+                }}, new Command("archiveFiles", "v") {
                 @Override
                 public void run() {
                     if(this.argsLoad){
@@ -343,7 +343,7 @@ public class Configurations implements ConfigInterface {
             return new JSONArray();
         }
 
-        void newDataFile(String name){
+        public void newDataFile(String name){
             for (JSONObject jo: dataFilesList){
                 if (jo.get(KEY.NAME.getVar()).equals(name)){
                     return;

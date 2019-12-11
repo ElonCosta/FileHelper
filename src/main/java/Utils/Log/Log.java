@@ -11,8 +11,12 @@ import static Utils.Reader.split;
 public class Log {
 
     private List<String> issuedCommands = new ArrayList<>();
+    private List<String> autoCompleteList = new ArrayList<>();
 
     private Integer issuedCommandsPos = 0;
+    private Integer autoCompletePos = 1;
+
+    private String partialCmd = "";
 
     private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss > ");
     private Map<String,Command> commands = new HashMap<>();
@@ -32,22 +36,24 @@ public class Log {
     }
 
     public void printErr(int Code, String... vals){
-        String err = "ERROR CODE("+Code+"): \n";
+        StringBuilder err = new StringBuilder("ERROR CODE("+Code+"): \n") ;
         switch (Code) {
             case 1:
-                err += ("Invalid parameter");
+                err.append("Invalid parameter \"").append(vals[0]).append("\"");
             case 2:
-                err += ("No parameter value found");
+                err.append("No parameter value found \"").append(vals[0]).append("\"");
             case 3:
-                err += ("Command has no parameters");
+                err.append("Command has no parameters");
             case 4:
-                err += ("Missing parameters");
+                err.append("Missing parameters");
             case 5:
-                err += ("Too many parameters for command");
+                err.append("Too many parameters for command");
             case 6:
-                err += ("Unknown archive \"" + vals[0] + "\"");
+                err.append("Unknown archive \"").append(vals[0]).append("\"");
             case 7:
-                err += ("Repeated parameter on command");
+                err.append("Repeated parameter \"").append(vals[0]).append("\"on command");
+            case 8:
+                err.append("Invalid parameter type ");
         }
         println(err, false);
     }
@@ -66,11 +72,7 @@ public class Log {
         final String[] CMD = split(cmdLine,'-');
         Command cmd = commands.get(CMD[0].trim());
         if (cmd != null){
-            int cmdStat = cmd.setArgs(CMD);
-            if(cmdStat != 0){
-                printErr(cmdStat);
-                return;
-            }
+            if(!cmd.setArgs(CMD)) return;
             cmd.run();
             cmd.flush();
             if(issuedCommands.isEmpty() || !cmdLine.equals(issuedCommands.get(issuedCommands.size()-1))){
@@ -89,8 +91,7 @@ public class Log {
             }else {
                 issuedCommandsPos = 0;
             }
-            String cmd = issuedCommands.get(issuedCommandsPos);
-            return cmd;
+            return issuedCommands.get(issuedCommandsPos);
         }else {
             return "";
         }
@@ -104,8 +105,7 @@ public class Log {
             issuedCommandsPos = issuedCommands.size();
             return "";
         }
-        String cmd = issuedCommands.get(issuedCommandsPos);
-        return cmd;
+        return issuedCommands.get(issuedCommandsPos);
     }
 
     private void clear(){
@@ -124,4 +124,35 @@ public class Log {
         commands.put(cmd.getCmd(),cmd);
     }
 
+    public String autoComplete(){
+        if(!autoCompleteList.isEmpty() && partialCmd.equals(autoCompleteList.get(0))){
+            autoCompletePos++;
+            if(autoCompletePos == autoCompleteList.size()) autoCompletePos = 1;
+            return autoCompleteList.get(autoCompletePos);
+        }else{
+            autoCompleteList = new ArrayList<>();
+            autoCompletePos = 1;
+            autoCompleteList.add(partialCmd);
+            for (String c: commands.keySet()) {
+                if(c.startsWith(partialCmd)){
+                    autoCompleteList.add(c);
+                }
+            }
+            if(autoCompleteList.size() == 1){
+                return partialCmd;
+            }
+            return autoCompleteList.get(autoCompletePos);
+        }
+    }
+
+    public void setPartialCmd(String partialCmd){
+        this.partialCmd = partialCmd;
+    }
+
+    public void spitCommands(){
+        for (String s:
+             commands.keySet()) {
+            System.out.println(s);
+        }
+    }
 }

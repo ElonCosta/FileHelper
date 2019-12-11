@@ -35,9 +35,9 @@ public class Loader {
         createFolders();
         LOG.println("Initial Check:");
         checkForFiles();
-        mainUI.createTabs(archiveMap);
         config.save();
         LOG.println(!archiveMap.isEmpty() ? "Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(getNextRoutine(config.getGlobal().getRoutineTime()))) + "\"" : "" );
+        LOG.spitCommands();
         routine();
     }
     private void createFolders(){
@@ -71,7 +71,7 @@ public class Loader {
         return calendar.getTime();
     }
 
-    private void checkForFiles(){
+    public void checkForFiles(){
         try{
             if (config.getDataFiles().getDataFilesList().size() > 0){
                 for (JSONObject d: config.getDataFiles().getDataFilesList()){
@@ -81,6 +81,8 @@ public class Loader {
                     }
                 }
             }
+
+            mainUI.createTabs(archiveMap);
         }catch (FileNotFoundException f){
             f.printStackTrace();
         }
@@ -88,10 +90,6 @@ public class Loader {
 
     private Integer getTime(){
         return config.getGlobal().getRoutineTime() * 60000;
-    }
-
-    private void newArchive(){
-
     }
 
      /*
@@ -157,7 +155,7 @@ public class Loader {
                         }
                     }
                 },
-                new Command(true,"pause","v") {
+                new Command("pause","v") {
                     @Override
                     public void run() {
                         if (this.argsLoad){
