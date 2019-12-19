@@ -151,7 +151,7 @@ public class AppUI extends JFrame {
         ((LogUI) container.getComponent(0)).appendLog(s);
     }
 
-    public void clearLog(){((LogUI) container.getComponent(0)).clearLog();}
+    public void clearLog(Integer n){((LogUI) container.getComponent(0)).clearLog(n);}
 
     public void updateInterface(){
         ((ConfigsUI) container.getComponent(1)).updateInterface();

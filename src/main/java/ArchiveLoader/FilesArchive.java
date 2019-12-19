@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -48,11 +49,6 @@ public class FilesArchive implements ConfigInterface {
         File latestFolder = new File(config.getGlobal().getVersionFolderName() + "/" + name);
         if (latestFolder.mkdir()){
             LOG.println("Creating root folder for file(s): " + name);
-        }
-        try{
-            checker();
-        }catch (IOException | ParseException ex){
-            System.err.println(ex);
         }
     }
 
@@ -100,9 +96,7 @@ public class FilesArchive implements ConfigInterface {
     }
 
     private void createFile(File file, File destFile) throws IOException{
-        try{
-            LOG.println(destFile.isDirectory() + " " + destFile.getAbsolutePath());
-            if (destFile.delete() || !destFile.exists()){
+            if (deleteDest(destFile) || !destFile.exists()){
                 if (file.isDirectory()){
                     if (destFile.mkdir()){
                         LOG.println("    Archiving latest version of \"" + config.getGlobal().getShorthandPath(file) + "\" on: \"" + destFile.toString() + "\"");
@@ -114,9 +108,6 @@ public class FilesArchive implements ConfigInterface {
                     FileUtils.copyFileToDirectory(file, destFile, true);
                 }
             }
-        }catch (SecurityException e){
-            LOG.println(e);
-        }
     }
 
     private Boolean pathsAllDisabled(){
@@ -219,6 +210,18 @@ public class FilesArchive implements ConfigInterface {
             }
         }
         save();
+    }
+
+    boolean deleteDest(File file) {
+        File[] contents = file.listFiles();
+        if (contents != null) {
+            for (File f : contents) {
+                if (!Files.isSymbolicLink(f.toPath())) {
+                    deleteDest(f);
+                }
+            }
+        }
+        return file.delete();
     }
 
     public class Paths implements ConfigInterface{

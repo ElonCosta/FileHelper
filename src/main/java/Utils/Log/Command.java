@@ -13,18 +13,14 @@ public abstract class Command {
     private boolean hasArgs = false;
     protected boolean argsLoad = false;
 
-    private String regexCmd;
-
     protected Command(boolean nullable, String cmd, String... args){
         this.nullable = nullable;
         this.cmd = cmd;
-        this.regexCmd = cmd;
         if (args.length > 0){
             hasArgs = true;
         }
         for (String o: args){
             if(argsMap.get(o) == null) argsMap.put(o,new Args());
-            else LOG.printErr(7,o);
         }
     }
 
@@ -41,46 +37,40 @@ public abstract class Command {
         argsLoad = false;
     }
 
-    boolean setArgs(String[] args){
+    Map<Boolean, String> setArgs(String[] args){
+        Map<Boolean, String> response = new HashMap<>();
         if (args.length > 1 && !hasArgs){
-            LOG.printErr(3);
-            return false;
-        }
-        if(args.length > argsMap.size() + 1){
-            LOG.printErr(5);
-            return false;
+            response.put(false,"Command has no parameters");
+            return response;
         }
         if(!nullable && args.length < argsMap.size() + 1){
-            LOG.printErr(4);
-            return false;
+            response.put(false,"Missing parameters");
+            return response;
         }
         for (int i = 1; i < args.length; i++){
             String s = args[i];
-            if (s.length() == 1){
-                LOG.printErr(2, s);
-                return false;
-            }
             s = s.replaceFirst("\\s","");
             String arg = s.substring(0,1);
             Args a = argsMap.get(arg);
             if (a != null){
+                if (s.length() == 1){
+                    response.put(false,"Parameter \""+s+"\" missing value.");
+                    return response;
+                }
                 a.setValue(s.substring(1));
                 argsLoad = true;
             }else {
-                LOG.printErr(1,arg);
-                return false;
+                response.put(false,"Unknown parameter \""+arg+"\"");
+                return response;
             }
         }
 
-        return true;
+        response.put(true,"Success!");
+        return response;
     }
 
     String getCmd() {
         return cmd;
-    }
-
-    String getRegexCmd() {
-        return regexCmd;
     }
 
     protected Args getArg(String param){
@@ -94,27 +84,27 @@ public abstract class Command {
         }
 
         public Integer getAsInteger(){
-            return Integer.parseInt(value);
+            return value == null ? null : Integer.parseInt(value);
         }
 
         public Boolean getAsBoolean(){
-            return Boolean.parseBoolean(value);
+            return !value.toLowerCase().equals("true") && !value.toLowerCase().equals("false") ? null : Boolean.parseBoolean(value);
         }
 
         public Double getAsDouble(){
-            return Double.parseDouble(value);
+            return value == null ? null : Double.parseDouble(value);
         }
 
         public Float getAsFloat(){
-            return Float.parseFloat(value);
+            return value == null ? null : Float.parseFloat(value);
         }
 
         public Long getAsLong(){
-            return Long.parseLong(value);
+            return value == null ? null : Long.parseLong(value);
         }
 
         public Character getAsCharacter(){
-            return value.charAt(0);
+            return value == null ? null : value.charAt(0);
         }
 
         private void flush(){

@@ -33,10 +33,10 @@ public class Loader {
 
     public void load(){
         createFolders();
-        LOG.println("Initial Check:");
         checkForFiles();
+        LOG.println("Initial Check:");
+        initialCheck();
         config.save();
-        LOG.println(!archiveMap.isEmpty() ? "Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(getNextRoutine(config.getGlobal().getRoutineTime()))) + "\"" : "" );
         LOG.spitCommands();
         routine();
     }
@@ -44,6 +44,20 @@ public class Loader {
         if (config.getGlobal().getRootFolder().mkdir())     LOG.println("Creating " + config.getGlobal().getRootFolderName());
         if (config.getGlobal().getArchiveFolder().mkdirs()) LOG.println("Creating " + config.getGlobal().getArchiveFolderName());
         if (config.getGlobal().getVersionFolder().mkdirs()) LOG.println("Creating " + config.getGlobal().getVersionFolderName());
+    }
+
+    private void initialCheck(){
+        for (FilesArchive data: archiveMap.values()){
+            try {
+                data.checker();
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        next = getNextRoutine(config.getGlobal().getRoutineTime());
+        if(!isPaused){
+            LOG.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
+        }
     }
 
     private void routine(){
@@ -160,6 +174,10 @@ public class Loader {
                     public void run() {
                         if (this.argsLoad){
                             Boolean value = getArg("v").getAsBoolean();
+                            if (value == null){
+                                LOG.println("Invalid value \""+getArg("v")+"\"");
+                                return;
+                            }
                             setPaused(value);
                         }else {
                             setPaused(!isPaused);
@@ -172,11 +190,15 @@ public class Loader {
                         String file = getArg("f").getAsString();
                         Integer pos = getArg("p").getAsInteger() - 1;
                         Boolean val = getArg("v").getAsBoolean();
+                        if (val == null){
+                            LOG.println("Invalid value \""+getArg("v")+"\"");
+                            return;
+                        }
                         FilesArchive data = archiveMap.get(file);
                         if(data != null){
                             data.disablePath(pos,val);
                         }else {
-                            LOG.printErr(6, file);
+                            LOG.println("Unknown archive \""+file+"\"");
                         }
                     }
                 });

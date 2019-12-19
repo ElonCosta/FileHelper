@@ -7,27 +7,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26f6786f-0baf-4f39-97c0-248b104f2385" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/JFrame/AppUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/JPanel/AbstractUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jcraft_jsch_0_1_55.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_net_commons_net_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/libs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/Hasher.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Utils/FileTransfer/SFTPConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/FileHelper_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/FileHelper_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/juniversalchardet_1_0_3.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileHelper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FileHelper.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI/AppUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI/ConfigsUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/JPanel/ConfigsUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI/DataUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/JPanel/DataUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI/LogUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/JPanel/LogUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI/NewFileUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/JPanel/NewFileUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/AppUIController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/ConfigsUIController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/DataUIController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/LogUIController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/UI_Controller/NewFileUIController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/JFrame/AppUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/JFrame/AppUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/JPanel/LogUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/JPanel/LogUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Log/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Log/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Log/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Log/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Reader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main/Launcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main/Launcher.class" afterDir="false" />
     </list>
@@ -77,7 +76,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last.edited.regexp" value="        aaaaaaszs&#10;          " />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/Hasher.jar!/" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -95,11 +94,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\libs" />
       <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\src\main\java\Interface\UI" />
       <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper" />
       <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\out" />
       <recent name="$PROJECT_DIR$/out/artifacts/FileHelper_jar" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Utils" />
@@ -220,7 +219,8 @@
       <workItem from="1575394888422" duration="30000" />
       <workItem from="1575467821222" duration="4884000" />
       <workItem from="1575979120116" duration="5565000" />
-      <workItem from="1576067523293" duration="19345000" />
+      <workItem from="1576067523293" duration="20356000" />
+      <workItem from="1576149879082" duration="2860000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1561397026003</created>
@@ -299,7 +299,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575207472307</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="First Commit">
+      <created>1576094124121</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1576094124122</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -355,64 +362,74 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="488" y="93" key="#com.intellij.ide.util.MemberChooser/0.0.1366.768@0.0.1366.768" timestamp="1576070640092" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1575207468014">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1576094121169">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1575207468014" />
-    <state width="1323" height="170" key="GridCell.Tab.0.bottom" timestamp="1576093692494">
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.768@0.0.1366.768" timestamp="1576094121169" />
+    <state x="389" y="125" key="FileChooserDialogImpl" timestamp="1576691742446">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="389" y="125" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1576691742446" />
+    <state width="1323" height="170" key="GridCell.Tab.0.bottom" timestamp="1576764184270">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1323" height="160" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1575988821975" />
-    <state width="1323" height="170" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1576093692494" />
-    <state width="1323" height="170" key="GridCell.Tab.0.center" timestamp="1576093692494">
+    <state width="1323" height="170" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1576764184270" />
+    <state width="1323" height="170" key="GridCell.Tab.0.center" timestamp="1576764184269">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1323" height="160" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1575988821975" />
-    <state width="1323" height="170" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1576093692494" />
-    <state width="1323" height="170" key="GridCell.Tab.0.left" timestamp="1576093692494">
+    <state width="1323" height="170" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1576764184269" />
+    <state width="1323" height="170" key="GridCell.Tab.0.left" timestamp="1576764184269">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1323" height="160" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1575988821975" />
-    <state width="1323" height="170" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1576093692494" />
-    <state width="1323" height="170" key="GridCell.Tab.0.right" timestamp="1576093692494">
+    <state width="1323" height="170" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1576764184269" />
+    <state width="1323" height="170" key="GridCell.Tab.0.right" timestamp="1576764184269">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1323" height="160" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1575988821975" />
-    <state width="1323" height="170" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1576093692494" />
-    <state width="1323" height="237" key="GridCell.Tab.1.bottom" timestamp="1576085038969">
+    <state width="1323" height="170" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1576764184269" />
+    <state width="1323" height="170" key="GridCell.Tab.1.bottom" timestamp="1576762610554">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1323" height="222" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1575982267261" />
-    <state width="1323" height="237" key="GridCell.Tab.1.bottom/0.0.1366.768@0.0.1366.768" timestamp="1576085038969" />
-    <state width="1323" height="237" key="GridCell.Tab.1.center" timestamp="1576085038969">
+    <state width="1323" height="170" key="GridCell.Tab.1.bottom/0.0.1366.768@0.0.1366.768" timestamp="1576762610554" />
+    <state width="1323" height="170" key="GridCell.Tab.1.center" timestamp="1576762610553">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1323" height="222" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1575982267261" />
-    <state width="1323" height="237" key="GridCell.Tab.1.center/0.0.1366.768@0.0.1366.768" timestamp="1576085038969" />
-    <state width="1323" height="237" key="GridCell.Tab.1.left" timestamp="1576085038969">
+    <state width="1323" height="170" key="GridCell.Tab.1.center/0.0.1366.768@0.0.1366.768" timestamp="1576762610553" />
+    <state width="1323" height="170" key="GridCell.Tab.1.left" timestamp="1576762610553">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1323" height="222" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1575982267261" />
-    <state width="1323" height="237" key="GridCell.Tab.1.left/0.0.1366.768@0.0.1366.768" timestamp="1576085038969" />
-    <state width="1323" height="237" key="GridCell.Tab.1.right" timestamp="1576085038969">
+    <state width="1323" height="170" key="GridCell.Tab.1.left/0.0.1366.768@0.0.1366.768" timestamp="1576762610553" />
+    <state width="1323" height="170" key="GridCell.Tab.1.right" timestamp="1576762610553">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1323" height="222" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1575982267261" />
-    <state width="1323" height="237" key="GridCell.Tab.1.right/0.0.1366.768@0.0.1366.768" timestamp="1576085038969" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1575207566131">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1323" height="170" key="GridCell.Tab.1.right/0.0.1366.768@0.0.1366.768" timestamp="1576762610553" />
+    <state x="163" y="0" key="SettingsEditor" timestamp="1576691745657">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1576691745657" />
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1576094125240">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1575207566131" />
-    <state x="379" y="197" key="com.intellij.ide.util.TipDialog" timestamp="1576067525027">
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.768@0.0.1366.768" timestamp="1576094125240" />
+    <state x="379" y="197" key="com.intellij.ide.util.TipDialog" timestamp="1576149882397">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1575394898897" />
-    <state x="379" y="197" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1576067525027" />
-    <state x="238" y="60" width="737" height="629" key="find.popup" timestamp="1576094009367">
+    <state x="379" y="197" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1576149882397" />
+    <state x="238" y="60" width="737" height="629" key="find.popup" timestamp="1576757574867">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="379" y="101" width="737" height="596" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1575374483634" />
-    <state x="238" y="60" width="737" height="629" key="find.popup/0.0.1366.768@0.0.1366.768" timestamp="1576094009367" />
+    <state x="238" y="60" width="737" height="629" key="find.popup/0.0.1366.768@0.0.1366.768" timestamp="1576757574867" />
     <state x="339" y="172" key="run.anything.popup" timestamp="1576068722759">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -423,7 +440,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java</url>
-          <line>253</line>
+          <line>259</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

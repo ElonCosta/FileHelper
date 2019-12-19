@@ -22,40 +22,22 @@ public class Log {
     private Map<String,Command> commands = new HashMap<>();
 
     public Log(){
-        clear();
-        newCommand(new Command("clear") {
+        clear(null);
+        newCommand(new Command("clear","i") {
             @Override
             public void run() {
-                clear();
+                if (argsLoad){
+                    Integer i = getArg("i").getAsInteger();
+                    clear(i);
+                }else {
+                    clear(null);
+                }
             }
         });
     }
 
     public void println(Object x){
         println(x, config.getGlobal().getDisplayTime());
-    }
-
-    public void printErr(int Code, String... vals){
-        StringBuilder err = new StringBuilder("ERROR CODE("+Code+"): \n") ;
-        switch (Code) {
-            case 1:
-                err.append("Invalid parameter \"").append(vals[0]).append("\"");
-            case 2:
-                err.append("No parameter value found \"").append(vals[0]).append("\"");
-            case 3:
-                err.append("Command has no parameters");
-            case 4:
-                err.append("Missing parameters");
-            case 5:
-                err.append("Too many parameters for command");
-            case 6:
-                err.append("Unknown archive \"").append(vals[0]).append("\"");
-            case 7:
-                err.append("Repeated parameter \"").append(vals[0]).append("\"on command");
-            case 8:
-                err.append("Invalid parameter type ");
-        }
-        println(err, false);
     }
 
     private void println(Object x, boolean y){
@@ -72,7 +54,11 @@ public class Log {
         final String[] CMD = split(cmdLine,'-');
         Command cmd = commands.get(CMD[0].trim());
         if (cmd != null){
-            if(!cmd.setArgs(CMD)) return;
+            Map<Boolean, String> argsResponse = cmd.setArgs(CMD);
+            if(argsResponse.get(true) == null) {
+                this.println(argsResponse.get(false));
+                return;
+            }
             cmd.run();
             cmd.flush();
             if(issuedCommands.isEmpty() || !cmdLine.equals(issuedCommands.get(issuedCommands.size()-1))){
@@ -108,8 +94,8 @@ public class Log {
         return issuedCommands.get(issuedCommandsPos);
     }
 
-    private void clear(){
-        mainUI.clearLog();
+    private void clear(Integer n){
+        mainUI.clearLog(n);
     }
 
     public void newCommand(Command... cmds){
@@ -125,24 +111,23 @@ public class Log {
     }
 
     public String autoComplete(){
-        if(!autoCompleteList.isEmpty() && partialCmd.equals(autoCompleteList.get(0))){
+        if(!autoCompleteList.isEmpty() && partialCmd.equals(autoCompleteList.get(0)) && autoCompleteList.size() > 1){
             autoCompletePos++;
-            if(autoCompletePos == autoCompleteList.size()) autoCompletePos = 1;
-            return autoCompleteList.get(autoCompletePos);
+            if(autoCompletePos >= autoCompleteList.size()) autoCompletePos = 1;
         }else{
             autoCompleteList = new ArrayList<>();
             autoCompletePos = 1;
             autoCompleteList.add(partialCmd);
             for (String c: commands.keySet()) {
-                if(c.startsWith(partialCmd)){
+                if(c.startsWith(partialCmd.toLowerCase())){
                     autoCompleteList.add(c);
                 }
             }
             if(autoCompleteList.size() == 1){
                 return partialCmd;
             }
-            return autoCompleteList.get(autoCompletePos);
         }
+        return autoCompleteList.get(autoCompletePos);
     }
 
     public void setPartialCmd(String partialCmd){

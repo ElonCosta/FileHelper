@@ -7,6 +7,8 @@ import javax.swing.text.DefaultCaret;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import static Main.Launcher.LOG;
+
 public class LogUI extends AbstractUI {
 
     private JTextArea logArea;
@@ -43,7 +45,7 @@ public class LogUI extends AbstractUI {
     @Override
     void initEvents() {
         cmdField.addActionListener(e -> {
-            Launcher.LOG.readCommand();
+            LOG.readCommand();
             cmdField.setText("");
         });
         cmdField.addKeyListener(new KeyListener() {
@@ -54,20 +56,20 @@ public class LogUI extends AbstractUI {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(isKey(e, KeyEvent.VK_UP)){
-                    cmdField.setText(Launcher.LOG.lastIssuedCommand());
+                    cmdField.setText(LOG.lastIssuedCommand());
                 }
                 if(isKey(e, KeyEvent.VK_DOWN)){
-                    cmdField.setText(Launcher.LOG.advanceIssuedCommand());
+                    cmdField.setText(LOG.advanceIssuedCommand());
                 }
                 if(isKey(e, KeyEvent.VK_TAB)){
-                    cmdField.setText(Launcher.LOG.autoComplete());
+                    cmdField.setText(LOG.autoComplete());
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 if(!isKey(e, KeyEvent.VK_TAB)){
-                    Launcher.LOG.setPartialCmd(cmdField.getText());
+                    LOG.setPartialCmd(cmdField.getText());
                 }
             }
         });
@@ -81,8 +83,21 @@ public class LogUI extends AbstractUI {
         return cmdField.getText();
     }
 
-    public void clearLog(){
-        logArea.setText("");
+    public void clearLog(Integer n){
+        if (n == null){
+            logArea.setText("");
+        }else{
+            String[] s = logArea.getText().split("\n");
+            StringBuilder log = new StringBuilder();
+            if (n > s.length){
+                LOG.println("Not enough lines to delete (\""+n+"\")");
+                return;
+            }
+            for (int i = n; i < s.length; i++){
+                log.append(s[i]).append("\n");
+            }
+            logArea.setText(log.toString());
+        }
     }
 
     /*

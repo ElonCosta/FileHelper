@@ -122,6 +122,8 @@ public class Configurations implements ConfigInterface {
 
         private Integer routineTime;
 
+        private String hashKey;
+
         private Global(JSONObject JSONGlobal){
             this.JSONGlobal = JSONGlobal;
             load();
@@ -194,6 +196,10 @@ public class Configurations implements ConfigInterface {
             return routineTime;
         }
 
+        public String getHashKey(){
+            return hashKey;
+        }
+
         public void setRootFolder(File rootFolder){
             if (!rootFolder.getAbsolutePath().equals(this.rootFolder.getAbsolutePath())){
                 LOG.println("Changing \"" + getShorthandPath(this.rootFolder, false) + "\" to \"" + getShorthandPath(rootFolder, false)   + "\"");
@@ -260,6 +266,10 @@ public class Configurations implements ConfigInterface {
             Configurations.this.save();
         }
 
+        public void setHashKey(String hashKey){
+            this.hashKey = hashKey;
+        }
+
         /* Methods inherited from ConfigInterface */
 
         @Override
@@ -277,6 +287,8 @@ public class Configurations implements ConfigInterface {
             archiveFiles = getBoolean(JSONGlobal, KEY.ARCHIVE_FILES);
 
             routineTime = getInteger(JSONGlobal, KEY.ROUTINE_TIME);
+
+            hashKey = getString(JSONGlobal, KEY.HASH_KEY);
         }
 
         @Override
@@ -287,6 +299,7 @@ public class Configurations implements ConfigInterface {
             JSONGlobal.put(KEY.ROUTINE_TIME.getVar(),routineTime);
             JSONGlobal.put(KEY.DISPLAY_TIME.getVar(),displayTime);
             JSONGlobal.put(KEY.ARCHIVE_FILES.getVar(),archiveFiles);
+            JSONGlobal.put(KEY.HASH_KEY.getVar(),hashKey);
         }
 
         @Override
@@ -302,6 +315,10 @@ public class Configurations implements ConfigInterface {
                 public void run() {
                     if(this.argsLoad){
                         Boolean setTo = getArg("v").getAsBoolean();
+                        if (setTo == null){
+                            LOG.println("Invalid value \""+getArg("v")+"\"");
+                            return;
+                        }
                         setDisplayTime(setTo);
                     }else {
                         setDisplayTime(!displayTime);
@@ -311,6 +328,10 @@ public class Configurations implements ConfigInterface {
                 public void run() {
                     if(this.argsLoad){
                         Boolean setTo = getArg("v").getAsBoolean();
+                        if (setTo == null){
+                            LOG.println("Invalid value \""+getArg("v")+"\"");
+                            return;
+                        }
                         setArchiveFiles(setTo);
                     }else {
                         setArchiveFiles(!archiveFiles);

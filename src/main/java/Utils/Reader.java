@@ -1,42 +1,32 @@
 package Utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
 @SuppressWarnings("Duplicates")
 public class Reader {
 
-    public static String[] split(String str, char spltAt){
-        int wordSize = 0;
+    public static String[] split(String str, char splitAt){
         char[] chars = str.toCharArray();
-        String[] words = new String[wordSize];
+        ArrayList<String> words = new ArrayList<>();
         StringBuilder word = new StringBuilder();
         for (int i = 0; i < chars.length; i++){
             char c = chars[i];
             if (i == chars.length-1){
                 word.append(c);
-                wordSize++;
-                String[] tmp = words;
-                words = new String[wordSize];
-                System.arraycopy(tmp,0,words,0,wordSize-1);
-                words[wordSize-1] = word.toString().trim();
+                words.add(word.toString().trim());
                 word = new StringBuilder();
             }
-            if(c != spltAt){
+            if(c != splitAt){
                 word.append(c);
             }else{
-                wordSize++;
-                String[] tmp = words;
-                words = new String[wordSize];
-                for (int y = 0; y < tmp.length; y++) {
-                    words[y] = tmp[y];
-                }
-                words[wordSize-1] = word.toString().trim();
+                words.add(word.toString().trim());
                 word = new StringBuilder();
             }
         }
 
-        return words;
+        return words.toArray(new String[0]);
     }
 
 }
