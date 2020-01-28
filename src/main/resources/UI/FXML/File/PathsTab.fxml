@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="162.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controllers.Files.PathsTabController">
+   <Group layoutX="14.0" layoutY="14.0">
+      <Label text="File path:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="pathFld" layoutY="25.0" prefHeight="25.0" prefWidth="482.0" />
+      <Button fx:id="pathBtn" layoutX="481.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
+   </Group>
+   <Group layoutX="14.0" layoutY="65.0">
+      <Label text="Destination path:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="destFld" layoutY="25.0" prefHeight="25.0" prefWidth="482.0" />
+      <Button fx:id="destBtn" layoutX="481.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
+   </Group>
+   <CheckBox fx:id="disablePath" layoutX="14.0" layoutY="123.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Disable path" onAction="#disablePath">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </CheckBox>
+</AnchorPane>

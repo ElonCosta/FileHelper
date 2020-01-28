@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="main" prefHeight="450.0" prefWidth="530.0" stylesheets="@../CSS/main.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controllers.AppController">
+   <children>
+      <ToolBar fx:id="menuBar" prefHeight="25.0" prefWidth="530.0" AnchorPane.bottomAnchor="390.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <Button fx:id="logBtn" mnemonicParsing="false" onAction="#changeScene" text="Log" />
+            <Button fx:id="cfgBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeScene" text="Configurations" />
+            <Button fx:id="fleBtn" mnemonicParsing="false" onAction="#changeScene" text="Files" />
+            <Button fx:id="newFleBtn" mnemonicParsing="false" onAction="#changeScene" text="New File" />
+         </items>
+      </ToolBar>
+      <AnchorPane fx:id="mainPane" layoutY="25.0" prefHeight="425.0" prefWidth="530.0" />
+   </children>
+</Pane>

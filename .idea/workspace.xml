@@ -440,10 +440,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="120" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1366.728@0.0.1366.728" timestamp="1579862619958" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1580234458234">
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1580234473347">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1580234458234" />
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1580234473347" />
     <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.768@0.0.1366.768" timestamp="1576773054980" />
     <state x="389" y="118" key="FileChooserDialogImpl" timestamp="1579802336454">
       <screen x="0" y="0" width="1366" height="728" />
@@ -511,10 +511,10 @@
     </state>
     <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1580212631655" />
     <state x="163" y="0" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1576691745657" />
-    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1576773066390">
-      <screen x="0" y="0" width="1366" height="768" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1580234482646">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1575207566131" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1580234482646" />
     <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.768@0.0.1366.768" timestamp="1576773066390" />
     <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1580120645821">
       <screen x="0" y="0" width="1366" height="728" />
