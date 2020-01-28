@@ -17,8 +17,7 @@ import static Main.Launcher.loader;
 
 public class FilesController implements Initializable {
 
-    @FXML
-    private TabPane tabPane;
+    @FXML private TabPane tabPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

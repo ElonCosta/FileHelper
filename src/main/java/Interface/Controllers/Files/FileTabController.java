@@ -21,17 +21,13 @@ public class FileTabController implements Initializable {
 
     private FilesArchive file;
 
-    @FXML
-    private Label name;
+    @FXML private Label name;
 
-    @FXML
-    private Label lastMod;
+    @FXML private Label lastMod;
 
-    @FXML
-    private CheckBox archiveFiles;
+    @FXML private CheckBox archiveFiles;
 
-    @FXML
-    private TabPane pathsTabs;
+    @FXML private TabPane pathsTabs;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

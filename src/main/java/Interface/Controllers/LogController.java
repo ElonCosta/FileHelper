@@ -8,8 +8,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.io.BufferedReader;
+import java.io.StringReader;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import static Main.Launcher.log;
 
@@ -59,14 +63,15 @@ public class LogController implements Initializable {
         if (n == null){
             logArea.setText("");
         }else{
-            String[] s = logArea.getText().split("\n");
+            List<String> s = (new BufferedReader(new StringReader(logArea.getText()))).lines().collect(Collectors.toList());
             StringBuilder logSb = new StringBuilder();
-            if (n > s.length){
+            if (n > s.size()){
                 log.println("Not enough lines to delete (\""+n+"\")");
                 return;
             }
-            for (int i = n; i < s.length; i++){
-                logSb.append(s[i]).append("\n");
+            s.forEach(i -> logSb.append(i).append("\n"));
+            for (int i = n; i < s.size(); i++){
+                logSb.append(s.get(i)).append("\n");
             }
             logArea.setText(logSb.toString());
         }

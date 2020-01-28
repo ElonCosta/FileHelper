@@ -19,33 +19,26 @@ import java.util.ResourceBundle;
 
 public class AppController implements Initializable {
 
-    @FXML
-    private Pane main;
+    @FXML private Pane main;
 
-    @FXML
-    private ToolBar menuBar;
+    @FXML private ToolBar menuBar;
 
     /* LOG */
-    @FXML
-    private Button logBtn;
+    @FXML private Button logBtn;
     private Node logNode;
     private LogController logController;
 
-    @FXML
-    private Button cfgBtn;
+    @FXML private Button cfgBtn;
     private Node cfgNode;
     private ConfigurationsController configurationsController;
 
-    @FXML
-    private Button fleBtn;
+    @FXML private Button fleBtn;
     private Node fleNode;
     private FilesController filesController;
 
-    @FXML
-    private Button newFleBtn;
+    @FXML private Button newFleBtn;
 
-    @FXML
-    private AnchorPane mainPane;
+    @FXML private AnchorPane mainPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,8 +75,7 @@ public class AppController implements Initializable {
         filesController = fxmlLoader.getController();
     }
 
-    @FXML
-    private void changeScene(ActionEvent e){
+    @FXML private void changeScene(ActionEvent e){
         Button b = (Button) e.getSource();
         enableButtons();
         b.setDisable(true);

@@ -2,6 +2,7 @@ package Interface.Controllers;
 
 import ArchiveLoader.Configurations;
 import Main.Launcher;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -63,29 +64,11 @@ public class ConfigurationsController implements Initializable {
                 rootFld.setText(getShorthandPath(global.getRootFolder()));
             }
         });
-        rootBtn.setOnAction(e -> {
-            rootFld.requestFocus();
-            directoryChooser.setInitialDirectory(global.getRootFolder());
-            File folder = directoryChooser.showDialog(Launcher.scene.getWindow());
-            if (folder != null){
-                global.setRootFolder(folder);
-                rootFld.setText(getShorthandPath(global.getRootFolder()));
-            }
-        });
 
         archiveFld.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue){
                 archiveFld.setText(global.getArchiveFolder().getAbsolutePath());
             }else {
-                archiveFld.setText(getShorthandPath(global.getArchiveFolder()));
-            }
-        });
-        archiveBtn.setOnAction(e -> {
-            archiveFld.requestFocus();
-            directoryChooser.setInitialDirectory(global.getArchiveFolder());
-            File folder = directoryChooser.showDialog(Launcher.scene.getWindow());
-            if (folder != null){
-                global.setArchiveFolder(folder);
                 archiveFld.setText(getShorthandPath(global.getArchiveFolder()));
             }
         });
@@ -97,15 +80,40 @@ public class ConfigurationsController implements Initializable {
                 latestFld.setText(getShorthandPath(global.getVersionFolder()));
             }
         });
-        latestBtn.setOnAction(e -> {
-            latestFld.requestFocus();
-            directoryChooser.setInitialDirectory(global.getVersionFolder());
-            File folder = directoryChooser.showDialog(Launcher.scene.getWindow());
-            if (folder != null){
-                global.setVersionFolder(folder);
-                latestFld.setText(getShorthandPath(global.getVersionFolder()));
-            }
-        });
+    }
+
+    @FXML private void buttonAction(ActionEvent e){
+        Button b = (Button) e.getSource();
+        File folder;
+        switch (b.getText()){
+            case "LatestButton":
+                latestFld.requestFocus();
+                directoryChooser.setInitialDirectory(global.getVersionFolder());
+                folder = directoryChooser.showDialog(Launcher.scene.getWindow());
+                if (folder != null){
+                    global.setVersionFolder(folder);
+                    latestFld.setText(getShorthandPath(global.getVersionFolder()));
+                }
+                break;
+            case "ArchiveButton":
+                archiveFld.requestFocus();
+                directoryChooser.setInitialDirectory(global.getArchiveFolder());
+                folder = directoryChooser.showDialog(Launcher.scene.getWindow());
+                if (folder != null){
+                    global.setArchiveFolder(folder);
+                    archiveFld.setText(getShorthandPath(global.getArchiveFolder()));
+                }
+                break;
+            case "RootButton":
+                rootFld.requestFocus();
+                directoryChooser.setInitialDirectory(global.getRootFolder());
+                folder = directoryChooser.showDialog(Launcher.scene.getWindow());
+                if (folder != null){
+                    global.setRootFolder(folder);
+                    rootFld.setText(getShorthandPath(global.getRootFolder()));
+                }
+                break;
+        }
     }
 
     @FXML private void updateRoutineTime(){
