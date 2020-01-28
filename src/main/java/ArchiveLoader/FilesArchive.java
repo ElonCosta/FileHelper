@@ -1,12 +1,11 @@
 package ArchiveLoader;
 
 import Utils.ConfigInterface;
-import Utils.Constants.*;
+import Utils.Utils.*;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -16,9 +15,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static Main.Launcher.LOG;
+import static Main.Launcher.log;
 import static Main.Launcher.config;
-import static Utils.Constants.put;
+import static Utils.Utils.getShorthandPath;
+import static Utils.Utils.put;
 
 @SuppressWarnings("Duplicates")
 public class FilesArchive implements ConfigInterface {
@@ -39,16 +39,12 @@ public class FilesArchive implements ConfigInterface {
     private SimpleDateFormat lastModSDF = new SimpleDateFormat("yyyy/MM/dd HH:mm");
     private SimpleDateFormat archSDF = new SimpleDateFormat("/yyyy/MM/dd/HH_mm/");
 
-    FilesArchive(String dataPathFile) throws FileNotFoundException{
-        this(new JSONObject(new JSONTokener(new FileReader( new File(dataPathFile)))));
-    }
-
-    private FilesArchive(JSONObject JSONData){
+    FilesArchive(JSONObject JSONData){
         this.JSONData = JSONData;
         load();
         File latestFolder = new File(config.getGlobal().getVersionFolderName() + "/" + name);
         if (latestFolder.mkdir()){
-            LOG.println("Creating root folder for file(s): " + name);
+            log.println("Creating root folder for file(s): " + name);
         }
     }
 
@@ -61,20 +57,22 @@ public class FilesArchive implements ConfigInterface {
         return tmp;
     }
 
-    void checker() throws IOException, ParseException{
+    void checker(){
         if (!pathsAllDisabled()){
-            LOG.println(name+":");
-            for (Paths path : pathsList) {
-                if (!path.isDisabled()){
-                    if ((!path.getDest().exists()) || (FileUtils.isFileNewer(path.getFile(), path.getDest()))) {
-                        if (archiveFiles && config.getGlobal().getArchiveFiles()) archiveFile(path.getDest());
-                        createFile(path.getFile(), path.getDest());
+            log.println(name+":");
+            pathsList.stream().filter(p -> !p.isDisabled()).forEach(p -> {
+                try{
+                    if ((!p.getDest().exists()) || (FileUtils.isFileNewer(p.getFile(), p.getDest()))) {
+                        if (archiveFiles && config.getGlobal().getArchiveFiles()) archiveFile(p.getDest());
+                        createFile(p.getFile(), p.getDest());
                         save();
                     } else {
-                        LOG.println("    \"" + config.getGlobal().getShorthandPath(path.getDest()) + "\" is up to date");
+                        log.println("\t\"" + getShorthandPath(p.getDest()) + "\" is up to date");
                     }
+                }catch (ParseException | IOException e){
+                    log.println(e.getMessage());
                 }
-            }
+            });
         }
     }
 
@@ -83,13 +81,13 @@ public class FilesArchive implements ConfigInterface {
         if (destFile.isDirectory()) {
                 File arch = new File(config.getGlobal().getArchiveFolderName() + (archSDF.format(lastModSDF.parse(lastMod))) + "/" + name + "/" + destFile.getName());
                 if (arch.mkdirs()) {
-                    LOG.println("    Archiving \"" + config.getGlobal().getShorthandPath(destFile) + "\\" + destFile.getName() + "\" on " + arch.getParentFile().getParent());
+                    log.println("\tArchiving \"" + getShorthandPath(destFile) + "\\" + destFile.getName() + "\" on " + arch.getParentFile().getParent());
                     FileUtils.copyDirectory(destFile, arch, true);
                 }
             }else{
                 File arch = new File(config.getGlobal().getArchiveFolderName() + (archSDF.format(lastModSDF.parse(lastMod))) + "/" + name + "/" + destFile.getName());
                 if (arch.mkdirs()) {
-                    LOG.println("    Archiving \"" + config.getGlobal().getShorthandPath(destFile) + "\" on " + arch.getParentFile().getParent());
+                    log.println("\tArchiving \"" + getShorthandPath(destFile) + "\" on " + arch.getParentFile().getParent());
                     FileUtils.copyFileToDirectory(destFile, arch, true);
                 }
             }
@@ -99,30 +97,23 @@ public class FilesArchive implements ConfigInterface {
             if (deleteDest(destFile) || !destFile.exists()){
                 if (file.isDirectory()){
                     if (destFile.mkdir()){
-                        LOG.println("    Archiving latest version of \"" + config.getGlobal().getShorthandPath(file) + "\" on: \"" + destFile.toString() + "\"");
+                        log.println("\tArchiving latest version of \"" + getShorthandPath(file) + "\" on: \"" + destFile.toString() + "\"");
                         FileUtils.copyDirectory(file,destFile,true);
                     }
                 }else{
                     destFile = new File(destFile.getParent());
-                    LOG.println("    Archiving latest version of \"" + config.getGlobal().getShorthandPath(file) + "\" on: \"" + destFile.toString() + "\"");
+                    log.println("\tArchiving latest version of \"" + getShorthandPath(file) + "\" on: \"" + destFile.toString() + "\"");
                     FileUtils.copyFileToDirectory(file, destFile, true);
                 }
             }
+            lastMod = lastModSDF.format(new Date());
     }
 
     private Boolean pathsAllDisabled(){
-        int i = 0;
-
-        for (Paths p: pathsList) {
-            if (p.isDisabled()){
-                i++;
-            }
-        }
-
-        return i == pathsList.size();
+        return pathsList.stream().filter(Paths::isDisabled).count() == pathsList.size();
     }
     /*
-     * Getters
+     * Getters && Setters
      */
 
     public String getName() {
@@ -141,6 +132,22 @@ public class FilesArchive implements ConfigInterface {
         return pathsList;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setArchiveFiles(Boolean archiveFiles) {
+        this.archiveFiles = archiveFiles;
+    }
+
+    public void setPathsList(List<Paths> pathsList) {
+        this.pathsList = pathsList;
+    }
+
+    public void setLastMod(String lastMod) {
+        this.lastMod = lastMod;
+    }
+
     /*
      * Methods inherited from ConfigInterface
      */
@@ -152,7 +159,9 @@ public class FilesArchive implements ConfigInterface {
 
         for (Object o: JSONPaths){
             JSONPathsList.add((JSONObject) o);
-            pathsList.add(new Paths((JSONObject) o));
+            Paths p = new Paths((JSONObject) o);
+            p.setParent(this);
+            pathsList.add(p);
         }
 
         try{
@@ -186,6 +195,11 @@ public class FilesArchive implements ConfigInterface {
         }
     }
 
+    @Override
+    public void createFieldsIfEmpty() {
+
+    }
+
     public Object getAsObject() {
         return null;
     }
@@ -197,16 +211,16 @@ public class FilesArchive implements ConfigInterface {
     public void disablePath(Integer pos, Boolean disable){
         Paths paths = pathsList.get(pos);
         if (paths.isDisabled() && disable){
-            LOG.println("Path already is disabled");
+            log.println("Path already is disabled");
         }else if (!paths.isDisabled() && !disable){
-            LOG.println("Path already is enabled");
+            log.println("Path already is enabled");
         }else {
             if (disable){
                 paths.disablePath(true);
-                LOG.println("Disabling \"" + name + "\" path #"+ (pos + 1));
+                log.println("Disabling \"" + name + "\" path #"+ (pos + 1));
             }else {
                 paths.disablePath(false);
-                LOG.println("Enabling \"" + name + "\" path #"+ (pos + 1));
+                log.println("Enabling \"" + name + "\" path #"+ (pos + 1));
             }
         }
         save();
@@ -226,6 +240,8 @@ public class FilesArchive implements ConfigInterface {
 
     public class Paths implements ConfigInterface{
 
+        private FilesArchive parent;
+
         private File file;
         private File dest;
 
@@ -243,7 +259,7 @@ public class FilesArchive implements ConfigInterface {
             load();
         }
 
-        void disablePath(Boolean disabled){
+        public void disablePath(Boolean disabled){
             this.disabled = disabled;
         }
 
@@ -251,13 +267,12 @@ public class FilesArchive implements ConfigInterface {
             return disabled;
         }
 
-        void updateLatestFolder(){
-            dest = new File(config.getGlobal().getVersionFolder().getAbsolutePath() + "\\" + name + "\\" + file.getName());
-            save();
+        String getDefaultLatestFolder(){
+            return config.getGlobal().getVersionFolder().getAbsolutePath() + File.separator + parent.getName() + File.separator + file.getName();
         }
 
         /*
-         * Getters
+         * Getters && Setters
          */
 
         public File getFile() {
@@ -273,19 +288,27 @@ public class FilesArchive implements ConfigInterface {
         }
 
         public void setDest(File dest) {
+            System.out.println(getDefaultLatestFolder());
             if (!dest.getAbsolutePath().equals(this.dest.getAbsolutePath())){
-                LOG.println("Changing \""+ FilesArchive.this.getName() +"\" file destination \"" + config.getGlobal().getShorthandPath(this.dest) + "\" to \"" + config.getGlobal().getShorthandPath(dest)   + "\"");
+                onLatest = dest.getAbsolutePath().equals(getDefaultLatestFolder());
+                log.println("Changing \""+ FilesArchive.this.getName() +"\" file destination \"" + getShorthandPath(this.dest) + "\" to \"" + getShorthandPath(dest)   + "\"");
                 this.dest = dest;
             }
-            FilesArchive.this.save();
         }
 
         public void setFile(File file) {
             if (!file.getAbsolutePath().equals(this.file.getAbsolutePath())){
-                LOG.println("Changing \""+ FilesArchive.this.getName() +"\" file path \"" + config.getGlobal().getShorthandPath(this.file) + "\" to \"" + config.getGlobal().getShorthandPath(file)   + "\"");
+                log.println("Changing \""+ FilesArchive.this.getName() +"\" file path \"" + getShorthandPath(this.file) + "\" to \"" + getShorthandPath(file)   + "\"");
                 this.file = file;
             }
-            FilesArchive.this.save();
+        }
+
+        public FilesArchive getParent(){
+            return parent;
+        }
+
+        public void setParent(FilesArchive parent) {
+            this.parent = parent;
         }
 
         /*
@@ -324,6 +347,11 @@ public class FilesArchive implements ConfigInterface {
             put(JSONPaths, KEY.PATH, filePath);
             put(JSONPaths, KEY.DEST, destPath);
             put(JSONPaths, KEY.DISABLED, disabled);
+        }
+
+        @Override
+        public void createFieldsIfEmpty() {
+
         }
 
         public Object getAsObject() {

@@ -1,0 +1,14 @@
+.root{
+    -fx-focus-color: #afafaf !important;
+    -fx-faint-focus-color: transparent !important;
+}
+
+.text-field{
+    -fx-border-radius: 5 0 0 5 !important;
+    -fx-background-radius: 5 0 0 5 !important;
+}
+
+.button{
+    -fx-border-radius: 0 5 5 0 !important;
+    -fx-background-radius: 0 5 5 0 !important;
+}

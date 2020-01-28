@@ -2,58 +2,57 @@ package Main;
 
 import ArchiveLoader.Configurations;
 import ArchiveLoader.Loader;
-import Interface.JFrame.AppUI;
-import Utils.FileTransfer.SFTPConnection;
-import Utils.Log.Command;
-import Utils.Log.Log;
+import Interface.Controllers.AppController;
+import Log.Log;
+import Utils.Utils;
 import com.Hasher.Hasher;
-import com.jcraft.jsch.ChannelSftp;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.Session;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-import java.io.File;
-import java.util.Arrays;
+import static Utils.Utils.*;
 
-public class Launcher {
+public class Launcher extends Application {
 
-    public static Log LOG;
+    public static boolean sceneLoaded = false;
+
+    public static Scene scene;
+    public static AppController app;
     public static Configurations config;
-    public static AppUI mainUI;
-    public static Loader loader;
     public static Hasher hasher;
+    public static Log log;
+    public static Loader loader;
 
-    public static void main(String[] args){
-//        Launch();
-        SFTPConnection con = new SFTPConnection("192.168.11.88","root","$%RTFGasd098");
-        System.out.println(con.openConnection().get(false));
-        System.out.println(con.downloadFile("/root/ELON/OS15127/configuration.json","./Source").get(false));
-        System.out.println(con.uploadFile(new File("configuration.json"),"/root/ELON/OS15127/configuration.json").get(false));
-        con.closeConnection();
+    public static void main(String[] args) {
+        launch(args);
     }
 
-    private static void Launch(){
-            config = new Configurations();
-            mainUI = new AppUI();
-            LOG = new Log();
-            config.loadCommands();
-            if (config.getGlobal().getHashKey().trim().equals("")){
-                hasher = new Hasher();
-                config.getGlobal().setHashKey(hasher.getHashKey());
-            }else {
-                hasher = new Hasher(config.getGlobal().getHashKey());
-            }
-            LOG.newCommand(new Command("restart") {
-                @Override
-                public void run() {
-                    Restart();
-                }
-            });
-            loader = new Loader();
-            loader.load();
-    }
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setOnCloseRequest(e -> {
+            config.save();
+            log.readCommand("close");
+        });
 
-    private static void Restart(){
-        Launch();
-    }
+        config = new Configurations();
+        config.loadHasher();
+        FXMLLoader fxmlLoader = new FXMLLoader(AppUI);
+        scene = new Scene(fxmlLoader.load());
+        sceneLoaded = true;
+        app = fxmlLoader.getController();
+        log = new Log();
+        config.loadCommands();
+        loader = new Loader();
+        loader.load();
+        app.loadFiles();
 
+        primaryStage.setTitle(UIVE.TITLE.getVar());
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        primaryStage.setResizable(false);
+        primaryStage.setMaxWidth(536);
+        primaryStage.setMaxHeight(479);
+
+    }
 }

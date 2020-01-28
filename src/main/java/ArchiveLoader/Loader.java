@@ -1,7 +1,7 @@
 package ArchiveLoader;
 
-import Utils.Constants.*;
-import Utils.Log.Command;
+import Utils.Utils.*;
+import Log.Command;
 
 import org.json.*;
 
@@ -12,15 +12,14 @@ import java.util.*;
 
 import javax.swing.Timer;
 
-import static ArchiveLoader.Configurations.*;
 import static Main.Launcher.*;
 
-import static Utils.Constants.*;
+import static Utils.Utils.*;
 
 @SuppressWarnings("Duplicates")
 public class Loader {
 
-    public static Map<String, FilesArchive> archiveMap = new HashMap<>();
+    private Map<String, FilesArchive> archiveMap = new HashMap<>();
     private Timer routine;
 
     private Date next;
@@ -34,45 +33,29 @@ public class Loader {
     public void load(){
         createFolders();
         checkForFiles();
-        LOG.println("Initial Check:");
+        log.println("Initial Check:");
         initialCheck();
         config.save();
-        LOG.spitCommands();
+        log.spitCommands();
         routine();
     }
     private void createFolders(){
-        if (config.getGlobal().getRootFolder().mkdir())     LOG.println("Creating " + config.getGlobal().getRootFolderName());
-        if (config.getGlobal().getArchiveFolder().mkdirs()) LOG.println("Creating " + config.getGlobal().getArchiveFolderName());
-        if (config.getGlobal().getVersionFolder().mkdirs()) LOG.println("Creating " + config.getGlobal().getVersionFolderName());
+        if (config.getGlobal().getRootFolder().mkdir())     log.println("Creating " + config.getGlobal().getRootFolderName());
+        if (config.getGlobal().getArchiveFolder().mkdirs()) log.println("Creating " + config.getGlobal().getArchiveFolderName());
+        if (config.getGlobal().getVersionFolder().mkdirs()) log.println("Creating " + config.getGlobal().getVersionFolderName());
     }
 
     private void initialCheck(){
-        for (FilesArchive data: archiveMap.values()){
-            try {
-                data.checker();
-            } catch (IOException | ParseException e) {
-                e.printStackTrace();
-            }
-        }
+        archiveMap.values().forEach(FilesArchive::checker);
         next = getNextRoutine(config.getGlobal().getRoutineTime());
-        if(!isPaused){
-            LOG.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
-        }
+        if(!isPaused) log.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
     }
 
     private void routine(){
         routine = new Timer(getTime(), e -> {
-            try{
-                for (FilesArchive data: archiveMap.values()){
-                    data.checker();
-                }
+                archiveMap.values().forEach(FilesArchive::checker);
                 next = getNextRoutine(config.getGlobal().getRoutineTime());
-                if(!isPaused){
-                    LOG.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
-                }
-            }catch (IOException | ParseException ex){
-                ex.printStackTrace();
-            }
+                if(!isPaused) log.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
         });
         routine.setRepeats(true);
         routine.start();
@@ -90,14 +73,16 @@ public class Loader {
             if (config.getDataFiles().getDataFilesList().size() > 0){
                 for (JSONObject d: config.getDataFiles().getDataFilesList()){
                     if (archiveMap.get(getString(d,KEY.NAME)) == null){
-                        FilesArchive data = new FilesArchive(getString(d,KEY.PATH));
+                        FileReader fr = new FileReader(new File(getString(d, KEY.PATH)));
+                        JSONTokener t = new JSONTokener(fr);
+                        FilesArchive data = new FilesArchive(new JSONObject(t));
+                        fr.close();
                         archiveMap.put(getString(d, KEY.NAME),data);
                     }
                 }
             }
 
-            mainUI.createTabs(archiveMap);
-        }catch (FileNotFoundException f){
+        } catch (IOException f){
             f.printStackTrace();
         }
     }
@@ -106,49 +91,59 @@ public class Loader {
         return config.getGlobal().getRoutineTime() * 60000;
     }
 
-     /*
+    public void removeFile(String fileName){
+        archiveMap.remove(fileName);
+        config.getDataFiles().deleteDataFile(fileName);
+    }
+
+    public Map<String, FilesArchive> getArchiveMap() {
+        return archiveMap;
+    }
+
+    public void setArchiveMap(Map<String, FilesArchive> archiveMap) {
+        this.archiveMap = archiveMap;
+    }
+
+    /*
      * Commands
      */
     private void close() throws IOException, ParseException{
-            LOG.println("Checking files before closing");
+            log.println("Checking files before closing");
             for (FilesArchive data: archiveMap.values()){
                 data.checker();
+                data.save();
             }
-            LOG.println("Closing FileHelper");
+            log.println("Closing FileHelper");
             System.exit(0);
     }
 
-    private void forceCheck() throws IOException, ParseException {
-        for (FilesArchive data: archiveMap.values()){
-            data.checker();
-        }
+    private void forceCheck(){
+        archiveMap.values().forEach(FilesArchive::checker);
         next = getNextRoutine(config.getGlobal().getRoutineTime());
-        if(!isPaused){
-            LOG.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
-        }
+        if(!isPaused) log.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
     }
 
     private void setPaused(boolean paused){
         if (isPaused && paused){
-            LOG.println("Routine is already paused");
+            log.println("Routine is already paused");
         }else if (!isPaused && !paused){
-            LOG.println("Routine is already running");
+            log.println("Routine is already running");
         }else {
             if (paused){
                 isPaused = true;
                 routine.stop();
-                LOG.println("Pausing routine");
+                log.println("Pausing routine");
             }else {
                 isPaused = false;
                 routine.start();
-                LOG.println("Resuming routine");
+                log.println("Resuming routine");
             }
         }
 
     }
 
     private void loadCommands(){
-        LOG.newCommand(
+        log.newCommand(
                 new Command("close") {
                     @Override
                     public void run() {
@@ -162,11 +157,7 @@ public class Loader {
                 new Command("forceCheck") {
                     @Override
                     public void run() {
-                        try{
-                            forceCheck();
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
+                        forceCheck();
                     }
                 },
                 new Command("pause","v") {
@@ -175,7 +166,7 @@ public class Loader {
                         if (this.argsLoad){
                             Boolean value = getArg("v").getAsBoolean();
                             if (value == null){
-                                LOG.println("Invalid value \""+getArg("v")+"\"");
+                                log.println("Invalid value \""+getArg("v")+"\"");
                                 return;
                             }
                             setPaused(value);
@@ -191,14 +182,14 @@ public class Loader {
                         Integer pos = getArg("p").getAsInteger() - 1;
                         Boolean val = getArg("v").getAsBoolean();
                         if (val == null){
-                            LOG.println("Invalid value \""+getArg("v")+"\"");
+                            log.println("Invalid value \""+getArg("v")+"\"");
                             return;
                         }
                         FilesArchive data = archiveMap.get(file);
                         if(data != null){
                             data.disablePath(pos,val);
                         }else {
-                            LOG.println("Unknown archive \""+file+"\"");
+                            log.println("Unknown archive \""+file+"\"");
                         }
                     }
                 });

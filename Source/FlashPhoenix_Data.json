@@ -1,0 +1,17 @@
+{
+    "archiveFile": false,
+    "name": "FlashPhoenix",
+    "Paths": [
+        {
+            "path": "C:\\Users\\Elon-Desenv\\Documents\\Workspaces\\WorkspaceFlash\\VersoesFlash\\FlashPhoenix.war",
+            "disabled": true,
+            "dest": "C:\\Users\\Elon-Desenv\\Documents\\FileHelper\\Source\\Latest\\FlashPhoenix\\FlashPhoenix.war"
+        },
+        {
+            "path": "C:\\Users\\Elon-Desenv\\Documents\\Workspaces\\WorkspaceFlash\\VersoesFlash\\FlashPhoenix.war",
+            "disabled": true,
+            "dest": "C:\\Users\\Elon-Desenv\\JBoss\\wildfly-10.1.0.Final\\standalone\\deployments\\FlashPhoenix.war"
+        }
+    ],
+    "lastMod": "2020/01/03 01:38"
+}

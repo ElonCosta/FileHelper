@@ -1,7 +1,8 @@
 package ArchiveLoader;
 
 import Utils.ConfigInterface;
-import Utils.Log.Command;
+import Log.Command;
+import com.Hasher.Hasher;
 import org.json.*;
 
 import java.io.File;
@@ -11,12 +12,14 @@ import java.io.IOException;
 import java.util.*;
 
 import static Main.Launcher.*;
-import static Utils.Constants.*;
+import static Utils.Utils.*;
+import static Utils.Utils.KEY.*;
 
 public class Configurations implements ConfigInterface {
 
     private JSONObject config;
 
+    private Float ConfigVersion;
     private Global global;
     private DataFiles dataFiles;
 
@@ -31,8 +34,9 @@ public class Configurations implements ConfigInterface {
 
         JSONObject config = new JSONObject();
 
-        config.put("Global",global.getAsObject());
-        config.put("DataFiles",dataFiles.getAsObject());
+        put(config, CFG_VERSION, ConfigVersion);
+        put(config, GLOBAL, global.getAsObject());
+        put(config, DATA_FILES, dataFiles.getAsObject());
 
         try{
             FileWriter fw = new FileWriter(configPath);
@@ -45,6 +49,16 @@ public class Configurations implements ConfigInterface {
 
     public void loadCommands(){
         global.loadCommands();
+    }
+
+    public void loadHasher(){
+        if (global.getHashKey().trim().equals("")){
+            hasher = new Hasher();
+            global.setHashKey(hasher.getHashKey());
+        }else {
+            hasher = new Hasher(global.getHashKey());
+        }
+        save();
     }
 
     /* Getters */
@@ -61,7 +75,9 @@ public class Configurations implements ConfigInterface {
 
     @Override
     public void load(){
+
         if (!configPath.exists()){
+            ConfigVersion = Float.parseFloat(CFG_VER.getVar());
             global = new Global();
             dataFiles = new DataFiles();
 
@@ -71,8 +87,11 @@ public class Configurations implements ConfigInterface {
             try{
                 JSONTokener tok = new JSONTokener(new FileReader(configPath));
                 config = new JSONObject(tok);
-                global = new Global(config.getJSONObject(KEY.GLOBAL.getVar()));
-                dataFiles = new DataFiles(config.getJSONArray(KEY.DATA_FILES.getVar()));
+                createFieldsIfEmpty();
+
+                ConfigVersion = getFloat(config, CFG_VERSION);
+                global = new Global(getJSONObject(config, GLOBAL));
+                dataFiles = new DataFiles(getJSONArray(config, DATA_FILES));
             }catch (IOException iO){
                 iO.printStackTrace();
             }
@@ -84,8 +103,8 @@ public class Configurations implements ConfigInterface {
         global.save();
         dataFiles.save();
 
-        put(config, KEY.GLOBAL, global.getAsObject());
-        put(config, KEY.DATA_FILES, dataFiles.getAsObject());
+        put(config, GLOBAL, global.getAsObject());
+        put(config, DATA_FILES, dataFiles.getAsObject());
 
         try{
             FileWriter fw = new FileWriter(configPath,false);
@@ -94,9 +113,27 @@ public class Configurations implements ConfigInterface {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
 
-        if(mainUI != null){
-            mainUI.updateInterface();
+    @Override
+    public void createFieldsIfEmpty() {
+        for (KEY k: configKeys){
+            Object value;
+            switch (k){
+                case CFG_VERSION:
+                    value = Float.parseFloat(CFG_VER.getVar());
+                    break;
+                case GLOBAL:
+                    value = (new Global()).getAsObject();
+                    break;
+                case DATA_FILES:
+                    value = (new DataFiles()).getAsObject();
+                    break;
+                default:
+                    value = null;
+                    break;
+            };
+            if (isNull(config, k)) put(config, k, value);
         }
     }
 
@@ -133,29 +170,16 @@ public class Configurations implements ConfigInterface {
         }
 
         JSONObject getEmptyGlobal(){
-            JSONObject global = new JSONObject();
-            global.put(KEY.DISPLAY_TIME.getVar(),true);
-            global.put(KEY.ARCHIVE_FILES.getVar(),true);
-            global.put(KEY.ROOT_FOLDER.getVar(),"Source");
-            global.put(KEY.ARCHIVE_FOLDER.getVar(),"Source\\Archive");
-            global.put(KEY.VERSION_FOLDER.getVar(),"Source\\Latest");
-            global.put(KEY.ROUTINE_TIME.getVar(),5);
+            JSONObject JSONGlobal = new JSONObject();
+            put(JSONGlobal, DISPLAY_TIME, true);
+            put(JSONGlobal, ARCHIVE_FILES, true);
+            put(JSONGlobal, ROOT_FOLDER, "Source");
+            put(JSONGlobal, ARCHIVE_FOLDER, "Source\\Archive");
+            put(JSONGlobal, VERSION_FOLDER, "Source\\Latest");
+            put(JSONGlobal, ROUTINE_TIME, 5);
+            put(JSONGlobal, HASH_KEY, "");
 
-            return global;
-        }
-
-        public String getShorthandPath(File file){
-            return getShorthandPath(file, true);
-        }
-
-        public String getShorthandPath(File file, boolean x){
-            if(x){
-                File parent = new File(new File(file.getAbsolutePath()).getParent());
-                return "...\\" + parent.getName() + "\\" + file.getName();
-            }else{
-                File parent = new File(new File(file.getAbsolutePath()).getParent());
-                return "\\"+parent.getName() + "\\" + file.getName();
-            }
+            return JSONGlobal;
         }
 
         /* Getters || Setters */
@@ -202,7 +226,7 @@ public class Configurations implements ConfigInterface {
 
         public void setRootFolder(File rootFolder){
             if (!rootFolder.getAbsolutePath().equals(this.rootFolder.getAbsolutePath())){
-                LOG.println("Changing \"" + getShorthandPath(this.rootFolder, false) + "\" to \"" + getShorthandPath(rootFolder, false)   + "\"");
+                log.println("Changing \"" + getShorthandPath(this.rootFolder, false) + "\" to \"" + getShorthandPath(rootFolder, false)   + "\"");
                 this.rootFolder = rootFolder;
             }
             Configurations.this.save();
@@ -210,7 +234,7 @@ public class Configurations implements ConfigInterface {
 
         public void setArchiveFolder(File archiveFolder) {
             if (!archiveFolder.getAbsolutePath().equals(this.archiveFolder.getAbsolutePath())){
-                LOG.println("Changing \"" + getShorthandPath(this.archiveFolder, false) + "\" to \"" + getShorthandPath(archiveFolder, false)  + "\"");
+                log.println("Changing \"" + getShorthandPath(this.archiveFolder, false) + "\" to \"" + getShorthandPath(archiveFolder, false)  + "\"");
                 this.archiveFolder = archiveFolder;
             }
             Configurations.this.save();
@@ -218,7 +242,7 @@ public class Configurations implements ConfigInterface {
 
         public void setVersionFolder(File versionFolder) {
             if (!versionFolder.getAbsolutePath().equals(this.versionFolder.getAbsolutePath())){
-                LOG.println("Changing \"" + getShorthandPath(this.versionFolder, false) + "\" to \"" + getShorthandPath(versionFolder, false)  + "\"");
+                log.println("Changing \"" + getShorthandPath(this.versionFolder, false) + "\" to \"" + getShorthandPath(versionFolder, false)  + "\"");
                 this.versionFolder = versionFolder;
             }
             Configurations.this.save();
@@ -226,15 +250,15 @@ public class Configurations implements ConfigInterface {
 
         public void setDisplayTime(Boolean displayTime){
             if (this.displayTime && displayTime){
-                LOG.println("Time display is already enabled");
+                log.println("Time display is already enabled");
             }else if (!this.displayTime && !displayTime){
-                LOG.println("Time display is already disabled");
+                log.println("Time display is already disabled");
             }else {
                 if (displayTime){
-                    LOG.println("Enabling time display");
+                    log.println("Enabling time display");
                     this.displayTime = true;
                 }else {
-                    LOG.println("Disabling time display");
+                    log.println("Disabling time display");
                     this.displayTime = false;
                 }
             }
@@ -242,26 +266,26 @@ public class Configurations implements ConfigInterface {
         }
         public void setArchiveFiles(Boolean archiveFiles){
             if (this.archiveFiles && archiveFiles){
-                LOG.println("File archiving is already enabled");
+                log.println("File archiving is already enabled");
             }else if (!this.archiveFiles && !archiveFiles){
-                LOG.println("File archiving is already disabled");
+                log.println("File archiving is already disabled");
             }else {
                 if (archiveFiles){
                     this.archiveFiles = true;
-                    LOG.println("Enabling file archiving");
+                    log.println("Enabling file archiving");
                 }else {
                     this.archiveFiles = false;
-                    LOG.println("Disabling file archiving");
+                    log.println("Disabling file archiving");
                 }
             }
             Configurations.this.save();
         }
         public void setRoutineTime(Integer routineTime){
             if (this.routineTime.equals(routineTime)){
-                LOG.println("The routine delay already is: " + routineTime);
+                log.println("The routine delay already is: " + routineTime);
             }else{
                 this.routineTime = routineTime;
-                LOG.println("Setting routine delay to: " + routineTime);
+                log.println("Setting routine delay to: " + routineTime);
             }
             Configurations.this.save();
         }
@@ -274,32 +298,34 @@ public class Configurations implements ConfigInterface {
 
         @Override
         public void load() {
-            rootFolderName = getString(JSONGlobal, KEY.ROOT_FOLDER);
+            createFieldsIfEmpty();
+
+            rootFolderName = getString(JSONGlobal, ROOT_FOLDER);
             rootFolder = new File(rootFolderName);
 
-            versionFolderName = getString(JSONGlobal, KEY.VERSION_FOLDER);
+            versionFolderName = getString(JSONGlobal, VERSION_FOLDER);
             versionFolder = new File(versionFolderName);
 
-            archiveFolderName = getString(JSONGlobal, KEY.ARCHIVE_FOLDER);
+            archiveFolderName = getString(JSONGlobal, ARCHIVE_FOLDER);
             archiveFolder = new File(archiveFolderName);
 
-            displayTime = getBoolean(JSONGlobal, KEY.DISPLAY_TIME);
-            archiveFiles = getBoolean(JSONGlobal, KEY.ARCHIVE_FILES);
+            displayTime = getBoolean(JSONGlobal, DISPLAY_TIME);
+            archiveFiles = getBoolean(JSONGlobal, ARCHIVE_FILES);
 
-            routineTime = getInteger(JSONGlobal, KEY.ROUTINE_TIME);
+            routineTime = getInteger(JSONGlobal, ROUTINE_TIME);
 
-            hashKey = getString(JSONGlobal, KEY.HASH_KEY);
+            hashKey = getString(JSONGlobal, HASH_KEY);
         }
 
         @Override
         public void save() {
-            JSONGlobal.put(KEY.ARCHIVE_FOLDER.getVar(),archiveFolder.getAbsolutePath());
-            JSONGlobal.put(KEY.VERSION_FOLDER.getVar(),versionFolder.getAbsolutePath());
-            JSONGlobal.put(KEY.ROOT_FOLDER.getVar(),rootFolder.getAbsolutePath());
-            JSONGlobal.put(KEY.ROUTINE_TIME.getVar(),routineTime);
-            JSONGlobal.put(KEY.DISPLAY_TIME.getVar(),displayTime);
-            JSONGlobal.put(KEY.ARCHIVE_FILES.getVar(),archiveFiles);
-            JSONGlobal.put(KEY.HASH_KEY.getVar(),hashKey);
+            put(JSONGlobal,ARCHIVE_FOLDER,archiveFolder.getAbsolutePath());
+            put(JSONGlobal,VERSION_FOLDER,versionFolder.getAbsolutePath());
+            put(JSONGlobal,ROOT_FOLDER,rootFolder.getAbsolutePath());
+            put(JSONGlobal,ROUTINE_TIME,routineTime);
+            put(JSONGlobal,DISPLAY_TIME,displayTime);
+            put(JSONGlobal,ARCHIVE_FILES,archiveFiles);
+            put(JSONGlobal,HASH_KEY,hashKey);
         }
 
         @Override
@@ -307,16 +333,49 @@ public class Configurations implements ConfigInterface {
             return JSONGlobal;
         }
 
+        @Override
+        public void createFieldsIfEmpty(){
+            for (KEY k: globalKeys){
+                if (!isNull(JSONGlobal, k)) continue;
+                Object value;
+                switch(k) {
+                    case DISPLAY_TIME:
+                    case ARCHIVE_FILES:
+                        value = true;
+                        break;
+                    case ROOT_FOLDER:
+                        value = "Source";
+                        break;
+                    case ARCHIVE_FOLDER:
+                        value = "Source\\Archive";
+                        break;
+                    case VERSION_FOLDER:
+                        value = "Source\\Latest";
+                        break;
+                    case ROUTINE_TIME:
+                        value = 5;
+                        break;
+                    case HASH_KEY:
+                        value = "";
+                        break;
+                    default:
+                        value = null;
+                        break;
+                };
+                put(JSONGlobal, k, value);
+            }
+        }
+
         /* Commands */
 
         private void loadCommands(){
-            LOG.newCommand(new Command("displayTime", "v") {
+            log.newCommand(new Command("displayTime", "v") {
                 @Override
                 public void run() {
                     if(this.argsLoad){
                         Boolean setTo = getArg("v").getAsBoolean();
                         if (setTo == null){
-                            LOG.println("Invalid value \""+getArg("v")+"\"");
+                            log.println("Invalid value \""+getArg("v")+"\"");
                             return;
                         }
                         setDisplayTime(setTo);
@@ -329,7 +388,7 @@ public class Configurations implements ConfigInterface {
                     if(this.argsLoad){
                         Boolean setTo = getArg("v").getAsBoolean();
                         if (setTo == null){
-                            LOG.println("Invalid value \""+getArg("v")+"\"");
+                            log.println("Invalid value \""+getArg("v")+"\"");
                             return;
                         }
                         setArchiveFiles(setTo);
@@ -356,7 +415,6 @@ public class Configurations implements ConfigInterface {
             load();
         }
         private DataFiles(){
-
             JSONDataFiles = getEmptyDataFiles();
         }
 
@@ -366,15 +424,30 @@ public class Configurations implements ConfigInterface {
 
         public void newDataFile(String name){
             for (JSONObject jo: dataFilesList){
-                if (jo.get(KEY.NAME.getVar()).equals(name)){
+                if (getString(jo,NAME).equals(name)){
                     return;
                 }
             }
             JSONObject dataFile = new JSONObject();
-            put(dataFile, KEY.NAME, name);
-            put(dataFile, KEY.PATH, global.rootFolderName +"\\"+name + "_Data.json");
+            put(dataFile, NAME, name);
+            put(dataFile, PATH, global.rootFolderName +"\\"+name + "_Data.json");
 
             dataFilesList.add(dataFile);
+        }
+
+        public void deleteDataFile(String name){
+            File dataFile = null;
+            int pos = 0;
+            for (JSONObject jo: dataFilesList){
+                if (getString(jo,NAME).equals(name)){
+                    dataFile = new File(getString(jo,PATH));
+                    pos = dataFilesList.indexOf(jo);
+                }
+            }
+            if (dataFile != null){
+                dataFilesList.remove(pos);
+            }
+            Configurations.this.save();
         }
 
         /* Getters */
@@ -387,14 +460,17 @@ public class Configurations implements ConfigInterface {
 
         @Override
         public void load() {
-            for (Object o: JSONDataFiles) {
-                dataFilesList.add((JSONObject) o);
-            }
+            JSONDataFiles.forEach(o -> dataFilesList.add((JSONObject) o));
         }
 
         @Override
         public void save() {
             JSONDataFiles = new JSONArray(dataFilesList);
+        }
+
+        @Override
+        public void createFieldsIfEmpty() {
+
         }
 
         @Override

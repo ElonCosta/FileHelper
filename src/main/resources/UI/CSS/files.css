@@ -1,0 +1,11 @@
+.root{
+    -fx-focus-color: #afafaf !important;
+    -fx-faint-focus-color: transparent !important;
+}
+
+.tab-pane *.tab-header-background {
+    -fx-background-color: #F4F4F4;
+    -fx-effect: innershadow(two-pass-box , transparent , 4, 0.0 , 0 , 0);
+    -fx-border-width: 0 0 1 0 !important;
+    -fx-border-color: #afafaf;
+}

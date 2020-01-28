@@ -7,5 +7,7 @@ public interface ConfigInterface {
 
     void save();
 
+    void createFieldsIfEmpty();
+
     Object getAsObject();
 }
