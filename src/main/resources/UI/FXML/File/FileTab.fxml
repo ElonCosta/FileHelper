@@ -10,36 +10,37 @@
       <Group>
          <Label fx:id="name" layoutX="64.0" layoutY="14.0" prefHeight="25.0" prefWidth="340.0" text="name">
             <font>
-               <Font size="16.0"/>
+               <Font size="16.0" />
             </font>
          </Label>
          <Label layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="50.0" text="Name:">
             <font>
-               <Font size="16.0"/>
+               <Font size="16.0" />
             </font>
          </Label>
       </Group>
       <Group>
          <Label layoutX="14.0" layoutY="39.0" prefHeight="25.0" prefWidth="130.0" text="Last modification:">
             <font>
-               <Font size="16.0"/>
+               <Font size="16.0" />
             </font>
          </Label>
          <Label fx:id="lastMod" layoutX="144.0" layoutY="39.0" prefHeight="25.0" prefWidth="130.0" text="lastMod">
             <font>
-               <Font size="16.0"/>
+               <Font size="16.0" />
             </font>
          </Label>
       </Group>
-      <Separator layoutX="15.0" layoutY="63.0" prefHeight="0.0" prefWidth="500.0" />
-      <CheckBox fx:id="archiveFiles" layoutX="499.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" onAction="#archiveFiles"/>
+      <Separator layoutX="15.0" layoutY="72.0" prefHeight="0.0" prefWidth="500.0" />
+      <CheckBox fx:id="archiveFiles" layoutX="499.0" layoutY="14.0" mnemonicParsing="false" onAction="#archiveFiles" prefHeight="25.0" prefWidth="16.0" />
       <Label layoutX="404.0" layoutY="14.0" prefHeight="17.0" prefWidth="102.0" text="Archive files:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TabPane fx:id="pathsTabs" layoutY="75.0" prefHeight="187.0" prefWidth="530.0" tabClosingPolicy="UNAVAILABLE" >
+      <TabPane fx:id="pathsTabs" layoutY="75.0" prefHeight="187.0" prefWidth="530.0" tabClosingPolicy="UNAVAILABLE">
 
       </TabPane>
+      <Button fx:id="removeFileBtn" layoutX="406.0" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Remove file" onAction="#removeTab"/>
    </children>
 </AnchorPane>

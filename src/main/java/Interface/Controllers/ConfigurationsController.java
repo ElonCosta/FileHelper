@@ -58,35 +58,24 @@ public class ConfigurationsController implements Initializable {
 
     private void initEvents(){
         rootFld.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue){
-                rootFld.setText(global.getRootFolder().getAbsolutePath());
-            }else {
-                rootFld.setText(getShorthandPath(global.getRootFolder()));
-            }
+            if (newValue) rootFld.setText(global.getRootFolder().getAbsolutePath());
+            else rootFld.setText(getShorthandPath(global.getRootFolder()));
         });
-
         archiveFld.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue){
-                archiveFld.setText(global.getArchiveFolder().getAbsolutePath());
-            }else {
-                archiveFld.setText(getShorthandPath(global.getArchiveFolder()));
-            }
+            if (newValue) archiveFld.setText(global.getArchiveFolder().getAbsolutePath());
+            else archiveFld.setText(getShorthandPath(global.getArchiveFolder()));
         });
-
         latestFld.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue){
-                latestFld.setText(global.getVersionFolder().getAbsolutePath());
-            }else {
-                latestFld.setText(getShorthandPath(global.getVersionFolder()));
-            }
+            if (newValue) latestFld.setText(global.getVersionFolder().getAbsolutePath());
+            else latestFld.setText(getShorthandPath(global.getVersionFolder()));
         });
     }
 
     @FXML private void buttonAction(ActionEvent e){
         Button b = (Button) e.getSource();
         File folder;
-        switch (b.getText()){
-            case "LatestButton":
+        switch (b.getId()){
+            case "latestBtn":
                 latestFld.requestFocus();
                 directoryChooser.setInitialDirectory(global.getVersionFolder());
                 folder = directoryChooser.showDialog(Launcher.scene.getWindow());
@@ -95,7 +84,7 @@ public class ConfigurationsController implements Initializable {
                     latestFld.setText(getShorthandPath(global.getVersionFolder()));
                 }
                 break;
-            case "ArchiveButton":
+            case "archiveBtn":
                 archiveFld.requestFocus();
                 directoryChooser.setInitialDirectory(global.getArchiveFolder());
                 folder = directoryChooser.showDialog(Launcher.scene.getWindow());
@@ -104,7 +93,7 @@ public class ConfigurationsController implements Initializable {
                     archiveFld.setText(getShorthandPath(global.getArchiveFolder()));
                 }
                 break;
-            case "RootButton":
+            case "rootBtn":
                 rootFld.requestFocus();
                 directoryChooser.setInitialDirectory(global.getRootFolder());
                 folder = directoryChooser.showDialog(Launcher.scene.getWindow());

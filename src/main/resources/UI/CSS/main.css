@@ -1,6 +1,6 @@
 .root{
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
+    -fx-focus-color: #afafaf !important;
+    -fx-faint-focus-color: transparent !important;
 }
 
 .button{

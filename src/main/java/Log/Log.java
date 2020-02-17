@@ -2,6 +2,7 @@ package Log;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Stream;
 
 import static Main.Launcher.*;
 import static Utils.Reader.split;
@@ -67,7 +68,7 @@ public class Log {
         }
     }
 
-    public String lastIssuedCommand(){
+    public String undoCommand(){
         if(!issuedCommands.isEmpty()){
             if(issuedCommandsPos > 0){
                 issuedCommandsPos--;
@@ -80,7 +81,7 @@ public class Log {
         }
     }
 
-    public String advanceIssuedCommand(){
+    public String redoCommand(){
         if(issuedCommandsPos < issuedCommands.size()){
             issuedCommandsPos++;
         }
@@ -96,15 +97,7 @@ public class Log {
     }
 
     public void newCommand(Command... cmds){
-        for (Command cmd: cmds){
-            newCommand(cmd);
-        }
-    }
-
-    public void newCommand(Command cmd){
-        Command c = commands.get(cmd.getCmd());
-        if (c != null) return;
-        commands.put(cmd.getCmd(),cmd);
+        Arrays.stream(cmds).filter(c -> commands.get(c.getCmd()) == null).forEach(c -> commands.put(c.getCmd(), c));
     }
 
     public String autoComplete(){
@@ -115,11 +108,7 @@ public class Log {
             autoCompleteList = new ArrayList<>();
             autoCompletePos = 1;
             autoCompleteList.add(partialCmd);
-            for (String c: commands.keySet()) {
-                if(c.startsWith(partialCmd.toLowerCase())){
-                    autoCompleteList.add(c);
-                }
-            }
+            commands.keySet().stream().filter(c -> c.startsWith(partialCmd.toLowerCase())).forEach(c -> autoCompleteList.add(c));
             if(autoCompleteList.size() == 1){
                 return partialCmd;
             }

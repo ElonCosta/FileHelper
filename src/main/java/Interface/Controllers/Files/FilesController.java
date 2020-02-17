@@ -39,4 +39,9 @@ public class FilesController implements Initializable {
             }
         }
     }
+
+    public void reloadFiles(){
+        tabPane.getTabs().clear();
+        loadFiles();
+    }
 }

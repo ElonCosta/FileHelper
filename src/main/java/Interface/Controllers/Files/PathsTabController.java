@@ -57,7 +57,7 @@ public class PathsTabController implements Initializable {
             fileChooser.setInitialFileName(paths.getFile().getName());
             File file = fileChooser.showOpenDialog(Launcher.scene.getWindow());
             if (file != null){
-                paths.setFile(file);
+                paths.setFile(file.getAbsolutePath());
                 pathFld.setText(getShorthandPath(file));
             }
         });
@@ -75,7 +75,7 @@ public class PathsTabController implements Initializable {
             directoryChooser.setInitialDirectory(new File(paths.getDest().getParent()));
             File folder = directoryChooser.showDialog(Launcher.scene.getWindow());
             if (folder != null){
-                paths.setDest(new File(folder.getAbsolutePath()+"\\"+paths.getFile().getName()));
+                paths.setDest(folder.getAbsolutePath()+"\\"+paths.getFile().getName());
                 destFld.setText(getShorthandPath(paths.getDest()));
             }
         });

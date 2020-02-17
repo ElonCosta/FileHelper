@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="panels" stylesheets="@../CSS/monitoring.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controllers.MonitoringController">
+   <children>
+      <Group AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Separator layoutX="240.0" orientation="VERTICAL" prefHeight="340.0" prefWidth="5.0" />
+            <Separator layoutY="340.0" prefHeight="0.0" prefWidth="600.0" />
+         </children>
+      </Group>
+      <AnchorPane prefHeight="340.0" prefWidth="240.0" styleClass="panels" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="364.0" AnchorPane.topAnchor="5.0">
+         <children>
+            <TreeView focusTraversable="false" layoutX="4.0" layoutY="26.0" prefHeight="302.0" prefWidth="225.0" style="-fx-border-width: 0;" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="25.0" />
+         </children></AnchorPane>
+      <AnchorPane layoutX="240.0" prefHeight="340.0" prefWidth="360.0" styleClass="panels" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="246.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+      <AnchorPane layoutY="340.0" prefHeight="60.0" prefWidth="600.0" styleClass="panels" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="346.0">
+         <children>
+            <ToggleButton layoutX="554.0" layoutY="7.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" AnchorPane.leftAnchor="547.0" AnchorPane.rightAnchor="5.0" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

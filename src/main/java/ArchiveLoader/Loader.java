@@ -1,12 +1,12 @@
 package ArchiveLoader;
 
+import Log.PrintBuffer;
 import Utils.Utils.*;
 import Log.Command;
 
 import org.json.*;
 
 import java.io.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -16,7 +16,7 @@ import static Main.Launcher.*;
 
 import static Utils.Utils.*;
 
-@SuppressWarnings("Duplicates")
+
 public class Loader {
 
     private Map<String, FilesArchive> archiveMap = new HashMap<>();
@@ -26,6 +26,8 @@ public class Loader {
 
     private boolean isPaused;
 
+    public Map<String, PrintBuffer> printBuffers = new HashMap<>();
+
     public Loader(){
         loadCommands();
     }
@@ -34,7 +36,7 @@ public class Loader {
         createFolders();
         checkForFiles();
         log.println("Initial Check:");
-        initialCheck();
+//        check(false);
         config.save();
         log.spitCommands();
         routine();
@@ -45,15 +47,25 @@ public class Loader {
         if (config.getGlobal().getVersionFolder().mkdirs()) log.println("Creating " + config.getGlobal().getVersionFolderName());
     }
 
-    private void initialCheck(){
-        archiveMap.values().forEach(FilesArchive::checker);
+    private void check(boolean f){
+        if (routine != null && !f){
+            routine.stop();
+            routine.setInitialDelay(getTime());
+            routine.restart();
+        }
+        archiveMap.values().forEach(FilesArchive::check);
         next = getNextRoutine(config.getGlobal().getRoutineTime());
-        if(!isPaused) log.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
+        if(!isPaused || !f) log.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
+    }
+
+    private void check(boolean f, String s){
+        if (s == null){ check(f); return;}
+        archiveMap.get(s).check();
     }
 
     private void routine(){
         routine = new Timer(getTime(), e -> {
-                archiveMap.values().forEach(FilesArchive::checker);
+                archiveMap.values().forEach(FilesArchive::check);
                 next = getNextRoutine(config.getGlobal().getRoutineTime());
                 if(!isPaused) log.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
         });
@@ -107,20 +119,11 @@ public class Loader {
     /*
      * Commands
      */
-    private void close() throws IOException, ParseException{
-            log.println("Checking files before closing");
-            for (FilesArchive data: archiveMap.values()){
-                data.checker();
-                data.save();
-            }
+    private void close(){
+//            log.println("Checking files before closing");
+//            archiveMap.values().forEach(FilesArchive::check);
             log.println("Closing FileHelper");
             System.exit(0);
-    }
-
-    private void forceCheck(){
-        archiveMap.values().forEach(FilesArchive::checker);
-        next = getNextRoutine(config.getGlobal().getRoutineTime());
-        if(!isPaused) log.println("Next routine execution at: \"" + (new SimpleDateFormat("HH:mm").format(next)) + "\"");
     }
 
     private void setPaused(boolean paused){
@@ -147,17 +150,15 @@ public class Loader {
                 new Command("close") {
                     @Override
                     public void run() {
-                        try{
-                            close();
-                        }catch (IOException | ParseException e){
-                            e.printStackTrace();
-                        }
+                        close();
                     }
                 },
-                new Command("forceCheck") {
+                new Command("forceCheck", "d", "f") {
                     @Override
                     public void run() {
-                        forceCheck();
+                        Boolean d = getArg("d").getAsBoolean();
+                        String f = getArg("f").getAsString();
+                        check((d != null ? d : false), (f));
                     }
                 },
                 new Command("pause","v") {
@@ -172,24 +173,6 @@ public class Loader {
                             setPaused(value);
                         }else {
                             setPaused(!isPaused);
-                        }
-                    }
-                },
-                new Command(false,"disablePath","f","p","v") {
-                    @Override
-                    public void run() {
-                        String file = getArg("f").getAsString();
-                        Integer pos = getArg("p").getAsInteger() - 1;
-                        Boolean val = getArg("v").getAsBoolean();
-                        if (val == null){
-                            log.println("Invalid value \""+getArg("v")+"\"");
-                            return;
-                        }
-                        FilesArchive data = archiveMap.get(file);
-                        if(data != null){
-                            data.disablePath(pos,val);
-                        }else {
-                            log.println("Unknown archive \""+file+"\"");
                         }
                     }
                 });

@@ -15,8 +15,6 @@ import static Utils.Utils.*;
 
 public class Launcher extends Application {
 
-    public static boolean sceneLoaded = false;
-
     public static Scene scene;
     public static AppController app;
     public static Configurations config;
@@ -35,24 +33,24 @@ public class Launcher extends Application {
             log.readCommand("close");
         });
 
+        primaryStage.setTitle(UIVE.TITLE.getVar());
+        primaryStage.setResizable(false);
+        primaryStage.setMaxWidth(607);
+//        primaryStage.setMaxHeight(479);
+
         config = new Configurations();
         config.loadHasher();
         FXMLLoader fxmlLoader = new FXMLLoader(AppUI);
         scene = new Scene(fxmlLoader.load());
-        sceneLoaded = true;
-        app = fxmlLoader.getController();
-        log = new Log();
-        config.loadCommands();
-        loader = new Loader();
-        loader.load();
-        app.loadFiles();
+//        app = fxmlLoader.getController();
+//        log = new Log();
+//        config.loadCommands();
+//        loader = new Loader();
 
-        primaryStage.setTitle(UIVE.TITLE.getVar());
         primaryStage.setScene(scene);
         primaryStage.show();
-        primaryStage.setResizable(false);
-        primaryStage.setMaxWidth(536);
-        primaryStage.setMaxHeight(479);
 
+//        loader.load();
+//        app.postInit();
     }
 }

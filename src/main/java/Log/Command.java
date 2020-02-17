@@ -1,5 +1,6 @@
 package Log;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,9 +18,7 @@ public abstract class Command {
         if (args.length > 0){
             hasArgs = true;
         }
-        for (String o: args){
-            if(argsMap.get(o) == null) argsMap.put(o,new Args());
-        }
+        Arrays.stream(args).filter(o -> argsMap.get(o) == null).forEach(o -> argsMap.put(o, new Args()));
     }
 
     protected Command(String cmd, String... args){
@@ -84,7 +83,7 @@ public abstract class Command {
         }
 
         public Boolean getAsBoolean(){
-            return !value.toLowerCase().equals("true") && !value.toLowerCase().equals("false") ? null : Boolean.parseBoolean(value);
+            return value == null || !value.toLowerCase().equals("true") && !value.toLowerCase().equals("false") ? null : Boolean.parseBoolean(value);
         }
 
         public Double getAsDouble(){

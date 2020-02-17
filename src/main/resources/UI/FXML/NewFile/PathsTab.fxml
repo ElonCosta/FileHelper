@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="96.0" prefWidth="532.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controllers.NewFile.PathsTabController">
+   <Group layoutX="15.0" layoutY="15.0" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="15.0"
+          AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <Label text="File location">
+         <font>
+            <Font size="16.0"/>
+         </font>
+      </Label>
+      <Button fx:id="fileBtn" layoutX="478.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0"
+              prefWidth="24.0" text="Button" onAction="#selectFolder"/>
+      <TextField fx:id="fileFld" layoutY="25.0" prefHeight="25.0" prefWidth="479.0"/>
+   </Group>
+   <Group layoutX="15.0" layoutY="76.0" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="76.0">
+      <Label text="File destination">
+         <font>
+            <Font size="16.0"/>
+         </font>
+      </Label>
+      <Button fx:id="destBtn" layoutX="478.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0"
+              prefWidth="24.0" text="Button" onAction="#selectFolder"/>
+      <TextField fx:id="destFld" layoutY="25.0" prefHeight="25.0" prefWidth="479.0"/>
+   </Group>
+</AnchorPane>

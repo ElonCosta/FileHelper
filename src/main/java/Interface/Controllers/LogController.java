@@ -39,11 +39,11 @@ public class LogController implements Initializable {
             cmdFld.positionCaret(cmdFld.getText().length());
         }else if(e.getCode().equals(KeyCode.UP)){
             cmdFld.requestFocus();
-            cmdFld.setText(log.lastIssuedCommand());
+            cmdFld.setText(log.undoCommand());
             cmdFld.positionCaret(cmdFld.getText().length());
         }else if(e.getCode().equals(KeyCode.DOWN)){
             cmdFld.requestFocus();
-            cmdFld.setText(log.advanceIssuedCommand());
+            cmdFld.setText(log.redoCommand());
             cmdFld.positionCaret(cmdFld.getText().length());
         }
     }
@@ -61,8 +61,9 @@ public class LogController implements Initializable {
 
     public void clearLog(Integer n) {
         if (n == null){
-            logArea.setText("");
+            logArea.clear();
         }else{
+            logArea.clear();
             List<String> s = (new BufferedReader(new StringReader(logArea.getText()))).lines().collect(Collectors.toList());
             StringBuilder logSb = new StringBuilder();
             if (n > s.size()){

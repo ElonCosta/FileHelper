@@ -75,7 +75,6 @@ public class Configurations implements ConfigInterface {
 
     @Override
     public void load(){
-
         if (!configPath.exists()){
             ConfigVersion = Float.parseFloat(CFG_VER.getVar());
             global = new Global();
@@ -285,7 +284,6 @@ public class Configurations implements ConfigInterface {
                 log.println("The routine delay already is: " + routineTime);
             }else{
                 this.routineTime = routineTime;
-                log.println("Setting routine delay to: " + routineTime);
             }
             Configurations.this.save();
         }
@@ -347,10 +345,10 @@ public class Configurations implements ConfigInterface {
                         value = "Source";
                         break;
                     case ARCHIVE_FOLDER:
-                        value = "Source\\Archive";
+                        value = global.getRootFolderName()+"\\Archive";
                         break;
                     case VERSION_FOLDER:
-                        value = "Source\\Latest";
+                        value = global.getRootFolderName()+"\\Latest";
                         break;
                     case ROUTINE_TIME:
                         value = 5;
@@ -400,6 +398,7 @@ public class Configurations implements ConfigInterface {
                 public void run() {
                     Integer setTo = getArg("v").getAsInteger();
                     setRoutineTime(setTo);
+                    log.println("Setting routine delay to: " + routineTime);
                 }}
             );
         }
@@ -423,11 +422,7 @@ public class Configurations implements ConfigInterface {
         }
 
         public void newDataFile(String name){
-            for (JSONObject jo: dataFilesList){
-                if (getString(jo,NAME).equals(name)){
-                    return;
-                }
-            }
+            if (dataFilesList.stream().anyMatch(jo -> getString(jo, NAME).equals(name))) return;
             JSONObject dataFile = new JSONObject();
             put(dataFile, NAME, name);
             put(dataFile, PATH, global.rootFolderName +"\\"+name + "_Data.json");
@@ -445,6 +440,7 @@ public class Configurations implements ConfigInterface {
                 }
             }
             if (dataFile != null){
+                dataFile.delete();
                 dataFilesList.remove(pos);
             }
             Configurations.this.save();
