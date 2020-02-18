@@ -78,7 +78,7 @@ public class NewFileController implements Initializable {
     @FXML private void createFile(){
         if(isCreatable()){
             file.save();
-            loader.checkForFiles();
+//            loader.checkForFiles();
             app.reloadFiles();
             reloadPage();
         }

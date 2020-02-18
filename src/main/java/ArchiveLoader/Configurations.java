@@ -183,15 +183,15 @@ public class Configurations implements ConfigInterface {
 
         /* Getters || Setters */
 
-        String getVersionFolderName() {
+        public String getVersionFolderName() {
             return versionFolderName;
         }
 
-        String getRootFolderName() {
+        public String getRootFolderName() {
             return rootFolderName;
         }
 
-        String getArchiveFolderName() {
+        public String getArchiveFolderName() {
             return archiveFolderName;
         }
 

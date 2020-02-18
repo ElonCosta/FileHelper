@@ -67,7 +67,7 @@ public class FileTabController implements Initializable {
 
 
     @FXML private void removeTab(){
-        loader.removeFile(file.getName());
+//        loader.removeFile(file.getName());
         app.reloadFiles();
     }
 }

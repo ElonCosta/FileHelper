@@ -30,7 +30,6 @@ public class Launcher extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setOnCloseRequest(e -> {
             config.save();
-            log.readCommand("close");
         });
 
         primaryStage.setTitle(UIVE.TITLE.getVar());

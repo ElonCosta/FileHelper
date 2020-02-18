@@ -24,20 +24,20 @@ public class FilesController implements Initializable {
     }
 
     public void loadFiles(){
-        Map<String, FilesArchive> map = loader.getArchiveMap();
-        for (FilesArchive fa: map.values()){
-            Tab tab = new Tab();
-            tab.setText(fa.getName());
-            tabPane.getTabs().add(tab);
-
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(Utils.FilesTabUI);
-                tab.setContent(fxmlLoader.load());
-                ((FileTabController) fxmlLoader.getController()).loadTab(fa);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+//        Map<String, FilesArchive> map = loader.getArchiveMap();
+//        for (FilesArchive fa: map.values()){
+//            Tab tab = new Tab();
+//            tab.setText(fa.getName());
+//            tabPane.getTabs().add(tab);
+//
+//            try {
+//                FXMLLoader fxmlLoader = new FXMLLoader(Utils.FilesTabUI);
+//                tab.setContent(fxmlLoader.load());
+//                ((FileTabController) fxmlLoader.getController()).loadTab(fa);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     public void reloadFiles(){
