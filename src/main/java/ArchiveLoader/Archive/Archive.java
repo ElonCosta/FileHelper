@@ -63,6 +63,7 @@ public class Archive implements ConfigInterface {
         this.status = STATUS.NEW;
         this.JSONPathsList = new ArrayList<>();
         this.pathsList = new ArrayList<>();
+        createNewPath();
     }
 
     private List<JSONObject> getPathsAsJSON(){
@@ -271,7 +272,7 @@ public class Archive implements ConfigInterface {
 
     @Override
     public String toString() {
-        return name;
+        return name == null ? "New File" : name;
     }
 
     /*

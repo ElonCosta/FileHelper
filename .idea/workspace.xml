@@ -7,23 +7,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26f6786f-0baf-4f39-97c0-248b104f2385" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/UI/FXML/Images/checkThis.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_annotations_java5_18_0_0.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/properties.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FlashPyxis_Data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileHelper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FileHelper.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Archive/Archive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Archive/Archive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Archive/Collections.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Archive/Paths.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Archive/Paths.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Controllers/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Controllers/MonitoringController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Controllers/MonitoringController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Log/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Log/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/CSS/monitoring.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UI/CSS/monitoring.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/FXML/Images/checkThis.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UI/Images/checkThis.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/UI/FXML/MonitoringUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UI/FXML/MonitoringUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main/Launcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main/Launcher.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +75,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last.edited.regexp" value="        aaaaaaszs&#10;          " />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/UI/FXML/Images" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -98,8 +95,18 @@
     <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\santo\IdeaProjects\FileHelper\src\main\resources\UI" />
+      <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\Source" />
+      <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\libs" />
+      <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\libs\br\com\Hasher\1.0" />
+      <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\libs\br\com\Hasher" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Utils" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\libs\com\Hasher\1.0" />
@@ -107,16 +114,6 @@
       <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper" />
       <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\src\main\resources\UI\FXML" />
       <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\src" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="Utils" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\Source" />
-      <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\libs" />
-      <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\libs\br\com\Hasher\1.0" />
-      <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\libs\br\com\Hasher" />
-      <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\libs\br\com" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -130,6 +127,7 @@
       <command value="mvn javafx:run" />
       <command value="mvn compile" />
       <command value="mvn install:install-file -Dfile=C:\Users\Elon-Desenv\IdeaProjects\FileHelper\libs\com\Hasher\1.0\Hasher.jar -DgroupId=br.com.Hasher -DartifactId=Hasher -Dversion=1.0 -Dpackaging=jar" />
+      <command value="mvn install:install-file -Dfile=C:\Users\santo\IdeaProjects\FileHelper\libs\com\Hasher\1.0\Hasher.jar -DgroupId=br.com.Hasher -DartifactId=Hasher -Dversion=1.0 -Dpackaging=jar" />
     </option>
   </component>
   <component name="RunManager" selected="Application.Launcher">
@@ -280,6 +278,7 @@
       <workItem from="1579861721866" duration="1129000" />
       <workItem from="1580120647073" duration="9000" />
       <workItem from="1580209398286" duration="14162000" />
+      <workItem from="1582148845079" duration="7605000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1561397026003</created>
@@ -470,26 +469,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="517" y="264" width="356" height="200" key="Github.CreateGistDialog/0.0.1366.728@0.0.1366.728" timestamp="1579629074509" />
-    <state width="1323" height="209" key="GridCell.Tab.0.bottom" timestamp="1582141874458">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1582156481414">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="209" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1582141874458" />
     <state width="1323" height="170" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1576775687340" />
-    <state width="1323" height="209" key="GridCell.Tab.0.center" timestamp="1582141874458">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582156481414" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1582156481414">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="209" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1582141874458" />
     <state width="1323" height="170" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1576775687340" />
-    <state width="1323" height="209" key="GridCell.Tab.0.left" timestamp="1582141874458">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582156481414" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1582156481413">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="209" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1582141874458" />
     <state width="1323" height="170" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1576775687340" />
-    <state width="1323" height="209" key="GridCell.Tab.0.right" timestamp="1582141874458">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582156481413" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1582156481414">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="209" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1582141874458" />
     <state width="1323" height="170" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1576775687340" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582156481414" />
     <state width="1323" height="220" key="GridCell.Tab.1.bottom" timestamp="1582122619252">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -545,10 +548,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="492" y="282" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1578485939507" />
-    <state x="413" y="131" key="extract.method.dialog" timestamp="1579618555852">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="1248" y="210" key="extract.method.dialog" timestamp="1582150081376">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="413" y="131" key="extract.method.dialog/0.0.1366.728@0.0.1366.728" timestamp="1579618555852" />
+    <state x="1248" y="210" key="extract.method.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582150081376" />
     <state x="379" y="101" width="737" height="606" key="find.popup" timestamp="1579618756492">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -562,18 +566,19 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="65" y="0" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1579791925685" />
-    <state x="339" y="163" width="672" height="677" key="run.anything.popup" timestamp="1580212667997">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="476" y="233" width="945" height="968" key="run.anything.popup" timestamp="1582150404583">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="339" y="163" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1580212667997" />
     <state x="339" y="172" key="run.anything.popup/0.0.1366.768@0.0.1366.768" timestamp="1576068722759" />
+    <state x="476" y="233" width="945" height="968" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582150404583" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java</url>
-          <line>441</line>
+          <line>442</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

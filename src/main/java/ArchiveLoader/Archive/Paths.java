@@ -48,11 +48,15 @@ public class Paths implements ConfigInterface {
         this.disabled = disabled;
     }
 
-    Boolean isDisabled() {
+    public Boolean isDisabled() {
         return disabled;
     }
 
-    String getDefaultLatestFolder() {
+    public Boolean isEnabled() {
+        return !disabled;
+    }
+
+    public String getDefaultLatestFolder() {
         return config.getGlobal().getVersionFolder().getAbsolutePath() + File.separator + parent.getName() + File.separator + file.getName();
     }
 
@@ -189,6 +193,6 @@ public class Paths implements ConfigInterface {
 
     @Override
     public String toString() {
-        return getShorthandPath(dest);
+        return dest == null ? "New Path" : getShorthandPath(dest);
     }
 }

@@ -19,8 +19,7 @@ import static Utils.Utils.getString;
 public class Loader {
 
     private Map<String, Archive> archiveMap = new HashMap<>();
-    private Map<String, Archive> newArchiveMap = new HashMap<>();
-    private Map<String, Archive> editingArchiveMap = new HashMap<>();
+    private List<Archive> newArchives = new ArrayList<>();
 
     private Boolean paused;
 
@@ -62,5 +61,7 @@ public class Loader {
         return archiveMap;
     }
 
-
+    public List<Archive> getNewArchives() {
+        return newArchives;
+    }
 }

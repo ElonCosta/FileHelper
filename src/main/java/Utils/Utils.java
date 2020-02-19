@@ -1,5 +1,7 @@
 package Utils;
 
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -106,6 +108,9 @@ public class Utils {
         }
     }
 
+    public static boolean isWritable(KeyEvent e){
+        return e.getCode().isArrowKey() || e.getCode().isFunctionKey() || e.getCode().isMediaKey() || e.getCode().isModifierKey() || e.getCode().isNavigationKey() || (e.getCode().isWhitespaceKey() && (!e.getCode().equals(KeyCode.SPACE) && !e.getCode().equals(KeyCode.BACK_SPACE)));
+    }
 
     /* JSON Utils */
     public static void put(JSONObject jo, KEY key, Object value){

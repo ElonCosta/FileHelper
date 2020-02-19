@@ -9,11 +9,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -43,13 +46,15 @@ public class MonitoringController implements Initializable {
     /* READY */
     @FXML private Group ready;
 
+    /* PATH BTNS */
+    @FXML private Group pathBtns;
 
     private Archive selectedArchive;
     private Paths selectedPaths;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        files = new TreeItem<Object>("Files");
+        files = new TreeItem<>("Files");
         files.setExpanded(true);
         collections.setRoot(files);
         initEvents();
@@ -60,63 +65,188 @@ public class MonitoringController implements Initializable {
     }
 
     private void initEvents(){
-        collections.setCellFactory(tv -> {
-            TreeCell cell = new TreeCell<Object>() {
-                @Override
-                public void updateItem(Object item1, boolean empty) {
-                    super.updateItem(item1, empty);
-                    if (empty) {
-                        setText("");
-                        setGraphic(null);
-                    } else {
-                        if (item1 instanceof Paths) {
-                            Paths p = (Paths) item1;
-                            setText(p.toString());
-                            if (p.getStatus() != Utils.STATUS.READY){
-                                Text status = new Text(p.getStatus().name().substring(0,1));
-                                status.setFill(p.getStatus() == Utils.STATUS.EDITING ? Color.BLUE : Color.RED );
-                                status.setTranslateY(-1);
-                                setGraphic(status);
-                            }
-                            if (p.getDisabled()) {
-                                setStyle("-fx-text-fill: #7a7a7a;");
-                            } else {
-                                setStyle("-fx-text-fill: #000;");
-                            }
-                        } else if (item1 instanceof Archive) {
-                            Archive a = (Archive) item1;
-                            setText(a.toString());
-                            if (a.getStatus() != Utils.STATUS.READY){
-                                Text status = new Text(a.getStatus().name().substring(0,1));
-                                status.setFill(a.getStatus() == Utils.STATUS.EDITING ? Color.BLUE : Color.RED );
-                                status.setTranslateY(-1);
-                                setGraphic(status);
-                            }
-                            setStyle("-fx-text-fill: #000;");
-                        } else if (item1 instanceof String) {
-                            setText(item1.toString());
+        collections.setCellFactory(tv -> new TreeCell<Object>() {
+            @Override
+            public void updateItem(Object item1, boolean empty) {
+                super.updateItem(item1, empty);
+                if (empty) {
+                    setText("");
+                    setGraphic(null);
+                } else {
+                    if (item1 instanceof Paths) {
+                        Paths p = (Paths) item1;
+                        setStatus(p.toString(), p.getStatus());
+                        if (p.isDisabled()) {
+                            setStyle("-fx-text-fill: #7a7a7a;");
+                        } else {
                             setStyle("-fx-text-fill: #000;");
                         }
+                    } else if (item1 instanceof Archive) {
+                        Archive a = (Archive) item1;
+                        setStatus(a.toString(), a.getStatus());
+                        setStyle("-fx-text-fill: #000;");
+                    } else if (item1 instanceof String) {
+                        setText(item1.toString());
+                        setStyle("-fx-text-fill: #000;");
                     }
-
                 }
-            };
-            return cell;
-            });
-        pathFile.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue){
-                pathFile.setText(selectedPaths.getFile().getAbsolutePath());
-            }else{
-                pathFile.setText(Utils.getShorthandPath(selectedPaths.getFile()));
+
             }
+
+            private void setStatus(String s, Utils.STATUS status) {
+                setText(s);
+                if (status != Utils.STATUS.READY){
+                    Text statusText = new Text(status.name().substring(0,1));
+                    statusText.setFill(status == Utils.STATUS.EDITING ? Color.BLUE : Color.RED );
+                    statusText.setTranslateY(-1);
+                    setGraphic(statusText);
+                }
+            }
+        });
+        pathFile.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            setText(pathFile, selectedPaths.getFile(), newValue);
         });
         pathDest.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue){
-                pathDest.setText(selectedPaths.getDest().getAbsolutePath());
-            }else{
-                pathDest.setText(Utils.getShorthandPath(selectedPaths.getDest()));
-            }
+            setText(pathDest, selectedPaths.getDest(), newValue);
         });
+    }
+
+    private void setText(TextField tf, File f, Boolean b){
+        if (b){
+            tf.setText(f == null ? "" : f.getAbsolutePath());
+        }else{
+            tf.setText(f == null ? "" : Utils.getShorthandPath(f));
+        }
+    }
+
+    private void updateUI(){
+        updateFileList();
+        updateFileDisplay();
+    }
+
+    private void updateFileList(){
+        files.getChildren().clear();
+        for (Archive a: loader.getArchiveMap().values()){
+            files.getChildren().add(newTreeItem(a));
+        }
+        for (Archive a: loader.getNewArchives()){
+            files.getChildren().add(newTreeItem(a));
+        }
+        if (files.getChildren().size() == 0){
+            editing.setVisible(false);
+            ready.setVisible(false);
+            pathBtns.setVisible(false);
+        }else{
+            pathBtns.setVisible(true);
+        }
+
+        if (selectedArchive != null){
+            for (TreeItem<Object> item: files.getChildren()){
+                if (item.getValue() == selectedArchive){
+                    item.setExpanded(true);
+                }
+            }
+        }else {
+            if(files.getChildren().size() > 0){
+                files.getChildren().get(0).setExpanded(true);
+            }
+        }
+    }
+
+    private void updateFileDisplay(){
+        if (selectedArchive != null){
+            fileName.setText(selectedArchive.getName());
+            if (selectedArchive.getName() != null){
+                fileName.positionCaret(selectedArchive.getName().length());
+            }
+            archiveFile.setSelected(selectedArchive.getArchiveFiles());
+            String lastModText = "Last Mod: "+selectedArchive.getLastMod();
+            lastMod.setText(lastModText);
+            String enabledText = String.format("%d/%d Paths enabled",
+                    selectedArchive.getPathsList().stream().filter(Paths::isEnabled).count(),
+                    selectedArchive.getPathsList().size());
+            enabled.setText(enabledText);
+
+            pathFile.setText(selectedPaths.getFile() == null ? "" : Utils.getShorthandPath(selectedPaths.getFile()));
+            pathDest.setText(selectedPaths.getDest() == null ? "" : Utils.getShorthandPath(selectedPaths.getDest()));
+            pathDisabled.setSelected(selectedPaths.getDisabled());
+            if (selectedArchive.getStatus().equals(Utils.STATUS.READY)){
+                fileName.setEditable(false);
+                if (selectedPaths.getStatus().equals(Utils.STATUS.READY)){
+                    pathDest.setEditable(false);
+                    pathFile.setEditable(false);
+                }
+                editing.setVisible(false);
+                ready.setVisible(true);
+            }else{
+                if (selectedArchive.getStatus().equals(Utils.STATUS.NEW) && selectedArchive.getName() == null){
+                    fileName.setText("");
+                }
+                fileName.setEditable(true);
+                pathDest.setEditable(true);
+                pathFile.setEditable(true);
+                editing.setVisible(true);
+                ready.setVisible(false);
+            }
+        }
+    }
+
+    private void createArchive(){
+        Archive a = new Archive();
+        loader.getNewArchives().add(a);
+        selectedArchive = a;
+        selectedPaths = selectedArchive.getPathsList().get(0);
+        updateUI();
+    }
+
+    private void createPath(){
+        selectedArchive.createNewPath();
+        selectedPaths = selectedArchive.getPathsList().get(selectedArchive.getPathsList().size()-1);
+        updateUI();
+    }
+
+    private TreeItem<Object> newTreeItem(Archive a){
+        ChangeListener<Boolean> expandedListener = (obs, wasExpanded, isNowExpanded) -> {
+            if (isNowExpanded){
+                ReadOnlyProperty<?> expandedProperty = (ReadOnlyProperty<?>) obs;
+                Object ob = expandedProperty.getBean();
+                for (TreeItem<Object> item : collections.getRoot().getChildren()){
+                    if (item == ob){
+                        collections.getSelectionModel().select(item);
+                        if (item.getValue() instanceof Archive){
+                            selectedArchive = (Archive) item.getValue();
+                            if(selectedPaths == null || selectedPaths.getParent() != selectedArchive) selectedPaths = a.getPathsList().get(0);
+                            updateFileDisplay();
+                        }
+                    }else{
+                        item.setExpanded(false);
+                    }
+                }
+            }
+        };
+        TreeItem<Object> item = new TreeItem<>(a);
+        for (Paths p: a.getPathsList()){
+            TreeItem<Object> path = new TreeItem<>(p);
+            item.getChildren().add(path);
+        }
+        item.expandedProperty().addListener(expandedListener);
+        return item;
+    }
+
+    @FXML private void editArchive(){
+        selectedArchive.setStatus(Utils.STATUS.EDITING);
+        updateUI();
+    }
+
+    @FXML private void finishEditing(ActionEvent e){
+        Button b = (Button) e.getSource();
+        if (b.getId().equals("cancelBtn")){
+            selectedArchive.load();
+        }else{
+            selectedArchive.save();
+            loader.checkForFiles();
+        }
+        updateUI();
     }
 
     @FXML private void selectArchive(){
@@ -140,95 +270,33 @@ public class MonitoringController implements Initializable {
         updateFileDisplay();
     }
 
-    private void updateUI(){
-        updateFileList();
-        updateFileDisplay();
-    }
-
-    private void updateFileList(){
-        ChangeListener<Boolean> expandedListener = (obs, wasExpanded, isNowExpanded) -> {
-            if (isNowExpanded){
-                ReadOnlyProperty<?> expandedProperty = (ReadOnlyProperty<?>) obs;
-                Object ob = expandedProperty.getBean();
-                for (TreeItem<Object> item : collections.getRoot().getChildren()){
-                    if (item == ob){
-                        collections.getSelectionModel().select(item);
-                        if (item.getValue() instanceof Archive){
-                            Archive a = (Archive) item.getValue();
-                            selectedArchive = a;
-                            if(selectedPaths == null || selectedPaths.getParent() != selectedArchive) selectedPaths = a.getPathsList().get(0);
-                            updateFileDisplay();
-                        }
-                    }else{
-                        item.setExpanded(false);
-                    }
-                }
-            }
-        };
-        files.getChildren().clear();
-        for (Archive a: loader.getArchiveMap().values()){
-            TreeItem<Object> item = new TreeItem<>(a);
-            for (Paths p: a.getPathsList()){
-                TreeItem<Object> path = new TreeItem<>(p);
-                item.getChildren().add(path);
-            }
-            item.expandedProperty().addListener(expandedListener);
-            files.getChildren().add(item);
-        }
-        if (selectedArchive != null){
-            for (TreeItem<Object> item: files.getChildren()){
-                if (item.getValue() == selectedArchive){
-                    item.setExpanded(true);
-                }
-            }
-        }else {
-            files.getChildren().get(0).setExpanded(true);
+    @FXML private void create(ActionEvent e){
+        Button b = (Button) e.getSource();
+        if (b.getId().equals("createArchive")){
+            createArchive();
+        }else{
+            createPath();
         }
     }
 
-    private void updateFileDisplay(){
-        if (selectedArchive != null){
-            fileName.setText(selectedArchive.getName());
-            archiveFile.setSelected(selectedArchive.getArchiveFiles());
-            String lastModText = "Last Mod: "+selectedArchive.getLastMod();
-            lastMod.setText(lastModText);
-            String enabledText = String.format("%d/%d Paths enabled",
-                    selectedArchive.getPathsList().stream().filter(p->!p.getDisabled()).count(),
-                    selectedArchive.getPathsList().size());
-            enabled.setText(enabledText);
-
-            pathFile.setText(Utils.getShorthandPath(selectedPaths.getFile()));
-            pathDest.setText(Utils.getShorthandPath(selectedPaths.getDest()));
-            pathDisabled.setSelected(selectedPaths.getDisabled());
-            if (selectedArchive.getStatus().equals(Utils.STATUS.READY)){
-                fileName.setEditable(false);
-                if (selectedPaths.getStatus().equals(Utils.STATUS.READY)){
-                    pathDest.setEditable(false);
-                    pathFile.setEditable(false);
-                }
-                editing.setVisible(false);
-                ready.setVisible(true);
-            }else{
-                fileName.setEditable(true);
-                pathDest.setEditable(true);
-                pathFile.setEditable(true);
-                editing.setVisible(true);
-                ready.setVisible(false);
-            }
+    @FXML private void updateArchiveName(KeyEvent e){
+        System.out.println(e.getCode().isLetterKey());
+        try{
+            if (Utils.isWritable(e) && (new KeyCodeCombination(e.getCode(), KeyCodeCombination.CONTROL_ANY, KeyCodeCombination.ALT_ANY).match(e))) return;
+        }catch (IllegalArgumentException i){
+            return;
         }
-    }
-
-    @FXML private void editArchive(){
-        selectedArchive.setStatus(selectedArchive.getStatus() == Utils.STATUS.READY ? Utils.STATUS.EDITING : Utils.STATUS.READY);
+        String name = fileName.getText();
+        if (!name.equals(selectedArchive.getName())){
+            selectedArchive.setName(name);
+        }
         updateUI();
     }
+    @FXML private void updateArchiveArchiveFile(){
 
-    @FXML private void finishEditing(ActionEvent e){
-        Button b = (Button) e.getSource();
-        if (b.getId().equals("cancelBtn")){
-            selectedArchive.load();
-        }else{
-            selectedArchive.save();
+        boolean archiveFiles = archiveFile.isSelected();
+        if (!archiveFiles == selectedArchive.getArchiveFiles()){
+            selectedArchive.setArchiveFiles(true);
         }
         updateUI();
     }

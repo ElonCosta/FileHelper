@@ -61,6 +61,7 @@ public class FilesArchive implements ConfigInterface {
         this.JSONData = new JSONObject();
         this.archiveFiles = true;
         this.lastMod = lastModSDF.format(new Date());
+        createNewPath();
     }
 
     private List<JSONObject> getPathsAsJSON(){
