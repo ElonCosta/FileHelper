@@ -7,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import Utils.Utils.STATUS;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -26,6 +27,8 @@ public class Archive implements ConfigInterface {
 
     private JSONObject JSONData;
 
+    private STATUS status;
+
     private File dataPath;
 
     private String name;
@@ -34,8 +37,8 @@ public class Archive implements ConfigInterface {
     private volatile Thread thread;
 
     private JSONArray JSONPaths;
-    private List<JSONObject> JSONPathsList = new ArrayList<>();
-    private List<Paths> pathsList = new ArrayList<>();
+    private List<JSONObject> JSONPathsList;
+    private List<Paths> pathsList;
 
     private boolean checkDisabled = false;
 
@@ -57,6 +60,9 @@ public class Archive implements ConfigInterface {
         this.JSONData = new JSONObject();
         this.archiveFiles = true;
         this.lastMod = lastModSDF.format(new Date());
+        this.status = STATUS.NEW;
+        this.JSONPathsList = new ArrayList<>();
+        this.pathsList = new ArrayList<>();
     }
 
     private List<JSONObject> getPathsAsJSON(){
@@ -158,6 +164,7 @@ public class Archive implements ConfigInterface {
     public void setCheckDisabled(boolean checkDisabled) {
         this.checkDisabled = checkDisabled;
     }
+
     /*
      * Methods inherited from ConfigInterface
      */
@@ -167,6 +174,8 @@ public class Archive implements ConfigInterface {
         name = JSONData.getString(Utils.KEY.NAME.getVar());
         archiveFiles = JSONData.getBoolean(Utils.KEY.ARCHIVE_FILE.getVar());
 
+        JSONPathsList = new ArrayList<>();
+        pathsList = new ArrayList<>();
         for (Object o: JSONPaths){
             JSONPathsList.add((JSONObject) o);
             Paths p = new Paths((JSONObject) o, this);
@@ -185,6 +194,7 @@ public class Archive implements ConfigInterface {
             config.save();
             save();
         }
+        this.status = STATUS.READY;
     }
 
     public void save() {
@@ -203,6 +213,7 @@ public class Archive implements ConfigInterface {
             FileWriter fw = new FileWriter(dataPath);
             fw.write(JSONData.toString(4));
             fw.close();
+            this.status = STATUS.READY;
         }catch (IOException io){
             io.printStackTrace();
         }
@@ -258,6 +269,11 @@ public class Archive implements ConfigInterface {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     /*
      * Commands
      */
@@ -290,5 +306,13 @@ public class Archive implements ConfigInterface {
             }
         }
         return file.delete();
+    }
+
+    public STATUS getStatus() {
+        return status;
+    }
+
+    public void setStatus(STATUS status) {
+        this.status = status;
     }
 }

@@ -82,6 +82,11 @@ public class Utils {
             return var;
         }
     }
+    public enum STATUS {
+        EDITING,
+        NEW,
+        READY
+    }
 
     public static String getShorthandPath(File file){
         return getShorthandPath(file, true);

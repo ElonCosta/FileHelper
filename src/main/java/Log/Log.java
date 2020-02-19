@@ -42,9 +42,9 @@ public class Log {
     private void println(Object x, boolean y){
         if (y) {
             String ln = sdf.format(new Date()) + (x) + "\n";
-            app.appendLog(ln);
+//            app.appendLog(ln);
         } else {
-            app.appendLog(x + "\n");
+//            app.appendLog(x + "\n");
         }
     }
 
@@ -93,7 +93,7 @@ public class Log {
     }
 
     private void clear(Integer n){
-        app.clearLog(n);
+//        app.clearLog(n);
     }
 
     public void newCommand(Command... cmds){

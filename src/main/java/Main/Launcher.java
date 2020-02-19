@@ -41,15 +41,15 @@ public class Launcher extends Application {
         config.loadHasher();
         FXMLLoader fxmlLoader = new FXMLLoader(AppUI);
         scene = new Scene(fxmlLoader.load());
-//        app = fxmlLoader.getController();
+        app = fxmlLoader.getController();
 //        log = new Log();
 //        config.loadCommands();
-//        loader = new Loader();
+        loader = new Loader();
 
         primaryStage.setScene(scene);
         primaryStage.show();
 
-//        loader.load();
-//        app.postInit();
+        loader.load();
+        app.postInit();
     }
 }

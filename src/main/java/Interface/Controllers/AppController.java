@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static Main.Launcher.loader;
+
 public class AppController implements Initializable {
 
     @FXML private Pane main;
@@ -27,7 +29,7 @@ public class AppController implements Initializable {
     /* LOG */
     @FXML private Button logBtn;
     private Node logNode;
-    private LogController logController;
+    private MonitoringController monitoringController;
 
     /* CONFIGURATIONS */
     @FXML private Button cfgBtn;
@@ -62,17 +64,18 @@ public class AppController implements Initializable {
 
     public void postInit(){
         filesController.loadFiles();
-        try {
-            initializeNewFileTab();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        monitoringController.postInit();
+//        try {
+////            initializeNewFileTab();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void initializeLogTab() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Utils.LogUI);
         logNode = fxmlLoader.load();
-//        logController = fxmlLoader.getController();
+        monitoringController = fxmlLoader.getController();
     }
 
     public void initializeConfigurationTab() throws IOException {
@@ -117,13 +120,13 @@ public class AppController implements Initializable {
         }
     }
 
-    public void clearLog(Integer n) {
-        logController.clearLog(n);
-    }
+//    public void clearLog(Integer n) {
+//        logController.clearLog(n);
+//    }
 
-    public void appendLog(String ln) {
-        logController.appendLog(ln);
-    }
+//    public void appendLog(String ln) {
+//        logController.appendLog(ln);
+//    }
 
     private void enableButtons(){
         for (Node n: menuBar.getItems()){

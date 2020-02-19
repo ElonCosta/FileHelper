@@ -1,10 +1,10 @@
 package ArchiveLoader.Archive;
 
-import ArchiveLoader.FilesArchive;
 import Utils.ConfigInterface;
 import Utils.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import Utils.Utils.STATUS;
 
 import java.io.File;
 
@@ -16,6 +16,8 @@ import static Utils.Utils.put;
 public class Paths implements ConfigInterface {
 
     private Archive parent;
+
+    private STATUS status;
 
     private File file;
     private File dest;
@@ -30,12 +32,14 @@ public class Paths implements ConfigInterface {
     Boolean onLatest = false;
 
     public Paths(JSONObject JSONPaths, Archive parent) {
+        this.status = STATUS.READY;
         this.parent = parent;
         this.JSONPaths = JSONPaths;
         load();
     }
 
     public Paths() {
+        this.status = STATUS.NEW;
         this.JSONPaths = new JSONObject();
         this.disabled = false;
     }
@@ -91,6 +95,14 @@ public class Paths implements ConfigInterface {
             log.println("Changing \"" + parent.getName() + "\" file path \"" + getShorthandPath(this.file) + "\" to \"" + getShorthandPath(file) + "\"");
             this.file = file;
         }
+    }
+
+    public STATUS getStatus() {
+        return status;
+    }
+
+    public void setStatus(STATUS status) {
+        this.status = status;
     }
 
     public Archive getParent() {
@@ -173,5 +185,10 @@ public class Paths implements ConfigInterface {
 
     public Object getAsObject() {
         return JSONPaths;
+    }
+
+    @Override
+    public String toString() {
+        return getShorthandPath(dest);
     }
 }
