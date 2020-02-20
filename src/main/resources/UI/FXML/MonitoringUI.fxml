@@ -27,7 +27,7 @@
             <TextField fx:id="fileName" layoutY="25.0" prefHeight="25.0" prefWidth="340.0" onKeyReleased="#updateArchiveName"/>
          </Group>
          <CheckBox fx:id="archiveFile" layoutY="55.0" mnemonicParsing="false" text="Archive files" onAction="#updateArchiveArchiveFile"/>
-         <Label fx:id="lastMod" layoutX="192.0" layoutY="55.0" text="Last Mod: 0000/00/00 00:00" />
+         <Label fx:id="lastMod" layoutX="192.0" layoutY="55.0" text="Last Mod: " />
          <Label fx:id="enabled" layoutX="244.0" layoutY="77.0" text="0/0 Paths enabled" />
       </Group>
       <Separator layoutX="1.0" layoutY="129.0" prefHeight="3.0" prefWidth="347.0" />

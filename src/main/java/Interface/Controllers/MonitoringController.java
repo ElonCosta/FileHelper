@@ -104,9 +104,11 @@ public class MonitoringController implements Initializable {
             }
         });
         pathFile.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (selectedPaths == null) return;
             setText(pathFile, selectedPaths.getFile(), newValue);
         });
         pathDest.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (selectedPaths == null) return;
             setText(pathDest, selectedPaths.getDest(), newValue);
         });
     }
@@ -136,8 +138,15 @@ public class MonitoringController implements Initializable {
             editing.setVisible(false);
             ready.setVisible(false);
             pathBtns.setVisible(false);
+            fileName.setEditable(false);
+            pathDest.setEditable(false);
+            pathFile.setEditable(false);
+            archiveFile.setDisable(true);
+            pathDisabled.setDisable(true);
         }else{
             pathBtns.setVisible(true);
+            archiveFile.setDisable(false);
+            pathDisabled.setDisable(false);
         }
 
         if (selectedArchive != null){
@@ -241,7 +250,14 @@ public class MonitoringController implements Initializable {
     @FXML private void finishEditing(ActionEvent e){
         Button b = (Button) e.getSource();
         if (b.getId().equals("cancelBtn")){
-            selectedArchive.load();
+            if (selectedArchive.getStatus().equals(Utils.STATUS.EDITING)){
+                selectedArchive.load();
+            }else{
+                loader.getNewArchives().remove(selectedArchive);
+                selectedArchive = null;
+                selectedPaths = null;
+                updateUI();
+            }
         }else{
             selectedArchive.save();
             loader.checkForFiles();
@@ -292,11 +308,12 @@ public class MonitoringController implements Initializable {
         }
         updateUI();
     }
+
     @FXML private void updateArchiveArchiveFile(){
 
         boolean archiveFiles = archiveFile.isSelected();
-        if (!archiveFiles == selectedArchive.getArchiveFiles()){
-            selectedArchive.setArchiveFiles(true);
+        if (archiveFiles != selectedArchive.getArchiveFiles()){
+            selectedArchive.setArchiveFiles(archiveFiles);
         }
         updateUI();
     }
