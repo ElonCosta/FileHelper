@@ -19,9 +19,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static Main.Launcher.config;
-import static Main.Launcher.log;
-import static Utils.Utils.getShorthandPath;
+import static Main.Launcher.*;
+import static Utils.Utils.*;
 
 public class Archive implements ConfigInterface {
 
@@ -32,6 +31,7 @@ public class Archive implements ConfigInterface {
     private File dataPath;
 
     private String name;
+    private String id;
     private Boolean archiveFiles;
 
     private volatile Thread thread;
@@ -39,13 +39,13 @@ public class Archive implements ConfigInterface {
     private JSONArray JSONPaths;
     private List<JSONObject> JSONPathsList;
     private List<Paths> pathsList;
+    private List<Paths> newPathsList;
 
     private boolean checkDisabled = false;
 
     private String lastMod;
 
     private SimpleDateFormat lastModSDF = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-    private SimpleDateFormat archSDF = new SimpleDateFormat("/yyyy/MM/dd/HH_mm/");
 
     public Archive(JSONObject JSONData){
         this.JSONData = JSONData;
@@ -63,7 +63,7 @@ public class Archive implements ConfigInterface {
         this.status = STATUS.NEW;
         this.JSONPathsList = new ArrayList<>();
         this.pathsList = new ArrayList<>();
-        createNewPath();
+        this.newPathsList = new ArrayList<>();
     }
 
     private List<JSONObject> getPathsAsJSON(){
@@ -72,40 +72,20 @@ public class Archive implements ConfigInterface {
             p.save();
             tmp.add((JSONObject) p.getAsObject());
         }
+        for (Paths p: newPathsList){
+            p.save();
+            tmp.add((JSONObject) p.getAsObject());
+        }
         return tmp;
     }
 
-    private void archiveFile(File destFile) throws ParseException, IOException {
-        if (!destFile.exists()) return;
-        if (destFile.isDirectory()) {
-            File arch = new File(config.getGlobal().getArchiveFolderName() + (archSDF.format(lastModSDF.parse(lastMod))) + "/" + name + "/" + destFile.getName());
-            if (arch.mkdirs()) {
-                log.println("\tArchiving \"" + getShorthandPath(destFile) + "\\" + destFile.getName() + "\" on " + arch.getParentFile().getParent());
-                FileUtils.copyDirectory(destFile, arch, true);
-            }
-        }else{
-            File arch = new File(config.getGlobal().getArchiveFolderName() + (archSDF.format(lastModSDF.parse(lastMod))) + "/" + name + "/" + destFile.getName());
-            if (arch.mkdirs()) {
-                log.println("\tArchiving \"" + getShorthandPath(destFile) + "\" on " + arch.getParentFile().getParent());
-                FileUtils.copyFileToDirectory(destFile, arch, true);
-            }
-        }
-    }
-
-    void createFile(File file, File destFile) throws IOException{
-        if (deleteDest(destFile) || !destFile.exists()){
-            if (file.isDirectory()){
-                if (destFile.mkdir()){
-                    log.println("\tArchiving latest version of \"" + getShorthandPath(file) + "\" on: \"" + destFile.toString() + "\"");
-                    FileUtils.copyDirectory(file,destFile,true);
-                }
-            }else{
-                destFile = new File(destFile.getParent());
-                log.println("\tArchiving latest version of \"" + getShorthandPath(file) + "\" on: \"" + destFile.toString() + "\"");
-                FileUtils.copyFileToDirectory(file, destFile, true);
-            }
-        }
-        lastMod = lastModSDF.format(new Date());
+    public void check(){
+        status = STATUS.CHECKING;
+        app.updateFileList();
+        pathsList.forEach(Paths::check);
+        status = STATUS.READY;
+        app.updateFileList();
+        System.out.println(name);
     }
 
     private Boolean allPathsDisabled(){
@@ -113,13 +93,13 @@ public class Archive implements ConfigInterface {
     }
 
     private Boolean allPathsEnabled(){
-        return pathsList.stream().filter(p -> !p.isDisabled()).count() == pathsList.size();
+        return pathsList.stream().filter(Paths::isEnabled).count() == pathsList.size();
     }
 
     public Paths createNewPath(){
         Paths path = new Paths();
         path.setParent(this);
-        pathsList.add(path);
+        newPathsList.add(path);
         return path;
     }
     /*
@@ -166,6 +146,21 @@ public class Archive implements ConfigInterface {
         this.checkDisabled = checkDisabled;
     }
 
+    public STATUS getStatus() {
+        return status;
+    }
+
+    public void setStatus(STATUS status) {
+        this.status = status;
+    }
+
+    public List<Paths> getNewPathsList() {
+        return newPathsList;
+    }
+
+    public String getId(){
+        return id;
+    }
     /*
      * Methods inherited from ConfigInterface
      */
@@ -175,8 +170,15 @@ public class Archive implements ConfigInterface {
         name = JSONData.getString(Utils.KEY.NAME.getVar());
         archiveFiles = JSONData.getBoolean(Utils.KEY.ARCHIVE_FILE.getVar());
 
+        id = getString(JSONData,Utils.KEY.ID);
+
+        if (id.trim().equals("")) generateId();
+
+        System.out.println(id + name);
+
         JSONPathsList = new ArrayList<>();
         pathsList = new ArrayList<>();
+        newPathsList = new ArrayList<>();
         for (Object o: JSONPaths){
             JSONPathsList.add((JSONObject) o);
             Paths p = new Paths((JSONObject) o, this);
@@ -205,7 +207,7 @@ public class Archive implements ConfigInterface {
         JSONPaths = new JSONArray(JSONPathsList);
         JSONData.put(Utils.KEY.PATHS.getVar(),JSONPaths);
         JSONData.put(Utils.KEY.LAST_MOD.getVar(),lastMod);
-
+        put(JSONData,KEY.ID,id);
         try{
             if (dataPath == null){
                 dataPath = new File(config.getGlobal().getRootFolderName()+"/"+name + "_Data.json");
@@ -218,47 +220,6 @@ public class Archive implements ConfigInterface {
         }catch (IOException io){
             io.printStackTrace();
         }
-    }
-
-    private Thread createThread() throws Exception{
-        Runnable r = () -> {
-            if (checkDisabled){
-                if (!allPathsEnabled()){
-                    log.println(name+":");
-                    pathsList.stream().filter(Paths::isDisabled).forEach(p -> {
-                        try{
-                            if ((!p.getDest().exists()) || (FileUtils.isFileNewer(p.getFile(), p.getDest()))) {
-                                if (archiveFiles && config.getGlobal().getArchiveFiles()) archiveFile(p.getDest());
-                                createFile(p.getFile(), p.getDest());
-                                save();
-                            } else {
-                                log.println("\t\"" + getShorthandPath(p.getDest()) + "\" is up to date");
-                            }
-                        }catch (ParseException | IOException e){
-                            log.println(e.getMessage());
-                        }
-                    });
-                }
-            }else{
-                if (!allPathsDisabled()){
-                    log.println(name+":");
-                    pathsList.stream().filter(p -> !p.isDisabled()).forEach(p -> {
-                        try{
-                            if ((!p.getDest().exists()) || (FileUtils.isFileNewer(p.getFile(), p.getDest()))) {
-                                if (archiveFiles && config.getGlobal().getArchiveFiles()) archiveFile(p.getDest());
-                                createFile(p.getFile(), p.getDest());
-                                save();
-                            } else {
-                                log.println("\t\"" + getShorthandPath(p.getDest()) + "\" is up to date");
-                            }
-                        }catch (ParseException | IOException e){
-                            log.println(e.getMessage());
-                        }
-                    });
-                }
-            }
-        };
-        return new Thread(r);
     }
 
     @Override
@@ -297,23 +258,9 @@ public class Archive implements ConfigInterface {
         save();
     }
 
-    boolean deleteDest(File file) {
-        File[] contents = file.listFiles();
-        if (contents != null) {
-            for (File f : contents) {
-                if (!Files.isSymbolicLink(f.toPath())) {
-                    deleteDest(f);
-                }
-            }
-        }
-        return file.delete();
-    }
-
-    public STATUS getStatus() {
-        return status;
-    }
-
-    public void setStatus(STATUS status) {
-        this.status = status;
+    public void generateId(){
+        int i = this.hashCode();
+        i = i << 8;
+        id = Integer.toString(i,16) + "["+Integer.toString(this.getClass().hashCode(),16)+"]";
     }
 }

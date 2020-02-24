@@ -18,8 +18,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static Main.Launcher.loader;
-
 public class AppController implements Initializable {
 
     @FXML private Pane main;
@@ -28,7 +26,7 @@ public class AppController implements Initializable {
 
     /* LOG */
     @FXML private Button logBtn;
-    private Node logNode;
+    private Node monitoringNode;
     private MonitoringController monitoringController;
 
     /* CONFIGURATIONS */
@@ -52,29 +50,24 @@ public class AppController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.getItems().forEach(i-> i.setFocusTraversable(false));
         try {
-            initializeLogTab();
+            initializeMonitoringTab();
             initializeConfigurationTab();
             initializeFilesTab();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        mainPane.getChildren().add(logNode);
+        mainPane.getChildren().add(monitoringNode);
         logBtn.setDisable(true);
     }
 
     public void postInit(){
         filesController.loadFiles();
         monitoringController.postInit();
-//        try {
-////            initializeNewFileTab();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
-    public void initializeLogTab() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Utils.LogUI);
-        logNode = fxmlLoader.load();
+    public void initializeMonitoringTab() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Utils.MonitoringUI);
+        monitoringNode = fxmlLoader.load();
         monitoringController = fxmlLoader.getController();
     }
 
@@ -102,7 +95,7 @@ public class AppController implements Initializable {
         b.setDisable(true);
         switch (b.getId()){
             case "logBtn":
-                mainPane.getChildren().set(0,logNode);
+                mainPane.getChildren().set(0, monitoringNode);
                 Launcher.scene.getWindow().setHeight(489);
                 break;
             case "cfgBtn":
@@ -120,13 +113,17 @@ public class AppController implements Initializable {
         }
     }
 
-//    public void clearLog(Integer n) {
-//        logController.clearLog(n);
-//    }
+    public void updateUI(){
+        monitoringController.updateUI();
+    }
 
-//    public void appendLog(String ln) {
-//        logController.appendLog(ln);
-//    }
+    public void updateFileList(){
+        monitoringController.updateFileList();
+    }
+
+    public void updateFileDisplay(){
+        monitoringController.updateFileDisplay();
+    }
 
     private void enableButtons(){
         for (Node n: menuBar.getItems()){

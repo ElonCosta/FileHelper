@@ -8,3 +8,7 @@
     -fx-background-radius: 0 0 0 0 !important;
     -fx-start-margin: 0;
 }
+
+.check{
+    -fx-graphic: url('/Images/new.png');
+}

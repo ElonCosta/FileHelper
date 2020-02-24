@@ -339,13 +339,17 @@ public class FilesArchive implements ConfigInterface {
             this.disabled = disabled;
         }
 
-        Boolean isDisabled(){
+        private Boolean isDisabled(){
             return disabled;
         }
 
-        String getDefaultLatestFolder(){
+        private String getDefaultLatestFolder(){
             return config.getGlobal().getVersionFolder().getAbsolutePath() + File.separator + parent.getName() + File.separator + file.getName();
         }
+
+
+
+
 
         /*
          * Getters && Setters

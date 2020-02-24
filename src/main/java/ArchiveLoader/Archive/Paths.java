@@ -2,14 +2,19 @@ package ArchiveLoader.Archive;
 
 import Utils.ConfigInterface;
 import Utils.Utils;
+import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import Utils.Utils.STATUS;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import static Main.Launcher.config;
-import static Main.Launcher.log;
+import static Main.Launcher.*;
 import static Utils.Utils.getShorthandPath;
 import static Utils.Utils.put;
 
@@ -26,6 +31,9 @@ public class Paths implements ConfigInterface {
 
     private String filePath;
     private String destPath;
+
+    private Date lastMod;
+    private SimpleDateFormat archSDF = new SimpleDateFormat("/yyyy/MM/dd/HH_mm/");
 
     private JSONObject JSONPaths;
 
@@ -58,6 +66,64 @@ public class Paths implements ConfigInterface {
 
     public String getDefaultLatestFolder() {
         return config.getGlobal().getVersionFolder().getAbsolutePath() + File.separator + parent.getName() + File.separator + file.getName();
+    }
+
+    void check(){
+        if (isEnabled()){
+            status = STATUS.CHECKING;
+            app.updateFileList();
+            try{
+                if ((!dest.exists()) || (FileUtils.isFileNewer(file, dest))) {
+//                    if (parent.getArchiveFiles() && config.getGlobal().getArchiveFiles()) archiveFile(dest);
+                    createFile(file, dest);
+                    save();
+                }
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            status = STATUS.READY;
+            app.updateFileList();
+        }
+    }
+
+    private void archiveFile(File destFile) throws IOException {
+        if (!destFile.exists()) return;
+        if (destFile.isDirectory()) {
+            File arch = new File(config.getGlobal().getArchiveFolderName() + (archSDF.format(lastMod)) + "/" + parent.getName() + "/" + destFile.getName());
+            if (arch.mkdirs()) {
+                FileUtils.copyDirectory(destFile, arch, true);
+            }
+        }else{
+            File arch = new File(config.getGlobal().getArchiveFolderName() + (archSDF.format(lastMod)) + "/" + parent.getName() + "/" + destFile.getName());
+            if (arch.mkdirs()) {
+                FileUtils.copyFileToDirectory(destFile, arch, true);
+            }
+        }
+    }
+
+    private void createFile(File file, File destFile) throws IOException{
+        if (delete(destFile) || !destFile.exists()){
+            if (file.isDirectory()){
+                if (destFile.mkdir()){
+                    FileUtils.copyDirectory(file,destFile,true);
+                }
+            }else{
+                destFile = new File(destFile.getParent());
+                FileUtils.copyFileToDirectory(file, destFile, true);
+            }
+        }
+    }
+
+    private boolean delete(File file) {
+        File[] contents = file.listFiles();
+        if (contents != null) {
+            for (File f : contents) {
+                if (!Files.isSymbolicLink(f.toPath())) {
+                    delete(f);
+                }
+            }
+        }
+        return file.delete();
     }
 
     /*
@@ -190,7 +256,6 @@ public class Paths implements ConfigInterface {
     public Object getAsObject() {
         return JSONPaths;
     }
-
     @Override
     public String toString() {
         return dest == null ? "New Path" : getShorthandPath(dest);

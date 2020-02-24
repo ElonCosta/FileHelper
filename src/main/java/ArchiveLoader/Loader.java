@@ -11,6 +11,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.stream.Collectors;
 
 import static Main.Launcher.config;
 import static Main.Launcher.log;
@@ -18,13 +21,15 @@ import static Utils.Utils.getString;
 
 public class Loader {
 
-    private Map<String, Archive> archiveMap = new HashMap<>();
+    private List<Archive> archives = new ArrayList<>();
     private List<Archive> newArchives = new ArrayList<>();
 
     private Boolean paused;
 
-    public Loader(){
+    private ThreadPoolExecutor executor;
 
+    public Loader(){
+        executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(6);
     }
 
     public void load(){
@@ -38,17 +43,20 @@ public class Loader {
         if (config.getGlobal().getVersionFolder().mkdirs()) log.println("Creating " + config.getGlobal().getVersionFolderName());
     }
 
+    public void check(){
+        archives.stream().filter(a -> a.getStatus() == Utils.STATUS.READY).forEach(a -> executor.submit(a::check));
+    }
+
     public void checkForFiles(){
         try{
             if (config.getDataFiles().getDataFilesList().size() > 0){
                 for (JSONObject d: config.getDataFiles().getDataFilesList()){
-                    if (archiveMap.get(getString(d, Utils.KEY.NAME)) == null){
                         FileReader fr = new FileReader(new File(getString(d, Utils.KEY.PATH)));
                         JSONTokener t = new JSONTokener(fr);
                         Archive data = new Archive(new JSONObject(t));
                         fr.close();
-                        archiveMap.put(getString(d, Utils.KEY.NAME),data);
-                    }
+                    if (archives.stream().map(Archive::getId).collect(Collectors.toList()).contains(data.getId())) continue;
+                        archives.add(data);
                 }
             }
 
@@ -56,9 +64,8 @@ public class Loader {
             f.printStackTrace();
         }
     }
-
-    public Map<String, Archive> getArchiveMap() {
-        return archiveMap;
+    public List<Archive> getArchives() {
+        return archives;
     }
 
     public List<Archive> getNewArchives() {

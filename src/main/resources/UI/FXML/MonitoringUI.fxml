@@ -12,9 +12,9 @@
    </Group>
    <AnchorPane layoutX="6.0" layoutY="6.0" prefHeight="330.0" prefWidth="230.0" styleClass="panels">
       <TreeView fx:id="collections" focusTraversable="false" layoutX="5.0" layoutY="35.0" onMousePressed="#selectArchive" prefHeight="290.0" prefWidth="220.0" style="-fx-border-width: 0;" />
-      <Button layoutX="5.0" layoutY="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
-      <Button layoutX="170.0" layoutY="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
-      <Button fx:id="createArchive" layoutX="200.0" layoutY="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" onAction="#create"/>
+      <Button layoutX="5.0" layoutY="5.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
+      <Button fx:id="removeArchive" layoutX="170.0" layoutY="5.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
+      <Button fx:id="createArchive" layoutX="200.0" layoutY="5.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#create" prefHeight="25.0" prefWidth="25.0" styleClass="check" />
    </AnchorPane>
    <AnchorPane layoutX="247.0" layoutY="6.0" prefHeight="330.0" prefWidth="272.0" styleClass="panels">
       <Group layoutX="5.0" layoutY="5.0">
@@ -24,16 +24,16 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="fileName" layoutY="25.0" prefHeight="25.0" prefWidth="340.0" onKeyReleased="#updateArchiveName"/>
+            <TextField fx:id="fileName" layoutY="25.0" onKeyReleased="#updateArchiveName" prefHeight="25.0" prefWidth="340.0" />
          </Group>
-         <CheckBox fx:id="archiveFile" layoutY="55.0" mnemonicParsing="false" text="Archive files" onAction="#updateArchiveArchiveFile"/>
+         <CheckBox fx:id="archiveFile" layoutY="55.0" mnemonicParsing="false" onAction="#updateArchiveArchiveFile" text="Archive files" />
          <Label fx:id="lastMod" layoutX="192.0" layoutY="55.0" text="Last Mod: " />
          <Label fx:id="enabled" layoutX="244.0" layoutY="77.0" text="0/0 Paths enabled" />
       </Group>
       <Separator layoutX="1.0" layoutY="129.0" prefHeight="3.0" prefWidth="347.0" />
       <Group fx:id="pathBtns" layoutX="297.0" layoutY="104.0">
-         <Button fx:id="createPath" layoutX="28.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" onAction="#create" />
-         <Button layoutX="5.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" />
+         <Button fx:id="createPath" layoutX="28.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#create" prefHeight="0.0" prefWidth="0.0" />
+         <Button fx:id="removePath" layoutX="5.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" />
       </Group>
       <Group layoutX="5.0" layoutY="142.0">
          <Group>
@@ -62,15 +62,17 @@
       </Group>
       <Group fx:id="ready" layoutX="325.0" layoutY="5.0">
          <children>
-            <Button maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#editArchive"/>
+            <Button maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#editArchive" />
             <Button layoutY="133.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#editArchive" prefHeight="15.0" prefWidth="15.0" />
-            <Button layoutX="-320.0" layoutY="99.0" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" />
-            <Button layoutX="-295.0" layoutY="99.0" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" />
+            <Button fx:id="checkThis" layoutX="-320.0" layoutY="99.0" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" />
+            <Button fx:id="checkThisPath" layoutX="-295.0" layoutY="99.0" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false">
+               <tooltip><Tooltip text="my tooltip" /></tooltip>
+            </Button>
          </children>
       </Group>
    </AnchorPane>
    <AnchorPane layoutX="6.0" layoutY="347.0" prefHeight="50.0" prefWidth="590.0" styleClass="panels">
-      <ToggleButton layoutX="545.0" layoutY="5.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="500.0" layoutY="5.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" />
+      <ToggleButton fx:id="pause" layoutX="545.0" layoutY="5.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="check" layoutX="500.0" layoutY="5.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#check" prefHeight="40.0" prefWidth="40.0" />
    </AnchorPane>
 </AnchorPane>

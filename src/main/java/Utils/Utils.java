@@ -6,21 +6,29 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.net.MalformedURLException;
+import java.io.InputStream;
 import java.net.URL;
 
 import static Utils.Utils.KEY.*;
 
 public class Utils {
 
+    /*FXML FILES*/
     public static final URL AppUI        = Utils.class.getResource("/UI/FXML/AppUI.fxml");
-    public static final URL LogUI        = Utils.class.getResource("/UI/FXML/MonitoringUI.fxml");
     public static final URL ConfigUI     = Utils.class.getResource("/UI/FXML/ConfigurationsUI.fxml");
     public static final URL FilesUI      = Utils.class.getResource("/UI/FXML/File/FileUI.fxml");
     public static final URL FilesTabUI   = Utils.class.getResource("/UI/FXML/File/FileTab.fxml");
     public static final URL PathsTabUI   = Utils.class.getResource("/UI/FXML/File/PathsTab.fxml");
     public static final URL NewFileUI    = Utils.class.getResource("/UI/FXML/NewFile/NewFileUI.fxml");
     public static final URL NFPathsTabUI = Utils.class.getResource("/UI/FXML/NewFile/PathsTab.fxml");
+    public static final URL MonitoringUI = Utils.class.getResource("/UI/FXML/MonitoringUI.fxml");
+
+    /*IMAGES FILES*/
+    public static final URL CheckThisFile = Utils.class.getResource("/UI/CSS/Images/checkThis.svg");
+    public static final URL Check = Utils.class.getResource("/UI/CSS/Images/check.svg");
+    public static final URL Pause = Utils.class.getResource("/UI/CSS/Images/paused.svg");
+    public static final URL remove = Utils.class.getResource("/UI/CSS/Images/remove.svg");
+    public static final URL add = Utils.class.getResource("/UI/CSS/Images/new.svg");
 
     public static KEY[] globalKeys = new KEY[]{DISPLAY_TIME,ARCHIVE_FILES, VERSION_FOLDER, ROOT_FOLDER, ROUTINE_TIME, ARCHIVE_FOLDER, HASH_KEY};
     public static KEY[] configKeys = new KEY[]{CFG_VERSION, GLOBAL, DATA_FILES};
@@ -51,6 +59,7 @@ public class Utils {
         DEST("dest"),
         DISABLED("disabled"),
 
+        ID("id"),
         NAME("name"),
         PATH("path");
 
@@ -87,7 +96,8 @@ public class Utils {
     public enum STATUS {
         EDITING,
         NEW,
-        READY
+        READY,
+        CHECKING
     }
 
     public static String getShorthandPath(File file){
