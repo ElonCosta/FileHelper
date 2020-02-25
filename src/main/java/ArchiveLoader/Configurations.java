@@ -151,11 +151,6 @@ public class Configurations implements ConfigInterface {
         private File archiveFolder;
 
         @Getter @Setter
-        private Boolean displayTime;
-        @Getter @Setter
-        private Boolean archiveFiles;
-
-        @Getter @Setter
         private Integer routineTime;
 
         @Getter @Setter
@@ -171,8 +166,6 @@ public class Configurations implements ConfigInterface {
 
         JSONObject getEmptyGlobal(){
             JSONObject JSONGlobal = new JSONObject();
-            put(JSONGlobal, DISPLAY_TIME, true);
-            put(JSONGlobal, ARCHIVE_FILES, true);
             put(JSONGlobal, ROOT_FOLDER, "Source");
             put(JSONGlobal, ARCHIVE_FOLDER, "Source\\Archive");
             put(JSONGlobal, VERSION_FOLDER, "Source\\Latest");
@@ -197,9 +190,6 @@ public class Configurations implements ConfigInterface {
             archiveFolderName = getString(JSONGlobal, ARCHIVE_FOLDER);
             archiveFolder = new File(archiveFolderName);
 
-            displayTime = getBoolean(JSONGlobal, DISPLAY_TIME);
-            archiveFiles = getBoolean(JSONGlobal, ARCHIVE_FILES);
-
             routineTime = getInteger(JSONGlobal, ROUTINE_TIME);
 
             hashKey = getString(JSONGlobal, HASH_KEY);
@@ -211,8 +201,6 @@ public class Configurations implements ConfigInterface {
             put(JSONGlobal,VERSION_FOLDER,versionFolder.getAbsolutePath());
             put(JSONGlobal,ROOT_FOLDER,rootFolder.getAbsolutePath());
             put(JSONGlobal,ROUTINE_TIME,routineTime);
-            put(JSONGlobal,DISPLAY_TIME,displayTime);
-            put(JSONGlobal,ARCHIVE_FILES,archiveFiles);
             put(JSONGlobal,HASH_KEY,hashKey);
         }
 
@@ -227,10 +215,6 @@ public class Configurations implements ConfigInterface {
                 if (!isNull(JSONGlobal, k)) continue;
                 Object value;
                 switch(k) {
-                    case DISPLAY_TIME:
-                    case ARCHIVE_FILES:
-                        value = true;
-                        break;
                     case ROOT_FOLDER:
                         value = "Source";
                         break;

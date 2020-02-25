@@ -25,7 +25,7 @@ public class Utils {
     public static final URL remove        = Utils.class.getResource("/UI/CSS/Images/remove.svg");
     public static final URL add           = Utils.class.getResource("/UI/CSS/Images/new.svg");
 
-    public static KEY[] globalKeys = new KEY[]{DISPLAY_TIME,ARCHIVE_FILES, VERSION_FOLDER, ROOT_FOLDER, ROUTINE_TIME, ARCHIVE_FOLDER, HASH_KEY};
+    public static KEY[] globalKeys = new KEY[]{VERSION_FOLDER, ROOT_FOLDER, ROUTINE_TIME, ARCHIVE_FOLDER, HASH_KEY};
     public static KEY[] configKeys = new KEY[]{CFG_VERSION, GLOBAL, DATA_FILES};
     public enum KEY {
 
@@ -36,8 +36,6 @@ public class Utils {
         DATA_FILES("DataFiles"),
 
         //Global keys
-        DISPLAY_TIME("displayTime"),
-        ARCHIVE_FILES("archiveFiles"),
         VERSION_FOLDER("versionFolder"),
         ROOT_FOLDER("rootFolder"),
         ROUTINE_TIME("routineTime"),
@@ -72,11 +70,7 @@ public class Utils {
     }
     public enum UIVE {
         VERSION("1.2b"),
-        TITLE("File Helper v" + VERSION.var),
-        LOG_BUTTON_NAME("Log"),
-        CONFIG_BUTTON_NAME("Configurations"),
-        FILES_BUTTON_NAME("Files"),
-        NEW_FILE_BUTTON_NAME("New file");
+        TITLE("File Helper v" + VERSION.var);
 
         String var;
 

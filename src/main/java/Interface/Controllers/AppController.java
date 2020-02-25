@@ -26,11 +26,6 @@ public class AppController implements Initializable {
     private Node monitoringNode;
     private MonitoringController monitoringController;
 
-    /* CONFIGURATIONS */
-    @FXML private Button cfgBtn;
-    private Node cfgNode;
-    private ConfigurationsController configurationsController;
-
     @FXML private AnchorPane mainPane;
 
     @Override
@@ -38,7 +33,6 @@ public class AppController implements Initializable {
         menuBar.getItems().forEach(i-> i.setFocusTraversable(false));
         try {
             initializeMonitoringTab();
-            initializeConfigurationTab();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,24 +50,10 @@ public class AppController implements Initializable {
         monitoringController = fxmlLoader.getController();
     }
 
-    public void initializeConfigurationTab() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Utils.ConfigUI);
-        cfgNode = fxmlLoader.load();
-        configurationsController = fxmlLoader.getController();
-    }
-
     @FXML private void changeScene(ActionEvent e){
         Button b = (Button) e.getSource();
         enableButtons();
         b.setDisable(true);
-        switch (b.getId()){
-            case "monitoringBtn":
-                mainPane.getChildren().set(0, monitoringNode);
-                break;
-            case "cfgBtn":
-                mainPane.getChildren().set(0,cfgNode);
-                break;
-        }
     }
 
     public void updateUI(){

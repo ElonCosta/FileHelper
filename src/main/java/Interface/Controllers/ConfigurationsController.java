@@ -34,10 +34,6 @@ public class ConfigurationsController implements Initializable {
 
     @FXML private SpinnerValueFactory<Integer> routineFld;
 
-    @FXML private CheckBox displayTime;
-
-    @FXML private CheckBox archiveFiles;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         global = Launcher.config.getGlobal();
@@ -49,9 +45,6 @@ public class ConfigurationsController implements Initializable {
         rootFld.setText(getShorthandPath(global.getRootFolder()));
         archiveFld.setText(getShorthandPath(global.getArchiveFolder()));
         latestFld.setText(getShorthandPath(global.getVersionFolder()));
-
-        displayTime.setSelected(global.getDisplayTime());
-        archiveFiles.setSelected(global.getArchiveFiles());
 
         routineFld.setValue(global.getRoutineTime());
     }
@@ -107,13 +100,5 @@ public class ConfigurationsController implements Initializable {
 
     @FXML private void updateRoutineTime(){
         global.setRoutineTime(routineFld.getValue());
-    }
-
-    @FXML private void updateDisplayTime(){
-        global.setDisplayTime(displayTime.isSelected());
-    }
-
-    @FXML private void updateArchiveFiles(){
-        global.setArchiveFiles(archiveFiles.isSelected());
     }
 }
