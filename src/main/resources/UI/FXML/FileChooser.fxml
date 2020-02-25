@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="415.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Components.FileChooser.FileChooserController">
+   <children>
+      <TreeTableView layoutX="15.0" layoutY="45.0" prefHeight="295.0" prefWidth="570.0" />
+      <TextField layoutX="120.0" layoutY="15.0" prefHeight="25.0" prefWidth="255.0" />
+      <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
+      <Button layoutX="40.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
+      <Button layoutX="95.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
+      <Button layoutX="560.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
+      <TextField layoutX="405.0" layoutY="15.0" minWidth="150.0" prefHeight="25.0" prefWidth="155.0" />
+      <ComboBox layoutX="405.0" layoutY="345.0" prefHeight="25.0" prefWidth="180.0" AnchorPane.bottomAnchor="45.0" />
+      <TextField layoutX="65.0" layoutY="345.0" prefHeight="25.0" prefWidth="310.0" />
+      <Button layoutX="500.0" layoutY="375.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Cancel" />
+      <Button layoutX="405.0" layoutY="375.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Select" />
+   </children>
+</AnchorPane>

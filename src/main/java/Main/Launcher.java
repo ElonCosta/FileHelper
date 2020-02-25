@@ -4,7 +4,6 @@ import ArchiveLoader.Archive.Archive;
 import ArchiveLoader.Configurations;
 import ArchiveLoader.Loader;
 import Interface.Controllers.AppController;
-import Log.Log;
 import Utils.Utils;
 import com.Hasher.Hasher;
 import javafx.application.Application;
@@ -29,7 +28,6 @@ public class Launcher extends Application {
     public static AppController app;
     public static Configurations config;
     public static Hasher hasher;
-    public static Log log;
     public static Loader loader;
 
     public static void main(String[] args) {
@@ -44,16 +42,12 @@ public class Launcher extends Application {
 
         primaryStage.setTitle(UIVE.TITLE.getVar());
         primaryStage.setResizable(false);
-        primaryStage.setMaxWidth(607);
-//        primaryStage.setMaxHeight(479);
 
         config = new Configurations();
         config.loadHasher();
         FXMLLoader fxmlLoader = new FXMLLoader(AppUI);
         scene = new Scene(fxmlLoader.load());
         app = fxmlLoader.getController();
-//        log = new Log();
-//        config.loadCommands();
         loader = new Loader();
 
         primaryStage.setScene(scene);

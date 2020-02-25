@@ -1,8 +1,9 @@
 package ArchiveLoader;
 
 import Utils.ConfigInterface;
-import Log.Command;
 import com.Hasher.Hasher;
+import lombok.Getter;
+import lombok.Setter;
 import org.json.*;
 
 import java.io.File;
@@ -19,8 +20,11 @@ public class Configurations implements ConfigInterface {
 
     private JSONObject config;
 
+    @Getter
     private Float ConfigVersion;
+    @Getter
     private Global global;
+    @Getter
     private DataFiles dataFiles;
 
 
@@ -47,10 +51,6 @@ public class Configurations implements ConfigInterface {
         }
     }
 
-    public void loadCommands(){
-        global.loadCommands();
-    }
-
     public void loadHasher(){
         if (global.getHashKey().trim().equals("")){
             hasher = new Hasher();
@@ -59,16 +59,6 @@ public class Configurations implements ConfigInterface {
             hasher = new Hasher(global.getHashKey());
         }
         save();
-    }
-
-    /* Getters */
-
-    public Global getGlobal() {
-        return global;
-    }
-
-    public DataFiles getDataFiles() {
-        return dataFiles;
     }
 
     /* Methods inherited from ConfigInterface */
@@ -143,21 +133,32 @@ public class Configurations implements ConfigInterface {
 
     public class Global implements ConfigInterface{
 
+        @Getter
         private JSONObject JSONGlobal;
 
+        @Getter @Setter
         private String versionFolderName;
+        @Getter @Setter
         private String rootFolderName;
+        @Getter @Setter
         private String archiveFolderName;
 
+        @Getter @Setter
         private File versionFolder;
+        @Getter @Setter
         private File rootFolder;
+        @Getter @Setter
         private File archiveFolder;
 
+        @Getter @Setter
         private Boolean displayTime;
+        @Getter @Setter
         private Boolean archiveFiles;
 
+        @Getter @Setter
         private Integer routineTime;
 
+        @Getter @Setter
         private String hashKey;
 
         private Global(JSONObject JSONGlobal){
@@ -179,117 +180,6 @@ public class Configurations implements ConfigInterface {
             put(JSONGlobal, HASH_KEY, "");
 
             return JSONGlobal;
-        }
-
-        /* Getters || Setters */
-
-        public String getVersionFolderName() {
-            return versionFolderName;
-        }
-
-        public String getRootFolderName() {
-            return rootFolderName;
-        }
-
-        public String getArchiveFolderName() {
-            return archiveFolderName;
-        }
-
-        public File getVersionFolder() {
-            return versionFolder;
-        }
-
-        public File getRootFolder() {
-            return rootFolder;
-        }
-
-        public File getArchiveFolder() {
-            return archiveFolder;
-        }
-
-        public Boolean getDisplayTime() {
-            return displayTime;
-        }
-
-        public Boolean getArchiveFiles() {
-            return archiveFiles;
-        }
-
-        public Integer getRoutineTime() {
-            return routineTime;
-        }
-
-        public String getHashKey(){
-            return hashKey;
-        }
-
-        public void setRootFolder(File rootFolder){
-            if (!rootFolder.getAbsolutePath().equals(this.rootFolder.getAbsolutePath())){
-                log.println("Changing \"" + getShorthandPath(this.rootFolder, false) + "\" to \"" + getShorthandPath(rootFolder, false)   + "\"");
-                this.rootFolder = rootFolder;
-            }
-            Configurations.this.save();
-        }
-
-        public void setArchiveFolder(File archiveFolder) {
-            if (!archiveFolder.getAbsolutePath().equals(this.archiveFolder.getAbsolutePath())){
-                log.println("Changing \"" + getShorthandPath(this.archiveFolder, false) + "\" to \"" + getShorthandPath(archiveFolder, false)  + "\"");
-                this.archiveFolder = archiveFolder;
-            }
-            Configurations.this.save();
-        }
-
-        public void setVersionFolder(File versionFolder) {
-            if (!versionFolder.getAbsolutePath().equals(this.versionFolder.getAbsolutePath())){
-                log.println("Changing \"" + getShorthandPath(this.versionFolder, false) + "\" to \"" + getShorthandPath(versionFolder, false)  + "\"");
-                this.versionFolder = versionFolder;
-            }
-            Configurations.this.save();
-        }
-
-        public void setDisplayTime(Boolean displayTime){
-            if (this.displayTime && displayTime){
-                log.println("Time display is already enabled");
-            }else if (!this.displayTime && !displayTime){
-                log.println("Time display is already disabled");
-            }else {
-                if (displayTime){
-                    log.println("Enabling time display");
-                    this.displayTime = true;
-                }else {
-                    log.println("Disabling time display");
-                    this.displayTime = false;
-                }
-            }
-            Configurations.this.save();
-        }
-        public void setArchiveFiles(Boolean archiveFiles){
-            if (this.archiveFiles && archiveFiles){
-                log.println("File archiving is already enabled");
-            }else if (!this.archiveFiles && !archiveFiles){
-                log.println("File archiving is already disabled");
-            }else {
-                if (archiveFiles){
-                    this.archiveFiles = true;
-                    log.println("Enabling file archiving");
-                }else {
-                    this.archiveFiles = false;
-                    log.println("Disabling file archiving");
-                }
-            }
-            Configurations.this.save();
-        }
-        public void setRoutineTime(Integer routineTime){
-            if (this.routineTime.equals(routineTime)){
-                log.println("The routine delay already is: " + routineTime);
-            }else{
-                this.routineTime = routineTime;
-            }
-            Configurations.this.save();
-        }
-
-        public void setHashKey(String hashKey){
-            this.hashKey = hashKey;
         }
 
         /* Methods inherited from ConfigInterface */
@@ -363,50 +253,13 @@ public class Configurations implements ConfigInterface {
                 put(JSONGlobal, k, value);
             }
         }
-
-        /* Commands */
-
-        private void loadCommands(){
-            log.newCommand(new Command("displayTime", "v") {
-                @Override
-                public void run() {
-                    if(this.argsLoad){
-                        Boolean setTo = getArg("v").getAsBoolean();
-                        if (setTo == null){
-                            log.println("Invalid value \""+getArg("v")+"\"");
-                            return;
-                        }
-                        setDisplayTime(setTo);
-                    }else {
-                        setDisplayTime(!displayTime);
-                    }
-                }}, new Command("archiveFiles", "v") {
-                @Override
-                public void run() {
-                    if(this.argsLoad){
-                        Boolean setTo = getArg("v").getAsBoolean();
-                        if (setTo == null){
-                            log.println("Invalid value \""+getArg("v")+"\"");
-                            return;
-                        }
-                        setArchiveFiles(setTo);
-                    }else {
-                        setArchiveFiles(!archiveFiles);
-                    }
-                }}, new Command(false,"setRoutineTime","v") {
-                @Override
-                public void run() {
-                    Integer setTo = getArg("v").getAsInteger();
-                    setRoutineTime(setTo);
-                    log.println("Setting routine delay to: " + routineTime);
-                }}
-            );
-        }
     }
     public class DataFiles implements ConfigInterface{
 
+        @Getter
         private JSONArray JSONDataFiles;
 
+        @Getter
         private List<JSONObject> dataFilesList = new ArrayList<>();
 
         private DataFiles(JSONArray JSONDataFiles){
@@ -444,12 +297,6 @@ public class Configurations implements ConfigInterface {
                 dataFilesList.remove(pos);
             }
             Configurations.this.save();
-        }
-
-        /* Getters */
-
-        List<JSONObject> getDataFilesList(){
-            return dataFilesList;
         }
 
         /* Methods inherited from ConfigInterface */

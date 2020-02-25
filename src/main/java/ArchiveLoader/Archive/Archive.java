@@ -1,8 +1,9 @@
 package ArchiveLoader.Archive;
 
-import ArchiveLoader.FilesArchive;
 import Utils.ConfigInterface;
 import Utils.Utils;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,23 +27,26 @@ public class Archive implements ConfigInterface {
 
     private JSONObject JSONData;
 
+    @Getter @Setter
     private STATUS status;
 
     private File dataPath;
 
+    @Getter @Setter
     private String name;
+    @Getter
     private String id;
+    @Getter @Setter
     private Boolean archiveFiles;
-
-    private volatile Thread thread;
 
     private JSONArray JSONPaths;
     private List<JSONObject> JSONPathsList;
+    @Getter @Setter
     private List<Paths> pathsList;
+    @Getter @Setter
     private List<Paths> newPathsList;
 
-    private boolean checkDisabled = false;
-
+    @Getter
     private String lastMod;
 
     private SimpleDateFormat lastModSDF = new SimpleDateFormat("yyyy/MM/dd HH:mm");
@@ -51,9 +55,7 @@ public class Archive implements ConfigInterface {
         this.JSONData = JSONData;
         load();
         File latestFolder = new File(config.getGlobal().getVersionFolderName() + "/" + name);
-        if (latestFolder.mkdir()){
-            log.println("Creating root folder for file(s): " + name);
-        }
+        if (latestFolder.mkdir());
     }
 
     public Archive() {
@@ -79,13 +81,20 @@ public class Archive implements ConfigInterface {
         return tmp;
     }
 
+    public void archiveFiles(){
+        status = STATUS.ARCHIVING;
+        app.updateFileList();
+        pathsList.forEach(Paths::archiveFile);
+        status = STATUS.READY;
+        app.updateFileList();
+    }
+
     public void check(){
         status = STATUS.CHECKING;
         app.updateFileList();
         pathsList.forEach(Paths::check);
         status = STATUS.READY;
         app.updateFileList();
-        System.out.println(name);
     }
 
     private Boolean allPathsDisabled(){
@@ -102,65 +111,13 @@ public class Archive implements ConfigInterface {
         newPathsList.add(path);
         return path;
     }
-    /*
-     * Getters && Setters
-     */
 
-    public String getName() {
-        return name;
+    public void generateId(){
+        int i = this.hashCode();
+        i = i << 8;
+        id = Integer.toString(i,16) + "["+Integer.toString(this.getClass().hashCode(),16)+"]";
     }
 
-    public Boolean getArchiveFiles() {
-        return archiveFiles;
-    }
-
-    public String getLastMod() {
-        return lastMod;
-    }
-
-    public List<Paths> getPathsList(){
-        return pathsList;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setArchiveFiles(Boolean archiveFiles) {
-        this.archiveFiles = archiveFiles;
-    }
-
-    public void setPathsList(List<Paths> pathsList) {
-        this.pathsList = pathsList;
-    }
-
-    public void setLastMod(String lastMod) {
-        this.lastMod = lastMod;
-    }
-
-    public boolean isCheckDisabled() {
-        return checkDisabled;
-    }
-
-    public void setCheckDisabled(boolean checkDisabled) {
-        this.checkDisabled = checkDisabled;
-    }
-
-    public STATUS getStatus() {
-        return status;
-    }
-
-    public void setStatus(STATUS status) {
-        this.status = status;
-    }
-
-    public List<Paths> getNewPathsList() {
-        return newPathsList;
-    }
-
-    public String getId(){
-        return id;
-    }
     /*
      * Methods inherited from ConfigInterface
      */
@@ -234,33 +191,5 @@ public class Archive implements ConfigInterface {
     @Override
     public String toString() {
         return name == null ? "New File" : name;
-    }
-
-    /*
-     * Commands
-     */
-
-    public void disablePath(Integer pos, Boolean disable){
-        Paths paths = pathsList.get(pos);
-        if (paths.isDisabled() && disable){
-            log.println("Path already is disabled");
-        }else if (!paths.isDisabled() && !disable){
-            log.println("Path already is enabled");
-        }else {
-            if (disable){
-                paths.disablePath(true);
-                log.println("Disabling \"" + name + "\" path #"+ (pos + 1));
-            }else {
-                paths.disablePath(false);
-                log.println("Enabling \"" + name + "\" path #"+ (pos + 1));
-            }
-        }
-        save();
-    }
-
-    public void generateId(){
-        int i = this.hashCode();
-        i = i << 8;
-        id = Integer.toString(i,16) + "["+Integer.toString(this.getClass().hashCode(),16)+"]";
     }
 }

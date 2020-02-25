@@ -16,19 +16,14 @@ public class Utils {
     /*FXML FILES*/
     public static final URL AppUI        = Utils.class.getResource("/UI/FXML/AppUI.fxml");
     public static final URL ConfigUI     = Utils.class.getResource("/UI/FXML/ConfigurationsUI.fxml");
-    public static final URL FilesUI      = Utils.class.getResource("/UI/FXML/File/FileUI.fxml");
-    public static final URL FilesTabUI   = Utils.class.getResource("/UI/FXML/File/FileTab.fxml");
-    public static final URL PathsTabUI   = Utils.class.getResource("/UI/FXML/File/PathsTab.fxml");
-    public static final URL NewFileUI    = Utils.class.getResource("/UI/FXML/NewFile/NewFileUI.fxml");
-    public static final URL NFPathsTabUI = Utils.class.getResource("/UI/FXML/NewFile/PathsTab.fxml");
     public static final URL MonitoringUI = Utils.class.getResource("/UI/FXML/MonitoringUI.fxml");
 
     /*IMAGES FILES*/
     public static final URL CheckThisFile = Utils.class.getResource("/UI/CSS/Images/checkThis.svg");
-    public static final URL Check = Utils.class.getResource("/UI/CSS/Images/check.svg");
-    public static final URL Pause = Utils.class.getResource("/UI/CSS/Images/paused.svg");
-    public static final URL remove = Utils.class.getResource("/UI/CSS/Images/remove.svg");
-    public static final URL add = Utils.class.getResource("/UI/CSS/Images/new.svg");
+    public static final URL Check         = Utils.class.getResource("/UI/CSS/Images/check.svg");
+    public static final URL Pause         = Utils.class.getResource("/UI/CSS/Images/paused.svg");
+    public static final URL remove        = Utils.class.getResource("/UI/CSS/Images/remove.svg");
+    public static final URL add           = Utils.class.getResource("/UI/CSS/Images/new.svg");
 
     public static KEY[] globalKeys = new KEY[]{DISPLAY_TIME,ARCHIVE_FILES, VERSION_FOLDER, ROOT_FOLDER, ROUTINE_TIME, ARCHIVE_FOLDER, HASH_KEY};
     public static KEY[] configKeys = new KEY[]{CFG_VERSION, GLOBAL, DATA_FILES};
@@ -94,6 +89,7 @@ public class Utils {
         }
     }
     public enum STATUS {
+        ARCHIVING,
         EDITING,
         NEW,
         READY,
@@ -119,7 +115,7 @@ public class Utils {
     }
 
     public static boolean isWritable(KeyEvent e){
-        return e.getCode().isArrowKey() || e.getCode().isFunctionKey() || e.getCode().isMediaKey() || e.getCode().isModifierKey() || e.getCode().isNavigationKey() || (e.getCode().isWhitespaceKey() && (!e.getCode().equals(KeyCode.SPACE) && !e.getCode().equals(KeyCode.BACK_SPACE)));
+        return e.getCode().isDigitKey() || e.getCode().isLetterKey() || e.getCode().equals(KeyCode.BACK_SPACE) || e.getCode().equals(KeyCode.SPACE);
     }
 
     /* JSON Utils */

@@ -2,6 +2,9 @@ package ArchiveLoader.Archive;
 
 import Utils.ConfigInterface;
 import Utils.Utils;
+import com.jcraft.jsch.IO;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,19 +23,23 @@ import static Utils.Utils.put;
 
 public class Paths implements ConfigInterface {
 
+    @Getter @Setter
     private Archive parent;
 
+    @Getter @Setter
     private STATUS status;
 
+    @Getter @Setter
     private File file;
+    @Getter @Setter
     private File dest;
 
+    @Getter @Setter
     private Boolean disabled;
 
     private String filePath;
     private String destPath;
 
-    private Date lastMod;
     private SimpleDateFormat archSDF = new SimpleDateFormat("/yyyy/MM/dd/HH_mm/");
 
     private JSONObject JSONPaths;
@@ -74,7 +81,6 @@ public class Paths implements ConfigInterface {
             app.updateFileList();
             try{
                 if ((!dest.exists()) || (FileUtils.isFileNewer(file, dest))) {
-//                    if (parent.getArchiveFiles() && config.getGlobal().getArchiveFiles()) archiveFile(dest);
                     createFile(file, dest);
                     save();
                 }
@@ -86,19 +92,26 @@ public class Paths implements ConfigInterface {
         }
     }
 
-    private void archiveFile(File destFile) throws IOException {
-        if (!destFile.exists()) return;
-        if (destFile.isDirectory()) {
-            File arch = new File(config.getGlobal().getArchiveFolderName() + (archSDF.format(lastMod)) + "/" + parent.getName() + "/" + destFile.getName());
-            if (arch.mkdirs()) {
-                FileUtils.copyDirectory(destFile, arch, true);
+    public void archiveFile(){
+        status = STATUS.ARCHIVING;
+        app.updateFileList();
+        try{
+            if (!dest.exists()) return;
+            File arch = new File(config.getGlobal().getArchiveFolderName() + (archSDF.format(parent.getLastMod())) + "/" + parent.getName() + "/" + dest.getName());
+            if (dest.isDirectory()) {
+                if (arch.mkdirs()) {
+                    FileUtils.copyDirectory(dest, arch, true);
+                }
+            }else{
+                if (arch.mkdirs()) {
+                    FileUtils.copyFileToDirectory(dest, arch, true);
+                }
             }
-        }else{
-            File arch = new File(config.getGlobal().getArchiveFolderName() + (archSDF.format(lastMod)) + "/" + parent.getName() + "/" + destFile.getName());
-            if (arch.mkdirs()) {
-                FileUtils.copyFileToDirectory(destFile, arch, true);
-            }
+        }catch (IOException i){
+            i.printStackTrace();
         }
+        status = STATUS.READY;
+        app.updateFileList();
     }
 
     private void createFile(File file, File destFile) throws IOException{
@@ -129,59 +142,6 @@ public class Paths implements ConfigInterface {
     /*
      * Getters && Setters
      */
-
-    public File getFile() {
-        return file;
-    }
-
-    public File getDest() {
-        return dest;
-    }
-
-    public Boolean getDisabled() {
-        return disabled;
-    }
-
-    public void setDest(File dest) {
-        this.dest = dest;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
-    }
-
-    public void setDest(String destPath) {
-        File dest = new File(destPath);
-        if (!dest.getAbsolutePath().equals(this.dest.getAbsolutePath())) {
-            onLatest = dest.getAbsolutePath().equals(getDefaultLatestFolder());
-            log.println("Changing \"" + parent.getName() + "\" file destination \"" + getShorthandPath(this.dest) + "\" to \"" + getShorthandPath(dest) + "\"");
-            this.dest = dest;
-        }
-    }
-
-    public void setFile(String filePath) {
-        File file = new File(filePath);
-        if (!file.getAbsolutePath().equals(this.file.getAbsolutePath())) {
-            log.println("Changing \"" + parent.getName() + "\" file path \"" + getShorthandPath(this.file) + "\" to \"" + getShorthandPath(file) + "\"");
-            this.file = file;
-        }
-    }
-
-    public STATUS getStatus() {
-        return status;
-    }
-
-    public void setStatus(STATUS status) {
-        this.status = status;
-    }
-
-    public Archive getParent() {
-        return parent;
-    }
-
-    public void setParent(Archive parent) {
-        this.parent = parent;
-    }
 
     public Boolean onLatest() {
         return onLatest;

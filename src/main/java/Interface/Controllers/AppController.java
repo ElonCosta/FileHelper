@@ -1,8 +1,5 @@
 package Interface.Controllers;
 
-import Interface.Controllers.Files.FilesController;
-import Interface.Controllers.NewFile.NewFileController;
-import Main.Launcher;
 import Utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,8 +21,8 @@ public class AppController implements Initializable {
 
     @FXML private ToolBar menuBar;
 
-    /* LOG */
-    @FXML private Button logBtn;
+    /* MONITORING */
+    @FXML private Button monitoringBtn;
     private Node monitoringNode;
     private MonitoringController monitoringController;
 
@@ -33,16 +30,6 @@ public class AppController implements Initializable {
     @FXML private Button cfgBtn;
     private Node cfgNode;
     private ConfigurationsController configurationsController;
-
-    /* FILES */
-    @FXML private Button fleBtn;
-    private Node fleNode;
-    private FilesController filesController;
-
-    /* NEW FILE */
-    @FXML private Button newFleBtn;
-    private Node newFleNode;
-    private NewFileController newFileController;
 
     @FXML private AnchorPane mainPane;
 
@@ -52,16 +39,14 @@ public class AppController implements Initializable {
         try {
             initializeMonitoringTab();
             initializeConfigurationTab();
-            initializeFilesTab();
         } catch (IOException e) {
             e.printStackTrace();
         }
         mainPane.getChildren().add(monitoringNode);
-        logBtn.setDisable(true);
+        monitoringBtn.setDisable(true);
     }
 
     public void postInit(){
-        filesController.loadFiles();
         monitoringController.postInit();
     }
 
@@ -77,38 +62,16 @@ public class AppController implements Initializable {
         configurationsController = fxmlLoader.getController();
     }
 
-    public void initializeFilesTab() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(Utils.FilesUI);
-        fleNode = fxmlLoader.load();
-        filesController = fxmlLoader.getController();
-    }
-
-    public void initializeNewFileTab() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(Utils.NewFileUI);
-        newFleNode = fxmlLoader.load();
-        newFileController = fxmlLoader.getController();
-    }
-
     @FXML private void changeScene(ActionEvent e){
         Button b = (Button) e.getSource();
         enableButtons();
         b.setDisable(true);
         switch (b.getId()){
-            case "logBtn":
+            case "monitoringBtn":
                 mainPane.getChildren().set(0, monitoringNode);
-                Launcher.scene.getWindow().setHeight(489);
                 break;
             case "cfgBtn":
                 mainPane.getChildren().set(0,cfgNode);
-                Launcher.scene.getWindow().setHeight(326);
-                break;
-            case "fleBtn":
-                mainPane.getChildren().set(0,fleNode);
-                Launcher.scene.getWindow().setHeight(346);
-                break;
-            case "newFleBtn":
-                mainPane.getChildren().set(0, newFleNode);
-                Launcher.scene.getWindow().setHeight(346);
                 break;
         }
     }
@@ -130,9 +93,5 @@ public class AppController implements Initializable {
             Button b = (Button) n;
             b.setDisable(false);
         }
-    }
-
-    public void reloadFiles(){
-        filesController.reloadFiles();
     }
 }

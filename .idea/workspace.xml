@@ -7,50 +7,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26f6786f-0baf-4f39-97c0-248b104f2385" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_afester_javafx_FranzXaver_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_anim_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_awt_util_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_bridge_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_constants_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_css_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_dom_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_ext_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_gvt_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_i18n_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_parser_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_script_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_svg_dom_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_util_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_xml_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_xmlgraphics_commons_2_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xalan_serializer_2_7_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xalan_xalan_2_7_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xml_apis_xml_apis_1_3_04.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xml_apis_xml_apis_ext_1_3_04.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileChooserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/UI/CSS/Images/check.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/UI/CSS/Images/new.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/UI/CSS/Images/new.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/UI/CSS/Images/paused.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/UI/CSS/Images/remove.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/UI/CSS/Images/unpaused.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/UI/FXML/FileChooser.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileHelper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FileHelper.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Archive/Archive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Archive/Archive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Archive/Paths.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Archive/Paths.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Controllers/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Controllers/Files/FileTabController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Controllers/Files/FilesController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Controllers/Files/PathsTabController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Controllers/LogController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Controllers/MonitoringController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Controllers/MonitoringController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Controllers/NewFile/NewFileController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Controllers/NewFile/PathsTabController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Log/Command.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Log/Log.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/CSS/monitoring.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UI/CSS/monitoring.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/FXML/MonitoringUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UI/FXML/MonitoringUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/Images/checkThis.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UI/CSS/Images/checkThis.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/CSS/files.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/CSS/log.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/CSS/newFile.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/FXML/AppUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UI/FXML/AppUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/FXML/File/FileTab.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/FXML/File/FileUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/FXML/File/PathsTab.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/FXML/NewFile/NewFileUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/FXML/NewFile/PathsTab.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main/Launcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main/Launcher.class" afterDir="false" />
     </list>
@@ -70,8 +59,8 @@
       <list>
         <option value="Interface" />
         <option value="CSS File" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -126,7 +115,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -313,6 +302,9 @@
       <workItem from="1580120647073" duration="9000" />
       <workItem from="1580209398286" duration="14162000" />
       <workItem from="1582148845079" duration="9274000" />
+      <workItem from="1582589543142" duration="264000" />
+      <workItem from="1582589834248" duration="3927000" />
+      <workItem from="1582593781912" duration="235000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1561397026003</created>
@@ -511,30 +503,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="517" y="264" width="356" height="200" key="Github.CreateGistDialog/0.0.1366.728@0.0.1366.728" timestamp="1579629074509" />
-    <state width="1323" height="198" key="GridCell.Tab.0.bottom" timestamp="1582304988822">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1582592517828">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="198" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1582304988822" />
     <state width="1323" height="170" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1576775687340" />
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582159114163" />
-    <state width="1323" height="198" key="GridCell.Tab.0.center" timestamp="1582304988821">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582592517828" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1582592517828">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="198" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1582304988821" />
     <state width="1323" height="170" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1576775687340" />
-    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582159114163" />
-    <state width="1323" height="198" key="GridCell.Tab.0.left" timestamp="1582304988821">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582592517828" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1582592517827">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="198" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1582304988821" />
     <state width="1323" height="170" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1576775687340" />
-    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582159114163" />
-    <state width="1323" height="198" key="GridCell.Tab.0.right" timestamp="1582304988822">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582592517827" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1582592517828">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="198" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1582304988822" />
     <state width="1323" height="170" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1576775687340" />
-    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582159114163" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582592517828" />
     <state width="1323" height="220" key="GridCell.Tab.1.bottom" timestamp="1582122619252">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -571,22 +563,24 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="454" y="76" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1578481127668" />
-    <state x="163" y="0" key="SettingsEditor" timestamp="1580212631655">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="229" y="0" key="SettingsEditor" timestamp="1582593765169">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1580212631655" />
     <state x="163" y="0" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1576691745657" />
+    <state x="229" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1582593765169" />
     <state x="387" y="137" key="Vcs.Push.Dialog.v2" timestamp="1582156534843">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1580234482646" />
     <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.768@0.0.1366.768" timestamp="1576773066390" />
     <state x="387" y="137" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1582156534843" />
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1582587063119">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="533" y="267" key="com.intellij.ide.util.TipDialog" timestamp="1582593782711">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1582587063119" />
     <state x="379" y="197" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1576149882397" />
+    <state x="533" y="267" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582593782711" />
     <state x="492" y="282" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578485939507">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -617,15 +611,6 @@
     <state x="476" y="233" width="945" height="968" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582150404583" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ArchiveLoader/FilesArchive.java</url>
-          <line>446</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="pathsTabs" language="JAVA" />

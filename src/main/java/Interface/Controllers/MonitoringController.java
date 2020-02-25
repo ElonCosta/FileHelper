@@ -388,7 +388,7 @@ public class MonitoringController implements Initializable {
     @FXML private void updateArchiveName(KeyEvent e){
         System.out.println(e.getCode().isLetterKey());
         try{
-            if (Utils.isWritable(e) && (new KeyCodeCombination(e.getCode(), KeyCodeCombination.CONTROL_ANY, KeyCodeCombination.ALT_ANY).match(e))) return;
+            if (!Utils.isWritable(e) && (new KeyCodeCombination(e.getCode(), KeyCodeCombination.CONTROL_ANY, KeyCodeCombination.ALT_ANY).match(e))) return;
         }catch (IllegalArgumentException i){
             return;
         }

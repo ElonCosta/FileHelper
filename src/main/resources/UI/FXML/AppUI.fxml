@@ -7,7 +7,7 @@
    <children>
       <ToolBar fx:id="menuBar" prefHeight="25.0" prefWidth="600.0" AnchorPane.bottomAnchor="390.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
-            <Button fx:id="logBtn" mnemonicParsing="false" onAction="#changeScene" text="Log" />
+            <Button fx:id="monitoringBtn" mnemonicParsing="false" onAction="#changeScene" text="Log" />
             <Button fx:id="cfgBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeScene" text="Configurations" />
             <Button fx:id="fleBtn" mnemonicParsing="false" onAction="#changeScene" text="Files" />
             <Button fx:id="newFleBtn" mnemonicParsing="false" onAction="#changeScene" text="New File" />
