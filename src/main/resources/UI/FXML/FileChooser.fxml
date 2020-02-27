@@ -5,16 +5,16 @@
 
 <AnchorPane prefHeight="415.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Components.FileChooser.FileChooserController">
    <children>
-      <TreeTableView layoutX="15.0" layoutY="45.0" prefHeight="295.0" prefWidth="570.0" />
-      <TextField layoutX="120.0" layoutY="15.0" prefHeight="25.0" prefWidth="255.0" />
-      <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
-      <Button layoutX="40.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
-      <Button layoutX="95.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
-      <Button layoutX="560.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
-      <TextField layoutX="405.0" layoutY="15.0" minWidth="150.0" prefHeight="25.0" prefWidth="155.0" />
-      <ComboBox layoutX="405.0" layoutY="345.0" prefHeight="25.0" prefWidth="180.0" AnchorPane.bottomAnchor="45.0" />
-      <TextField layoutX="65.0" layoutY="345.0" prefHeight="25.0" prefWidth="310.0" />
-      <Button layoutX="500.0" layoutY="375.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Cancel" />
-      <Button layoutX="405.0" layoutY="375.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Select" />
+      <TableView fx:id="fileTable" layoutX="15.0" layoutY="45.0" prefHeight="295.0" prefWidth="570.0" />
+      <TextField fx:id="pathFld" layoutX="120.0" layoutY="15.0" prefHeight="25.0" prefWidth="255.0" />
+      <Button fx:id="undo" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
+      <Button fx:id="redo" layoutX="40.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
+      <Button fx:id="parentBtn" layoutX="95.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
+      <Button fx:id="searchBtn" layoutX="560.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
+      <TextField fx:id="searchBox" layoutX="405.0" layoutY="15.0" minWidth="150.0" prefHeight="25.0" prefWidth="155.0" />
+      <ComboBox fx:id="extensionsBox" layoutX="405.0" layoutY="345.0" prefHeight="25.0" prefWidth="180.0" AnchorPane.bottomAnchor="45.0" />
+      <TextField fx:id="selectedFle" layoutX="65.0" layoutY="345.0" prefHeight="25.0" prefWidth="310.0" />
+      <Button fx:id="cancelBtn" layoutX="500.0" layoutY="375.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Cancel"  onAction="#cancel"/>
+      <Button fx:id="selectBtn" layoutX="405.0" layoutY="375.0" mnemonicParsing="false" onAction="#chooseFile" prefHeight="25.0" prefWidth="85.0" text="Select" />
    </children>
 </AnchorPane>

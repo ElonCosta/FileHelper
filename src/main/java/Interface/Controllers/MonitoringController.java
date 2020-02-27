@@ -2,6 +2,7 @@ package Interface.Controllers;
 
 import ArchiveLoader.Archive.Archive;
 import ArchiveLoader.Archive.Paths;
+import Interface.Components.FileChooser.FileChooser;
 import Utils.Utils;
 import afester.javafx.svg.SvgLoader;
 import com.sun.javafx.geom.BaseBounds;
@@ -399,19 +400,35 @@ public class MonitoringController implements Initializable {
         updateUI();
     }
 
-    @FXML private void updateArchiveArchiveFile(){
+    @FXML private void updateArchiveFile(){
 
         boolean archiveFiles = archiveFile.isSelected();
         if (archiveFiles != selectedArchive.getArchiveFiles()){
             selectedArchive.setArchiveFiles(archiveFiles);
         }
-        updateUI();
+        updateFileDisplay();
     }
 
     @FXML private void check(ActionEvent e){
         Button b = (Button) e.getSource();
         if (b.getId().equals("check")){
             loader.check();
+        }
+    }
+
+    @FXML private void searchFiles(ActionEvent e){
+        FileChooser fc = new FileChooser();
+        Button b = (Button) e.getSource();
+        if (b.getId().equals("getFileBtn")){
+            fc.setInitialFolder(selectedPaths.getFile());
+            File f = fc.getAny();
+            if (f == null) return;
+            System.out.println(f.getAbsolutePath());
+        }else{
+            fc.setInitialFolder(selectedPaths.getDest());
+            File f = fc.getFolder();
+            if (f == null) return;
+            System.out.println(f.getAbsolutePath());
         }
     }
 }

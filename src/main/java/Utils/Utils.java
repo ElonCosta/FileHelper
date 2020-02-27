@@ -14,9 +14,10 @@ import static Utils.Utils.KEY.*;
 public class Utils {
 
     /*FXML FILES*/
-    public static final URL AppUI        = Utils.class.getResource("/UI/FXML/AppUI.fxml");
-    public static final URL ConfigUI     = Utils.class.getResource("/UI/FXML/ConfigurationsUI.fxml");
-    public static final URL MonitoringUI = Utils.class.getResource("/UI/FXML/MonitoringUI.fxml");
+    public static final URL AppUI         = Utils.class.getResource("/UI/FXML/AppUI.fxml");
+    public static final URL ConfigUI      = Utils.class.getResource("/UI/FXML/ConfigurationsUI.fxml");
+    public static final URL MonitoringUI  = Utils.class.getResource("/UI/FXML/MonitoringUI.fxml");
+    public static final URL FileChooserUI = Utils.class.getResource("/UI/FXML/FileChooser.fxml");
 
     /*IMAGES FILES*/
     public static final URL CheckThisFile = Utils.class.getResource("/UI/CSS/Images/checkThis.svg");
