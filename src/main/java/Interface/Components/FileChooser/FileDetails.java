@@ -4,9 +4,11 @@ import lombok.Getter;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class FileDetails{
 
@@ -19,15 +21,23 @@ public class FileDetails{
     @Getter
     private String type;
     @Getter
-    private String date;
+    private Date date;
     @Getter
     private String size;
+    @Getter
+    private Long fileSize;
 
     public FileDetails(File file){
         this.file = file;
         type = file.isDirectory() ? "File folder" : FilenameUtils.getExtension(file.getName());
         name = FilenameUtils.getName(file.getName());
-        date = (new SimpleDateFormat("dd/MM/yyyy HH:mm")).format(file.lastModified());
+        date = new Date(file.lastModified()){
+            @Override
+            public String toString() {
+                return (new SimpleDateFormat("dd/MM/yyyy HH:mm")).format(this);
+            }
+        };
+        fileSize = file.length();
         size = file.isDirectory() ? "" : formatSize(file.length());
     }
 
@@ -49,5 +59,37 @@ public class FileDetails{
             s = df.format(fs) + " GB";
         }
         return s;
+    }
+
+    public boolean isDirectory(){
+        return file.isDirectory();
+    }
+
+    public boolean isFile(){
+        return file.isFile();
+    }
+
+    public static void sortByName(List<FileDetails> list, boolean invert){
+        List<FileDetails> tmp = new ArrayList<>();
+        list.sort(Comparator.comparing(o -> o.name));
+        if (invert) Collections.reverse(list);
+        for (FileDetails f: list) {
+            if (f.isDirectory()) tmp.add(0,f);
+            else tmp.add(f);
+        }
+        list.clear();
+        list.addAll(tmp);
+    }
+
+    public static void sortBySize(List<FileDetails> list, boolean invert){
+        List<FileDetails> tmp = new ArrayList<>();
+        list.sort(Comparator.comparing(o -> o.fileSize));
+        if (invert) Collections.reverse(list);
+        for (FileDetails f: list) {
+            if (f.isDirectory()) tmp.add(0,f);
+            else tmp.add(f);
+        }
+        list.clear();
+        list.addAll(tmp);
     }
 }

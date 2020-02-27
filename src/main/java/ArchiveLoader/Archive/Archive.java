@@ -131,8 +131,6 @@ public class Archive implements ConfigInterface {
 
         if (id.trim().equals("")) generateId();
 
-        System.out.println(id + name);
-
         JSONPathsList = new ArrayList<>();
         pathsList = new ArrayList<>();
         newPathsList = new ArrayList<>();

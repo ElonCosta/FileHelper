@@ -11,7 +11,6 @@ import lombok.Setter;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -61,10 +60,9 @@ public class FileChooserController implements Initializable {
         fileTable.getColumns().add(columns[1]);
         fileTable.getColumns().add(columns[2]);
         fileTable.getColumns().add(columns[3]);
-
+        FileDetails.sortBySize(details,true);
         for (FileDetails f: details){
-            if (f.getFile().isDirectory()) fileTable.getItems().add(0,f);
-            else fileTable.getItems().add(f);
+                fileTable.getItems().add(f);
         }
     }
 
@@ -87,6 +85,7 @@ public class FileChooserController implements Initializable {
                 details.add(d);
             }
         }
+        FileDetails.sortBySize(details,true);
         for (FileDetails f: details){
             if (f.getFile().isDirectory()) fileTable.getItems().add(0,f);
             else fileTable.getItems().add(f);
@@ -134,7 +133,6 @@ public class FileChooserController implements Initializable {
             return row ;
         });
         fileTable.setOnSort( s -> {
-
         });
     }
 

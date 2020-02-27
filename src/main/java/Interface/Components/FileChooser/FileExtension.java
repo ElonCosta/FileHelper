@@ -36,15 +36,15 @@ public class FileExtension {
 
     @Override
     public String toString() {
-        String allExts = " (";
-        if (extensions.length == 0) allExts += "*.*";
+        StringBuilder allExts = new StringBuilder(" (");
+        if (extensions.length == 0) allExts.append("*.*");
         for (int i = 0; i < extensions.length; i++){
-            allExts += "*." + extensions[i];
+            allExts.append("*.").append(extensions[i]);
             if (i < extensions.length-1){
-                allExts += ", ";
+                allExts.append(", ");
             }
         }
-        allExts += ")";
+        allExts.append(")");
         return title + allExts;
     }
 }

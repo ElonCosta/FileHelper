@@ -5,17 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.Getter;
-import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class FileChooser {
 
     public enum DETAILS{
         NAME(0, "Name"),
-        TYPE(1,"Type"),
+        TYPE(1, "Type"),
         DATE(2, "Date modified"),
         SIZE(3, "Size");
 
@@ -27,6 +25,11 @@ public class FileChooser {
         DETAILS(int i, String name){
             this.i = i;
             this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return name;
         }
     }
 
