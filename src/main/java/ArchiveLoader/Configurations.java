@@ -1,7 +1,7 @@
 package ArchiveLoader;
 
 import Utils.ConfigInterface;
-import com.Hasher.Hasher;
+//import com.Hasher.Hasher;
 import lombok.Getter;
 import lombok.Setter;
 import org.json.*;
@@ -52,12 +52,12 @@ public class Configurations implements ConfigInterface {
     }
 
     public void loadHasher(){
-        if (global.getHashKey().trim().equals("")){
-            hasher = new Hasher();
-            global.setHashKey(hasher.getHashKey());
-        }else {
-            hasher = new Hasher(global.getHashKey());
-        }
+//        if (global.getHashKey().trim().equals("")){
+//            hasher = new Hasher();
+//            global.setHashKey(hasher.getHashKey());
+//        }else {
+//            hasher = new Hasher(global.getHashKey());
+//        }
         save();
     }
 

@@ -18,9 +18,9 @@ public class FileChooser {
         SIZE(3, "Size");
 
         @Getter
-        private int i;
+        int i;
         @Getter
-        private String name;
+        String name;
 
         DETAILS(int i, String name){
             this.i = i;
@@ -34,9 +34,11 @@ public class FileChooser {
     }
 
     @Getter
-    private List<FileExtension> fileExtensions;
+    List<FileExtension> extensions;
     @Getter
-    private File initialFolder;
+    File initialFolder;
+    @Getter
+    FileHistoric historic;
 
     private Stage stage;
     private FileChooserController controller;
@@ -49,7 +51,10 @@ public class FileChooser {
             controller = fxmlLoader.getController();
             stage.setScene(scene);
             controller.setStage(stage);
-            setFileExtensions();
+            controller.setFileChooser(this);
+            initialFolder = new File(System.getProperty("user.dir"));
+            historic = new FileHistoric(new FileDetails(initialFolder));
+            setExtensions();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -57,7 +62,7 @@ public class FileChooser {
 
     public FileChooser(String... fileExtensions){
         this();
-        setFileExtensions(fileExtensions);
+        setExtensions(fileExtensions);
     }
 
     public FileChooser(File initialFolder){
@@ -68,39 +73,37 @@ public class FileChooser {
     public FileChooser(File initialFolder, String... fileExtensions){
         this();
         setInitialFolder(initialFolder);
-        setFileExtensions(fileExtensions);
+        setExtensions(fileExtensions);
     }
 
     public File getFile(){
         controller.setFilesOnly(true);
         controller.load();
         stage.showAndWait();
-        return controller.getChoosenFile();
+        return controller.getChosenFile();
     }
 
     public File getFolder(){
         controller.setFoldersOnly(true);
         controller.load();
         stage.showAndWait();
-        return controller.getChoosenFile();
+        return controller.getChosenFile();
     }
 
     public File getAny(){
         controller.load();
         stage.showAndWait();
-        return controller.getChoosenFile();
+        return controller.getChosenFile();
     }
 
-    public void setFileExtensions(String... fileExtensions) {
-        List<FileExtension> extensions = FileExtension.createExtensionList(fileExtensions);
-        this.fileExtensions = extensions;
-        controller.setExtensions(extensions);
+    public void setExtensions(String... extensions) {
+        this.extensions = FileExtension.createExtensionList(extensions);
     }
 
     public void setInitialFolder(File initialFolder) {
         if (initialFolder == null) return;
         this.initialFolder = initialFolder.getParentFile();
-        controller.setInitialFolder(initialFolder.getParentFile());
+        historic = new FileHistoric(new FileDetails(initialFolder.getParentFile()));
     }
 
 }

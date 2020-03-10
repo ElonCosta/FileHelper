@@ -41,6 +41,7 @@ public class Paths implements ConfigInterface {
     private String destPath;
 
     private SimpleDateFormat archSDF = new SimpleDateFormat("/yyyy/MM/dd/HH_mm/");
+    private SimpleDateFormat lastModSDF = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
     private JSONObject JSONPaths;
 

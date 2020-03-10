@@ -27,11 +27,9 @@ public class Loader {
 
     private Boolean paused;
 
-    private ThreadPoolExecutor archiveExecutor;
     private ThreadPoolExecutor updateExecutor;
 
     public Loader(){
-        archiveExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(6);
         updateExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(6);
     }
 
@@ -41,13 +39,12 @@ public class Loader {
     }
 
     private void createFolders(){
-        if (config.getGlobal().getRootFolder().mkdir());
-        if (config.getGlobal().getArchiveFolder().mkdirs());
-        if (config.getGlobal().getVersionFolder().mkdirs());
+        config.getGlobal().getRootFolder().mkdir();
+        config.getGlobal().getArchiveFolder().mkdirs();
+        config.getGlobal().getVersionFolder().mkdirs();
     }
 
     public void check(){
-        archives.stream().filter(a -> a.getStatus() == Utils.STATUS.READY && a.getArchiveFiles()).forEach(a -> archiveExecutor.submit(a::archiveFiles));
         archives.stream().filter(a -> a.getStatus() == Utils.STATUS.READY).forEach(a -> updateExecutor.submit(a::check));
     }
 

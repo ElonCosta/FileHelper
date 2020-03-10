@@ -21,7 +21,7 @@ public class FileExtension {
     public static List<FileExtension> createExtensionList(String... extensions){
         List<FileExtension> extensionList = new ArrayList<>();
         extensionList.add(new FileExtension("All files", extensions));
-        if (extensions == null) return extensionList;
+        if (extensions.length == 0) return extensionList;
         for (String s: extensions){
             String title = s.substring(0,1).toUpperCase() + s.substring(1) + " files";
             extensionList.add(new FileExtension(title, s));

@@ -14,18 +14,12 @@ public class FileDetails{
 
     final long B = 1024;
 
-    @Getter
-    private File file;
-    @Getter
-    private String name;
-    @Getter
-    private String type;
-    @Getter
-    private Date date;
-    @Getter
-    private String size;
-    @Getter
-    private Long fileSize;
+    @Getter private File file;
+    @Getter private String name;
+    @Getter private String type;
+    @Getter private Date date;
+    @Getter private String size;
+    @Getter private Long fileSize;
 
     public FileDetails(File file){
         this.file = file;
@@ -47,7 +41,7 @@ public class FileDetails{
         double fs = size;
         String s = df.format(fs) + " B";
         if (fs > B){
-            fs = (fs/ B);
+            fs = (fs/B);
             s = df.format(fs) + " KB";
         }
         if (fs > B){

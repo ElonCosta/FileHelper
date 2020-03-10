@@ -11,8 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="FileHelper" target="8" />
-      <module name="hellofx" target="11" />
+      <module name="FileHelper" target="13" />
     </bytecodeTargetLevel>
   </component>
 </project>

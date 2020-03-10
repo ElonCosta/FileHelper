@@ -2,11 +2,11 @@ package Utils;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import lombok.Getter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.InputStream;
 import java.net.URL;
 
 import static Utils.Utils.KEY.*;
@@ -20,11 +20,12 @@ public class Utils {
     public static final URL FileChooserUI = Utils.class.getResource("/UI/FXML/FileChooser.fxml");
 
     /*IMAGES FILES*/
-    public static final URL CheckThisFile = Utils.class.getResource("/UI/CSS/Images/checkThis.svg");
-    public static final URL Check         = Utils.class.getResource("/UI/CSS/Images/check.svg");
-    public static final URL Pause         = Utils.class.getResource("/UI/CSS/Images/paused.svg");
-    public static final URL remove        = Utils.class.getResource("/UI/CSS/Images/remove.svg");
-    public static final URL add           = Utils.class.getResource("/UI/CSS/Images/new.svg");
+    public static final File CheckThisFile = new File("./Images/checkThis.svg");
+    public static final File Check         = new File("./Images/check.svg");
+    public static final File Pause         = new File("./Images/paused.svg");
+    public static final File remove        = new File("./Images/remove.svg");
+    public static final File add           = new File("./Images/new.svg");
+
 
     public static KEY[] globalKeys = new KEY[]{VERSION_FOLDER, ROOT_FOLDER, ROUTINE_TIME, ARCHIVE_FOLDER, HASH_KEY};
     public static KEY[] configKeys = new KEY[]{CFG_VERSION, GLOBAL, DATA_FILES};
@@ -57,15 +58,11 @@ public class Utils {
         NAME("name"),
         PATH("path");
 
-
+        @Getter
         private String var;
 
         KEY(String var){
             this.var = var;
-        }
-
-        public String getVar(){
-            return var;
         }
 
     }
@@ -73,14 +70,11 @@ public class Utils {
         VERSION("1.2b"),
         TITLE("File Helper v" + VERSION.var);
 
+        @Getter
         String var;
 
         UIVE(String var){
             this.var = var;
-        }
-
-        public  String getVar() {
-            return var;
         }
     }
     public enum STATUS {

@@ -1,24 +1,13 @@
 package Main;
 
-import ArchiveLoader.Archive.Archive;
 import ArchiveLoader.Configurations;
 import ArchiveLoader.Loader;
 import Interface.Controllers.AppController;
-import Utils.Utils;
-import com.Hasher.Hasher;
+//import com.Hasher.Hasher;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static Utils.Utils.*;
 
@@ -27,7 +16,7 @@ public class Launcher extends Application {
     public static Scene scene;
     public static AppController app;
     public static Configurations config;
-    public static Hasher hasher;
+//    public static Hasher hasher;
     public static Loader loader;
 
     public static void main(String[] args) {
@@ -36,9 +25,7 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setOnCloseRequest(e -> {
-            config.save();
-        });
+        primaryStage.setOnCloseRequest(e -> config.save());
 
         primaryStage.setTitle(UIVE.TITLE.getVar());
         primaryStage.setResizable(false);

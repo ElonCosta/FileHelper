@@ -7,8 +7,6 @@ import Utils.Utils;
 import afester.javafx.svg.SvgLoader;
 import com.sun.javafx.geom.BaseBounds;
 import com.sun.javafx.geom.transform.BaseTransform;
-import com.sun.javafx.jmx.MXNodeAlgorithm;
-import com.sun.javafx.jmx.MXNodeAlgorithmContext;
 import com.sun.javafx.sg.prism.NGNode;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.beans.value.ChangeListener;
@@ -21,13 +19,16 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Text;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import static Main.Launcher.loader;
@@ -75,8 +76,12 @@ public class MonitoringController implements Initializable {
     @FXML private Button removePath;
     @FXML private Button removeArchive;
 
+    private TreeItem<Object> selectedArchiveItem;
     private Archive selectedArchive;
+    private TreeItem<Object> selectedPathsItem;
     private Paths selectedPaths;
+
+    private SimpleDateFormat lastModSDF = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -209,7 +214,7 @@ public class MonitoringController implements Initializable {
                 fileName.positionCaret(selectedArchive.getName().length());
             }
             archiveFile.setSelected(selectedArchive.getArchiveFiles());
-            String lastModText = "Last Mod: "+selectedArchive.getLastMod();
+            String lastModText = "Last Mod: "+lastModSDF.format(selectedArchive.getLastMod());
             lastMod.setText(lastModText);
             String enabledText = String.format("%d/%d Paths enabled",
                     selectedArchive.getPathsList().stream().filter(Paths::isEnabled).count(),
@@ -295,37 +300,6 @@ public class MonitoringController implements Initializable {
 
     private void loadButtons(){
 
-        try {
-        checkThisPath.setGraphic(createGraphic(new File(Utils.CheckThisFile.toURI()), 0.035));
-        checkThisPath.setTooltip(new Tooltip("Check selected path"));
-
-        checkThis.setGraphic(createGraphic(new File(Utils.Check.toURI()), 0.2));
-        checkThis.setTooltip(new Tooltip("Check selected archiving"));
-
-        check.setGraphic(createGraphic(new File(Utils.Check.toURI()), 0.4));
-        check.setTooltip(new Tooltip("Check archives"));
-        pause.setGraphic(createGraphic(new File(Utils.Pause.toURI()),0.2));
-
-        removeArchive.setGraphic(createGraphic(new File(Utils.remove.toURI()),0.3));
-        createArchive.setGraphic(createGraphic(new File(Utils.add.toURI()),0.3));
-
-        removePath.setGraphic(createGraphic(new File(Utils.remove.toURI()),0.25));
-        createPath.setGraphic(createGraphic(new File(Utils.add.toURI()),0.25));
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private Group createGraphic(File is, Double scaleX, Double scaleY){
-        SvgLoader loader = new SvgLoader();
-        Group checkThisPathSvg = loader.loadSvg(is.getAbsolutePath());
-        checkThisPathSvg.setScaleY(scaleX);
-        checkThisPathSvg.setScaleX(scaleY);
-        return new Group(checkThisPathSvg);
-    }
-
-    private Group createGraphic(File is, Double scaleSqrd){
-        return createGraphic(is, scaleSqrd, scaleSqrd);
     }
 
     /* FXML METHODS */
@@ -340,7 +314,9 @@ public class MonitoringController implements Initializable {
         if (b.getId().equals("cancelBtn")){
             if (selectedArchive.getStatus() == STATUS.NEW){
                 loader.getNewArchives().remove(selectedArchive);
+                files.getChildren().remove(selectedArchiveItem);
                 updateUI();
+                selectedArchiveItem = files.getChildren().get(files.getChildren().size()-1);
                 selectedArchive = loader.getNewArchives().isEmpty() ? loader.getArchives().get(loader.getArchives().size()-1) : loader.getNewArchives().get(loader.getNewArchives().size()-1) ;
 
             }else if(selectedArchive.getStatus() == STATUS.EDITING){
@@ -366,12 +342,18 @@ public class MonitoringController implements Initializable {
         if (ob instanceof Archive){
             Archive a = (Archive) ob;
             if (a == selectedArchive) return;
+            selectedArchiveItem = item;
             selectedArchive = a;
-            if(selectedPaths == null || selectedPaths.getParent() != selectedArchive) selectedPaths = a.getPathsList().get(0);
+            if(selectedPaths == null || selectedPaths.getParent() != selectedArchive) {
+                selectedPathsItem = item.getChildren().get(0);
+                selectedPaths = a.getPathsList().get(0);
+            }
         }else if (ob instanceof Paths){
             Paths p = (Paths) ob;
             if (p == selectedPaths) return;
+            selectedArchiveItem = item.getParent();
             selectedArchive = p.getParent();
+            selectedPathsItem = item;
             selectedPaths = p;
         }
         updateFileDisplay();

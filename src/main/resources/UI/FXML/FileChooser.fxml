@@ -7,9 +7,9 @@
    <children>
       <TableView fx:id="fileTable" layoutX="15.0" layoutY="45.0" prefHeight="295.0" prefWidth="570.0" />
       <TextField fx:id="pathFld" layoutX="120.0" layoutY="15.0" prefHeight="25.0" prefWidth="255.0" />
-      <Button fx:id="undo" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
-      <Button fx:id="redo" layoutX="40.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
-      <Button fx:id="parentBtn" layoutX="95.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
+      <Button fx:id="previous" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" onAction="#previousFolder" />
+      <Button fx:id="next" layoutX="40.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" onAction="#nextFolder" />
+      <Button fx:id="gotoParent" layoutX="95.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" onAction="#parentFolder"/>
       <Button fx:id="searchBtn" layoutX="560.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="Button" />
       <TextField fx:id="searchBox" layoutX="405.0" layoutY="15.0" minWidth="150.0" prefHeight="25.0" prefWidth="155.0" />
       <ComboBox fx:id="extensionsBox" layoutX="405.0" layoutY="345.0" prefHeight="25.0" prefWidth="180.0" AnchorPane.bottomAnchor="45.0" />

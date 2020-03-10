@@ -47,7 +47,7 @@ public class Archive implements ConfigInterface {
     private List<Paths> newPathsList;
 
     @Getter
-    private String lastMod;
+    private Date lastMod;
 
     private SimpleDateFormat lastModSDF = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
@@ -61,7 +61,7 @@ public class Archive implements ConfigInterface {
     public Archive() {
         this.JSONData = new JSONObject();
         this.archiveFiles = true;
-        this.lastMod = lastModSDF.format(new Date());
+        this.lastMod = new Date();
         this.status = STATUS.NEW;
         this.JSONPathsList = new ArrayList<>();
         this.pathsList = new ArrayList<>();
@@ -81,15 +81,12 @@ public class Archive implements ConfigInterface {
         return tmp;
     }
 
-    public void archiveFiles(){
-        status = STATUS.ARCHIVING;
-        app.updateFileList();
-        pathsList.forEach(Paths::archiveFile);
-        status = STATUS.READY;
-        app.updateFileList();
-    }
-
     public void check(){
+        status = archiveFiles ? STATUS.ARCHIVING : null;
+        if (status != null){
+            app.updateFileList();
+            pathsList.forEach(Paths::archiveFile);
+        }
         status = STATUS.CHECKING;
         app.updateFileList();
         pathsList.forEach(Paths::check);
@@ -141,9 +138,9 @@ public class Archive implements ConfigInterface {
         }
 
         try{
-            lastMod = JSONData.getString(Utils.KEY.LAST_MOD.getVar());
-        }catch (JSONException e){
-            lastMod = lastModSDF.format(new Date());
+            lastMod = lastModSDF.parse(JSONData.getString(Utils.KEY.LAST_MOD.getVar()));
+        }catch (JSONException | ParseException e){
+            lastMod = new Date();
         }
 
         if (dataPath == null){
