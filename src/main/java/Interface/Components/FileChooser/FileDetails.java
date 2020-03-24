@@ -4,7 +4,6 @@ import lombok.Getter;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
-import java.lang.reflect.Field;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -64,20 +63,16 @@ public class FileDetails{
     }
 
     public static void sortByName(List<FileDetails> list, boolean invert){
-        List<FileDetails> tmp = new ArrayList<>();
-        list.sort(Comparator.comparing(o -> o.name));
-        if (invert) Collections.reverse(list);
-        for (FileDetails f: list) {
-            if (f.isDirectory()) tmp.add(0,f);
-            else tmp.add(f);
-        }
-        list.clear();
-        list.addAll(tmp);
+        sortBy(list, invert, Comparator.comparing(FileDetails::getName));
     }
 
     public static void sortBySize(List<FileDetails> list, boolean invert){
+        sortBy(list, invert, Comparator.comparing(FileDetails::getFileSize));
+    }
+
+    private static void sortBy(List<FileDetails> list, boolean invert, Comparator<FileDetails> comparing) {
         List<FileDetails> tmp = new ArrayList<>();
-        list.sort(Comparator.comparing(o -> o.fileSize));
+        list.sort(comparing);
         if (invert) Collections.reverse(list);
         for (FileDetails f: list) {
             if (f.isDirectory()) tmp.add(0,f);

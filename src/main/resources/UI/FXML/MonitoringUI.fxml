@@ -24,7 +24,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="fileName" layoutY="25.0" onKeyReleased="#updateArchiveName" prefHeight="25.0" prefWidth="340.0" />
+            <TextField fx:id="fileName" layoutY="25.0" prefHeight="25.0" prefWidth="340.0" onKeyTyped="#updateArchiveName"/>
          </Group>
          <CheckBox fx:id="archiveFile" layoutY="55.0" mnemonicParsing="false" onAction="#updateArchiveFile" text="Archive files" />
          <Label fx:id="lastMod" layoutX="192.0" layoutY="55.0" text="Last Mod: " />

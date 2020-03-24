@@ -1,5 +1,6 @@
 package Interface.Components.FileChooser;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +15,18 @@ public class FileHistoric {
 
     public void addToHistoric(FileDetails folder){
         if (pos != historic.size() - 1) {
-            for (int i = historic.size()-1; i > pos; i--) {
-                historic.remove(i);
+            if (historic.size() > pos + 1) {
+                historic.subList(pos + 1, historic.size()).clear();
             }
         }
         historic.add(folder);
         pos++;
         historic.forEach(f-> System.out.println(f.getName()));
         System.out.println("----------------- " + pos);
+    }
+
+    public void addToHistoric(File folder){
+        addToHistoric(new FileDetails(folder));
     }
 
     public boolean hasNext(){

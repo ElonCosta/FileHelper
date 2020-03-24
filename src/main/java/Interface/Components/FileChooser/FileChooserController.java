@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -68,7 +69,7 @@ public class FileChooserController implements Initializable {
         if (children != null){
             for (File f: children){
                 FileDetails d = new FileDetails(f);
-                if (!f.isDirectory() && fileChooser.extensions.stream().noneMatch(e -> e.matches(d.getType()))) continue;
+                if (!f.isDirectory() && (fileChooser.extensions.stream().noneMatch(e -> e.matches(d.getType())) || !fileChooser.selectedExtension.matches(d.getType()))) continue;
                 if (foldersOnly && !f.isDirectory()) continue;
                 details.add(d);
             }
@@ -80,6 +81,10 @@ public class FileChooserController implements Initializable {
         for (FileExtension f: fileChooser.extensions){
             extensionsBox.getItems().add(f);
         }
+        extensionsBox.setOnAction(e -> {
+            fileChooser.selectedExtension = extensionsBox.getSelectionModel().getSelectedItem();
+            reload();
+        });
         extensionsBox.getSelectionModel().select(0);
     }
 
@@ -100,20 +105,40 @@ public class FileChooserController implements Initializable {
     }
 
     public void createColumns(){
-        TableColumn<String, FileDetails> nameColumn = new TableColumn<>("Name");
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        columns[0] = nameColumn;
-        TableColumn<String, FileDetails> typeColumn = new TableColumn<>("Type");
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        columns[1] = typeColumn;
-        TableColumn<String, FileDetails> lastModColumn = new TableColumn<>("Date modified");
-        lastModColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        columns[2] = lastModColumn;
-        TableColumn<String, FileDetails> sizeColumn = new TableColumn<>("Size");
-        sizeColumn.setCellValueFactory(new PropertyValueFactory<>("size"));
-        columns[3] = sizeColumn;
+        columns[0] = new TableColumn<>("Name");
+        columns[0].setCellValueFactory(new PropertyValueFactory<>("name"));
+        columns[1] = new TableColumn<>("Type");
+        columns[1].setCellValueFactory(new PropertyValueFactory<>("type"));
+        columns[2] = new TableColumn<>("Date modified");
+        columns[2].setCellValueFactory(new PropertyValueFactory<>("date"));
+        columns[3] = new TableColumn<>("Size");
+        columns[3].setCellValueFactory(new PropertyValueFactory<>("size"));
+        columns[3].setCellFactory(new Callback<TableColumn, TableCell>() {
+            @Override
+            public TableCell call(TableColumn tableColumn) {
 
-        Arrays.asList(columns).forEach(c-> c.setSortable(false));
+                TableCell cell = new TableCell<FileDetails, String>() {
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(empty ? null : getString());
+                        setGraphic(null);
+                    }
+
+                    private String getString() {
+                        return getItem() == null ? "" : getItem().toString();
+                    }
+                };
+
+                cell.setStyle("-fx-alignment: CENTER-RIGHT;");
+                return cell;
+
+            }
+        });
+        Arrays.asList(columns).forEach(c-> {
+            c.setSortable(false);
+            c.setReorderable(false);
+        });
 
         fileTable.setRowFactory( tv -> {
             TableRow<FileDetails> row = new TableRow<>();
@@ -142,6 +167,8 @@ public class FileChooserController implements Initializable {
             });
             return row ;
         });
+        fileTable.setStyle("-fx-table-cell-border-color: transparent;" +
+                "-fx-control-inner-background-alt: -fx-control-inner-background ;");
         fileTable.setOnSort( s -> {
         });
         fileTable.getColumns().addAll(columns);
@@ -158,8 +185,8 @@ public class FileChooserController implements Initializable {
     }
 
     @FXML private void parentFolder(){
-        fileChooser.historic.addToHistoric(new FileDetails(fileChooser.initialFolder));
         fileChooser.initialFolder = fileChooser.initialFolder.getParentFile();
+        fileChooser.historic.addToHistoric(fileChooser.initialFolder);
         reload();
     }
 

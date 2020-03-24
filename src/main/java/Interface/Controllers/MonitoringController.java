@@ -3,6 +3,7 @@ package Interface.Controllers;
 import ArchiveLoader.Archive.Archive;
 import ArchiveLoader.Archive.Paths;
 import Interface.Components.FileChooser.FileChooser;
+import Interface.Components.FileChooser.FileExtension;
 import Utils.Utils;
 import afester.javafx.svg.SvgLoader;
 import com.sun.javafx.geom.BaseBounds;
@@ -368,13 +369,8 @@ public class MonitoringController implements Initializable {
         }
     }
 
+
     @FXML private void updateArchiveName(KeyEvent e){
-        System.out.println(e.getCode().isLetterKey());
-        try{
-            if (!Utils.isWritable(e) && (new KeyCodeCombination(e.getCode(), KeyCodeCombination.CONTROL_ANY, KeyCodeCombination.ALT_ANY).match(e))) return;
-        }catch (IllegalArgumentException i){
-            return;
-        }
         String name = fileName.getText();
         if (!name.equals(selectedArchive.getName())){
             selectedArchive.setName(name);
@@ -402,12 +398,12 @@ public class MonitoringController implements Initializable {
         FileChooser fc = new FileChooser();
         Button b = (Button) e.getSource();
         if (b.getId().equals("getFileBtn")){
-            fc.setInitialFolder(selectedPaths.getFile());
+            fc.setInitialFolder(selectedPaths.getFile().getParentFile());
             File f = fc.getAny();
             if (f == null) return;
             System.out.println(f.getAbsolutePath());
         }else{
-            fc.setInitialFolder(selectedPaths.getDest());
+            fc.setInitialFolder(selectedPaths.getDest().getParentFile());
             File f = fc.getFolder();
             if (f == null) return;
             System.out.println(f.getAbsolutePath());

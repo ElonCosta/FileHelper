@@ -2,59 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75239939-2591-421b-89ee-a4cc3e1a412d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_avalon_framework_avalon_framework_api_4_3_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_avalon_framework_avalon_framework_impl_4_3_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_svggen_1_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_win_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_win_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_win_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/local-repo/br/com/eLibs/Hasher/1.0/Hasher.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileHistoric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Interface/Controllers/Monitoring.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/FileHelper_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__br_com_Hasher_Hasher_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_awt_util_1_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_awt_util_1_7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_constants_1_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_transcoder_1_7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_gvt_1_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_xml_1_7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_i18n_1_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_util_1_7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_svg_dom_1_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_svg_dom_1_7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_util_1_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_fop_0_94.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_xml_1_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlgraphics_batik_gvt_1_7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/libs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileHelper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FileHelper.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/com/Hasher/1.0/Hasher.jar" beforeDir="false" afterPath="$PROJECT_DIR$/libs/br/com/eLibs/Hasher/1.0/Hasher.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Archive/Archive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Archive/Archive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Archive/Paths.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Archive/Paths.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Loader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileChooser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileChooserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileChooserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileExtension.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileExtension.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileHistoric.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileHistoric.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Controllers/MonitoringController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Controllers/MonitoringController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/CSS/Images/check.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Images/check.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/CSS/Images/checkThis.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Images/checkThis.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/CSS/Images/new.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/new.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/CSS/Images/new.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Images/new.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/CSS/Images/paused.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Images/paused.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/CSS/Images/remove.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Images/remove.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/CSS/Images/unpaused.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Images/unpaused.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/FXML/FileChooser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UI/FXML/FileChooser.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/FXML/MonitoringUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UI/FXML/MonitoringUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main/Launcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main/Launcher.class" afterDir="false" />
     </list>
@@ -105,8 +63,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/local-repo" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/Workspaces/WorkspaceFlash/OpenStreetMaps2ElectricBoogaloo" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
@@ -157,18 +115,35 @@
       <workItem from="1583750956705" duration="2644000" />
       <workItem from="1583763457786" duration="1132000" />
       <workItem from="1583764685180" duration="2458000" />
-      <workItem from="1583843992732" duration="1333000" />
+      <workItem from="1583843992732" duration="14907000" />
+      <workItem from="1584022504120" duration="69000" />
     </task>
+    <task id="LOCAL-00001" summary="updates FileChooser">
+      <created>1583845594875</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583845594875</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="updates FileChooser" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates FileChooser" />
   </component>
   <component name="WindowStateProjectService">
     <state x="275" y="23" key="#Inspections" timestamp="1583764390188">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="23" key="#Inspections/0.0.1366.728@0.0.1366.728" timestamp="1583764390188" />
+    <state x="275" y="23" key="#Project_Structure" timestamp="1583858621619">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="23" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1583858621619" />
     <state x="137" y="20" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583752449946">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -177,41 +152,69 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="531" y="254" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1366.728@0.0.1366.728" timestamp="1583763471093" />
-    <state x="463" y="66" key="FileChooserDialogImpl" timestamp="1583764591639">
+    <state x="94" y="0" key="CommitChangelistDialog2" timestamp="1583845591149">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="66" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1583764591639" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1583845429802">
+    <state x="94" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1583845591149" />
+    <state x="463" y="66" key="FileChooserDialogImpl" timestamp="1584022571588">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1583845429802" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1583845429801">
+    <state x="463" y="66" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1584022571588" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1583867630534">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1583845429801" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1583845429801">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1583867630534" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1583867630534">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1583845429801" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1583845429801">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1583867630534" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1583867630534">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1583845429801" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1583867630534" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1583867630534">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1583867630534" />
+    <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1583862462489">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="223" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1583862462489" />
+    <state width="1323" height="223" key="GridCell.Tab.1.center" timestamp="1583862462488">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="223" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1583862462488" />
+    <state width="1323" height="223" key="GridCell.Tab.1.left" timestamp="1583862462488">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="223" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1583862462488" />
+    <state width="1323" height="223" key="GridCell.Tab.1.right" timestamp="1583862462489">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1583862462489" />
     <state x="348" y="64" key="NewModule_or_Project.wizard" timestamp="1583757059637">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="348" y="64" key="NewModule_or_Project.wizard/0.0.1366.728@0.0.1366.728" timestamp="1583757059637" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1583765265736">
+    <state x="184" y="0" key="SettingsEditor" timestamp="1583851393962">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1583765265736" />
-    <state x="384" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1583750969718">
+    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1583851393962" />
+    <state x="275" y="98" key="Vcs.Push.Dialog.v2" timestamp="1585061422352">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="384" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1583750969718" />
-    <state x="733" y="166" key="extract.method.dialog" timestamp="1583752243834">
+    <state x="275" y="98" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1585061422352" />
+    <state x="384" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1584022504320">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="733" y="166" key="extract.method.dialog/0.0.1366.728@0.0.1366.728" timestamp="1583752243834" />
+    <state x="384" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1584022504320" />
+    <state x="492" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585061417185">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="492" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1585061417185" />
+    <state x="733" y="166" key="extract.method.dialog" timestamp="1583865026875">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="733" y="166" key="extract.method.dialog/0.0.1366.728@0.0.1366.728" timestamp="1583865026875" />
   </component>
 </project>

@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import lombok.Getter;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 
 public class FileChooser {
@@ -39,6 +40,9 @@ public class FileChooser {
     File initialFolder;
     @Getter
     FileHistoric historic;
+    @Getter
+    FileExtension selectedExtension;
+
 
     private Stage stage;
     private FileChooserController controller;
@@ -54,7 +58,9 @@ public class FileChooser {
             controller.setFileChooser(this);
             initialFolder = new File(System.getProperty("user.dir"));
             historic = new FileHistoric(new FileDetails(initialFolder));
-            setExtensions();
+            extensions = FileExtension.createExtensionList();
+            selectedExtension = extensions.get(0);
+            System.out.println(extensions.size());
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -96,14 +102,20 @@ public class FileChooser {
         return controller.getChosenFile();
     }
 
+    public void setExtensions(FileExtension... extensions){
+        this.extensions = Arrays.asList(extensions);
+        selectedExtension = this.extensions.get(0);
+    }
+
     public void setExtensions(String... extensions) {
         this.extensions = FileExtension.createExtensionList(extensions);
+        selectedExtension = this.extensions.get(0);
     }
 
     public void setInitialFolder(File initialFolder) {
         if (initialFolder == null) return;
-        this.initialFolder = initialFolder.getParentFile();
-        historic = new FileHistoric(new FileDetails(initialFolder.getParentFile()));
+        this.initialFolder = initialFolder;
+        historic = new FileHistoric(new FileDetails(initialFolder));
     }
 
 }
