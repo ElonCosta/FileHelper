@@ -16,8 +16,9 @@
 
     <repositories>
         <repository>
-            <id>my-local-repo</id>
-            <url>file://${basedir}/local-repo</url>
+            <id>localLibs</id>
+            <name>localLibs</name>
+            <url>file://${basedir}/libs</url>
         </repository>
     </repositories>
 
@@ -70,11 +71,7 @@
             <version>0.1.55</version>
         </dependency>
 
-        <dependency>
-            <groupId>br.com.eLibs</groupId>
-            <artifactId>Hasher</artifactId>
-            <version>1.0</version>
-        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/com.github.afester.javafx/FranzXaver -->
         <dependency>
@@ -113,6 +110,12 @@
             <groupId>org.apache.xmlgraphics</groupId>
             <artifactId>batik-transcoder</artifactId>
             <version>1.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>br.com.eLibs</groupId>
+            <artifactId>Hasher</artifactId>
+            <version>1.0</version>
         </dependency>
 
     </dependencies>

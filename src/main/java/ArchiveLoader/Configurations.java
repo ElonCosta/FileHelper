@@ -1,7 +1,7 @@
 package ArchiveLoader;
 
 import Utils.ConfigInterface;
-//import com.Hasher.Hasher;
+import br.com.Hasher.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.json.*;
@@ -52,12 +52,12 @@ public class Configurations implements ConfigInterface {
     }
 
     public void loadHasher(){
-//        if (global.getHashKey().trim().equals("")){
-//            hasher = new Hasher();
-//            global.setHashKey(hasher.getHashKey());
-//        }else {
-//            hasher = new Hasher(global.getHashKey());
-//        }
+        if (global.getHashKey().trim().equals("")){
+            hasher = new Hasher();
+            global.setHashKey(hasher.getHashKey());
+        }else {
+            hasher = new Hasher(global.getHashKey());
+        }
         save();
     }
 
@@ -134,7 +134,7 @@ public class Configurations implements ConfigInterface {
     public class Global implements ConfigInterface{
 
         @Getter
-        private JSONObject JSONGlobal;
+        private final JSONObject JSONGlobal;
 
         @Getter @Setter
         private String versionFolderName;
@@ -244,7 +244,7 @@ public class Configurations implements ConfigInterface {
         private JSONArray JSONDataFiles;
 
         @Getter
-        private List<JSONObject> dataFilesList = new ArrayList<>();
+        private final List<JSONObject> dataFilesList = new ArrayList<>();
 
         private DataFiles(JSONArray JSONDataFiles){
             this.JSONDataFiles = JSONDataFiles;

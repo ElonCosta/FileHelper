@@ -3,7 +3,7 @@ package Main;
 import ArchiveLoader.Configurations;
 import ArchiveLoader.Loader;
 import Interface.Controllers.AppController;
-//import com.Hasher.Hasher;
+import br.com.Hasher.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,7 +16,7 @@ public class Launcher extends Application {
     public static Scene scene;
     public static AppController app;
     public static Configurations config;
-//    public static Hasher hasher;
+    public static Hasher hasher;
     public static Loader loader;
 
     public static void main(String[] args) {

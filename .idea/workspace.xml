@@ -1,18 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="75239939-2591-421b-89ee-a4cc3e1a412d" name="Default Changelist" comment="">
+    <list default="true" id="26f6786f-0baf-4f39-97c0-248b104f2385" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__br_com_eLibs_Hasher_1_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileHelper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FileHelper.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileChooser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileChooserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileChooserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileExtension.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileExtension.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileHistoric.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Components/FileChooser/FileHistoric.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interface/Controllers/MonitoringController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/Controllers/MonitoringController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UI/FXML/MonitoringUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UI/FXML/MonitoringUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/br/com/eLibs/Hasher/1.0/Hasher.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-console-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-datetime-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-debug-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-errorhandling-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-file-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-file-l1-2-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-file-l2-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-handle-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-heap-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-interlocked-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-libraryloader-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-localization-l1-2-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-memory-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-namedpipe-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-processenvironment-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-processthreads-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-processthreads-l1-1-1.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-profile-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-rtlsupport-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-string-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-synch-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-synch-l1-2-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-sysinfo-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-timezone-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-core-util-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-crt-conio-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-crt-convert-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-crt-environment-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-crt-filesystem-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-crt-heap-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-crt-locale-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-crt-math-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-crt-multibyte-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-crt-private-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-crt-process-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-crt-runtime-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-crt-stdio-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-crt-string-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-crt-time-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/api-ms-win-crt-utility-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/concrt140.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/decora_sse.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/fxplugins.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/glass.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/glib-lite.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/gstreamer-lite.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/javafx_font.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/javafx_iio.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/jfxmedia.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/jfxwebkit.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/msvcp140.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/prism_common.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/prism_d3d.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/prism_sw.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/ucrtbase.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/bin/vcruntime140.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.base/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.base/ASSEMBLY_EXCEPTION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.base/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.controls/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.controls/ASSEMBLY_EXCEPTION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.controls/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.fxml/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.fxml/ASSEMBLY_EXCEPTION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.fxml/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.graphics/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.graphics/ASSEMBLY_EXCEPTION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.graphics/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.graphics/jpeg_fx.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.media/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.media/ASSEMBLY_EXCEPTION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.media/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.media/applecoreaudio.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.media/glib.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.media/gstreamer.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.media/libffi.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.swing/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.swing/ASSEMBLY_EXCEPTION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.swing/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.web/ADDITIONAL_LICENSE_INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.web/ASSEMBLY_EXCEPTION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.web/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.web/icu_web.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.web/libxml2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.web/libxslt.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/legal/javafx.web/webkit.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/lib/javafx-swt.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/lib/javafx.base.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/lib/javafx.controls.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/lib/javafx.fxml.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/lib/javafx.graphics.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/lib/javafx.media.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/lib/javafx.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/lib/javafx.swing.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/lib/javafx.web.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javafx-sdk-11.0.2/lib/src.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/local-repo/br/com/eLibs/Hasher/1.0/Hasher.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ArchiveLoader/Configurations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Launcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ArchiveLoader/Loader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main/Launcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main/Launcher.class" afterDir="false" />
     </list>
@@ -38,23 +152,20 @@
     <expand />
     <select />
   </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1YgHhntRaQANScauxuOqEWU0nTt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -63,22 +174,44 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/Workspaces/WorkspaceFlash/OpenStreetMaps2ElectricBoogaloo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/local-repo/br/com/eLibs/Hasher/1.0" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\santo\IdeaProjects\FileHelper\local-repo\br\com\eLibs\Hasher\1.0" />
+      <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\local-repo" />
+      <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\libs\br\com\Hasher\2.0" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\libs\br\com\eLibs\Hasher\1.0" />
       <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\libs\br\com\Hasher\Hasher" />
       <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\libs\br" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\local-repo" />
-      <recent name="C:\Users\Elon-Desenv\IdeaProjects\FileHelper\libs\br\com\Hasher\2.0" />
-    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn mvn mvn mvn deploy:deploy-file -Durl=file:\\${basedir}\local-repo\ -Dfile=Hasher-1.0.jar -DgroupId=br.com.eLibs -DartifactId=Hasher -Dpackaging=jar -Dversion 1.0" />
+      <command value="mvn deploy:deploy-file -Durl=file:\\${basedir}\local-repo\ -Dfile=Hasher-1.0.jar -DgroupId=br.com.eLibs -DartifactId=Hasher -Dpackaging=jar -Dversion 1.0" />
+      <command value="mvn deploy:deploy-file -Durl=file:\\C:\Users\santo\IdeaProjects\FileHelper\local-repo -Dfile=Hasher-1.0.jar -DgroupId=br.com.eLibs -DartifactId=Hasher -Dpackaging=jar -Dversion 1.0" />
+      <command value="mvn deploy:deploy-file -Durl=file://C:/Users/santo/IdeaProjects/FileHelper/local-repo -Dfile=Hasher-1.0.jar -DgroupId=br.com.eLibs -DartifactId=Hasher -Dpackaging=jar -Dversion 1.0" />
+      <command value="mvn deploy:deploy-file -Durl=file://C:/Users/santo/IdeaProjects/FileHelper/local-repo -Dfile=Hasher-1.0.jar -DgroupId=br.com.eLibs -DartifactId=Hasher -Dpackaging=jar -Dversion=1.0" />
+      <command value="mvn deploy:deploy-file -Durl=file://C:/Users/santo/IdeaProjects/FileHelper/local-repo -Dfile=C:\Users\santo\IdeaProjects\Hasher\target\Hasher-1.0.jar -DgroupId=br.com.eLibs -DartifactId=Hasher -Dpackaging=jar -Dversion=1.0" />
+      <command value="mvn deploy:deploy-file -Durl=file://C:/Users/santo/IdeaProjects/FileHelper/local-repo -Dfile=C:\Users\santo\IdeaProjects\Hasher\target\Hasher-1.0.jar -DgroupId=br.com.eLibs -DartifactId=Hasher -Dpackaging=jar -Dversion=1.0 -Dgeneratep0m=false" />
+      <command value="mvn deploy:deploy-file -Durl=file://C:/Users/santo/IdeaProjects/FileHelper/local-repo -Dfile=C:\Users\santo\IdeaProjects\Hasher\target\Hasher-1.0.jar -DgroupId=br.com.eLibs -DartifactId=Hasher -Dpackaging=jar -Dversion=1.0 -Dgeneratepom=false" />
+      <command value="mvn deploy:deploy-file -Durl=file://C:/Users/santo/IdeaProjects/FileHelper/local-repo -Dfile=C:\Users\santo\IdeaProjects\Hasher\target\Hasher-1.0.jar -DgroupId=br.com.eLibs -DartifactId=Hasher -Dpackaging=jar -Dversion=1.0 -DgeneratePom=false" />
+      <command value="mvn deploy:deploy-file -Durl=file://C:/Users/santo/IdeaProjects/FileHelper/local-repo -DrepositoryId=my-local-repo -Dfile=C:\Users\santo\IdeaProjects\Hasher\target\Hasher-1.0.jar -DgroupId=br.com.eLibs -DartifactId=Hasher -Dpackaging=jar -Dversion=1.0 -DgeneratePom=false" />
+      <command value="mvn deploy:deploy-file" />
+      <command value="mvn deploy:deploy-file -DpomFile=file:\\C:\Users\santo\IdeaProjects\Hasher\pom.xml   -Dfile=file:\\C:\Users\santo\IdeaProjects\Hasher\target\Hasher-1.0.jar   -DrepositoryId=localLibs   -Durl=file:\\.\libs\" />
+      <command value="mvn deploy:deploy-file -DpomFile=file:\\C:\Users\santo\IdeaProjects\Hasher\pom.xml   -Dfile=C:\Users\santo\IdeaProjects\Hasher\target\Hasher-1.0.jar   -DrepositoryId=localLibs   -Durl=file:\\.\libs\" />
+      <command value="mvn deploy:deploy-file -DpomFile=C:\Users\santo\IdeaProjects\Hasher\pom.xml   -Dfile=C:\Users\santo\IdeaProjects\Hasher\target\Hasher-1.0.jar   -DrepositoryId=localLibs   -Durl=file:\\.\libs\" />
+      <command value="mvn deploy:deploy-file -DpomFile=C:\Users\santo\IdeaProjects\Hasher\pom.xml   -Dfile=C:\Users\santo\IdeaProjects\Hasher\target\Hasher-1.0.jar   -DrepositoryId=localLibs   -Durl=file:\\C:\Users\santo\IdeaProjects\FileHelper\libs" />
+      <command value="mvn deploy:deploy-file -DpomFile=C:\Users\santo\IdeaProjects\Hasher\pom.xml   -Dfile=C:\Users\santo\IdeaProjects\Hasher\target\Hasher-1.0.jar   -DrepositoryId=localLibs   -Durl=file:\\C:\Users\santo\IdeaProjects\FileHelper\libs -DgeneratePom=false" />
+      <command value="mvn clean install" />
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -106,7 +239,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="75239939-2591-421b-89ee-a4cc3e1a412d" name="Default Changelist" comment="" />
+      <changelist id="26f6786f-0baf-4f39-97c0-248b104f2385" name="Default Changelist" comment="" />
       <created>1583357438622</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -128,8 +261,37 @@
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1106000" />
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="updates FileChooser" />
@@ -156,26 +318,31 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="94" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1583845591149" />
-    <state x="463" y="66" key="FileChooserDialogImpl" timestamp="1584022571588">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="651" y="94" key="FileChooserDialogImpl" timestamp="1587501863751">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="463" y="66" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1584022571588" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1583867630534">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="651" y="94" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1587501863751" />
+    <state width="1877" height="280" key="GridCell.Tab.0.bottom" timestamp="1587506920229">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1583867630534" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1583867630534">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1587506920229" />
+    <state width="1877" height="280" key="GridCell.Tab.0.center" timestamp="1587506920229">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1583867630534" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1583867630534">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="280" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1587506920229" />
+    <state width="1877" height="280" key="GridCell.Tab.0.left" timestamp="1587506920229">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1583867630534" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1583867630534">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="280" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1587506920229" />
+    <state width="1877" height="280" key="GridCell.Tab.0.right" timestamp="1587506920229">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1583867630534" />
+    <state width="1877" height="280" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1587506920229" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1583862462489">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -196,10 +363,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="348" y="64" key="NewModule_or_Project.wizard/0.0.1366.728@0.0.1366.728" timestamp="1583757059637" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1583851393962">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="259" y="0" key="SettingsEditor" timestamp="1587507131534">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1583851393962" />
+    <state x="259" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1587507131534" />
     <state x="275" y="98" key="Vcs.Push.Dialog.v2" timestamp="1585061422352">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -216,5 +384,84 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="733" y="166" key="extract.method.dialog/0.0.1366.728@0.0.1366.728" timestamp="1583865026875" />
+    <state x="202" y="330" width="672" height="677" key="run.anything.popup" timestamp="1587506920213">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="202" y="330" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1587506920213" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>FileHelper</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: br.com.eLibs:Hasher:1.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
