@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="335.0" prefWidth="230.0" stylesheets="@../../CSS/monitoring.css"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="br.com.claw.iterface.controllers.monitoring.FileListController">
+   <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" prefHeight="25.0"
+           prefWidth="25.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0"/>
+   <Button fx:id="deleteArchive" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0"
+           mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" AnchorPane.rightAnchor="35.0"
+           AnchorPane.topAnchor="5.0"/>
+   <Button fx:id="newArchive" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+           onAction="#newArchive" prefHeight="25.0" prefWidth="25.0" AnchorPane.rightAnchor="5.0"
+           AnchorPane.topAnchor="5.0"/>
+   <TreeView fx:id="filesTreeView" layoutX="18.0" layoutY="68.0" prefHeight="295.0" prefWidth="220.0"
+             AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
+             AnchorPane.topAnchor="35.0"/>
+</AnchorPane>

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="main" prefHeight="417.0" prefWidth="600.0" stylesheets="@../CSS/main.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controllers.AppController">
+<Pane fx:id="main" prefHeight="417.0" prefWidth="600.0" stylesheets="@../CSS/main.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.claw.iterface.controllers.AppController">
    <children>
       <ToolBar fx:id="menuBar" prefHeight="25.0" prefWidth="600.0" AnchorPane.bottomAnchor="390.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>

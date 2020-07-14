@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="335.0" maxWidth="350.0" minHeight="335.0" minWidth="350.0" prefHeight="335.0" prefWidth="350.0" stylesheets="@../../CSS/monitoring.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.claw.iterface.controllers.monitoring.FileDisplayController">
+   <children>
+      <Group layoutX="5.0" layoutY="5.0">
+         <children>
+            <Label fx:id="lastMod" layoutX="195.0" layoutY="62.0" text="Last mod: 31/12/9999">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="archiveFile" graphicTextGap="5.0" layoutY="60.0" mnemonicParsing="false" text="Archive files">
+               <font>
+                  <Font name="Calibri" size="15.0" />
+               </font>
+            </CheckBox>
+            <Group layoutY="5.0">
+               <children>
+                  <TextField fx:id="fileName" onKeyTyped="#updateArchiveName" layoutY="25.0" maxHeight="25.0" maxWidth="340.0" minHeight="25.0" minWidth="340.0" prefHeight="25.0" prefWidth="340.0" />
+                  <Label layoutY="5.0" text="Name:">
+                     <font>
+                        <Font name="Calibri" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+            <Label fx:id="enabled" layoutX="221.0" layoutY="85.0" text="0/0 Paths enabled">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group fx:id="pathBtns" layoutX="300.0" layoutY="110.0">
+         <children>
+            <Button fx:id="newPaths" layoutX="25.0" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+            <Button maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+         </children>
+      </Group>
+      <Group fx:id="ready" layoutX="5.0" layoutY="5.0">
+         <children>
+            <Button layoutY="105.0" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+            <Button layoutX="25.0" layoutY="105.0" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+            <Button layoutX="315.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
+            <Button layoutX="315.0" layoutY="136.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
+         </children>
+      </Group>
+      <Separator layoutY="135.0" prefWidth="350.0" />
+      <Group layoutX="5.0" layoutY="151.0">
+         <children>
+            <Group>
+               <children>
+                  <Label text="File location:">
+                     <font>
+                        <Font name="Calibri" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="pathFile" layoutY="20.0" maxHeight="25.0" maxWidth="316.0" minHeight="25.0" minWidth="316.0" prefHeight="25.0" prefWidth="316.0" />
+                  <Button layoutX="315.0" layoutY="20.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="..." />
+               </children>
+            </Group>
+            <Group layoutY="50.0">
+               <children>
+                  <Label text="File destination:">
+                     <font>
+                        <Font name="Calibri" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="pathDest" layoutY="20.0" maxHeight="25.0" maxWidth="316.0" minHeight="25.0" minWidth="316.0" prefHeight="25.0" prefWidth="316.0" />
+                  <Button layoutX="315.0" layoutY="20.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="..." />
+               </children>
+            </Group>
+            <CheckBox fx:id="pathDisabled" layoutY="100.0" mnemonicParsing="false" text="Disabled" />
+         </children>
+      </Group>
+      <Group fx:id="editing" layoutX="5.0" layoutY="305.0" visible="false">
+         <children>
+            <Button onAction="#cancelEditing" maxHeight="25.0" maxWidth="100.0" minHeight="25.0" minWidth="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Cancel" />
+            <Button layoutX="240.0" maxHeight="25.0" maxWidth="100.0" minHeight="25.0" minWidth="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Confirm" />
+         </children>
+      </Group>
+   </children>
+</AnchorPane>
